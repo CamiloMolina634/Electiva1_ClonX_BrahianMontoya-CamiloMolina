@@ -1,9 +1,8 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
-import { HomePage } from '../pages/HomePage'
+import { Route, Routes } from 'react-router-dom'
+import { ExexRouter } from '../exex/routes/ExexRouter'
 
 export const BaseRouter = () => (
   <Routes>
-    <Route path="/" element={<HomePage />} />
-    <Route path="*" element={<Navigate to="/" replace />} />
+    <Route path="/*" element={<ExexRouter />} />
   </Routes>
 )
