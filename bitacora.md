@@ -67,3 +67,27 @@
 
 ---
 
+
+## Consultas de soporte — Brahian Montoya Obando
+
+### Consulta — 23/10/2026, 10:56 a. m. (Colombia)
+
+- **Pregunta realizada:** Solicitud de apoyo para comprender conceptos y resolver dudas o errores puntuales de EXEX.
+- **Resumen de la respuesta:** Se acordó brindar explicaciones breves y claras, usar identificadores y comentarios de código en inglés y registrar únicamente consultas y acciones reales.
+- **Archivos o conceptos involucrados:** React, TypeScript, Vite, React Router v6, datos mock, tweets, seguidores, seguidos y feed.
+- **Estado:** Alcance de apoyo establecido. No se revisaron ni modificaron archivos.
+
+### Consulta — 23/10/2026, 11:03 a. m. (Colombia)
+
+- **Pregunta realizada:** Ayuda para completar la descripción de un pull request sobre la publicación simulada de tweets.
+- **Resumen de la respuesta:** Se redactó la descripción con funcionalidades, requisito relacionado, pruebas reportadas y revisión pendiente de Camilo.
+- **Archivos o conceptos involucrados:** RF-04, publicación de tweets, datos mock, validación del formulario, persistencia durante la navegación y revisión de pull requests.
+- **Estado:** Texto preparado para copiar. No se modificó el repositorio ni se ejecutaron pruebas; los resultados descritos fueron proporcionados por el usuario. No se creó el pull request.
+
+### Consulta — 23/10/2026, 11:30 a. m. (Colombia)
+
+- **Pregunta realizada:** Obtener el enlace de este chat y añadirlo debajo de «Pregunta realizada» en el registro de bitácora.
+- **Enlace para este chat:** (https://chatgpt.com/s/cx_6adb8b9cbf9c81918b7ae2226e9808c7)
+- **Resumen breve de la respuesta:** Se generó el enlace compartido y se incorporó a la estructura del registro.
+- **Archivos o conceptos involucrados:** `bitacora.md`, enlace compartido del chat.
+- **Estado:** Enlace generado. No se modificaron archivos.
