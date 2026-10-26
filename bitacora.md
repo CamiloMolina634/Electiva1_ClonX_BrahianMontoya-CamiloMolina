@@ -363,3 +363,70 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
   - Sin cambios. Archivos relacionados: `src/auth/contexts/AuthProvider.tsx` y `src/auth/reducers/authReducer.ts`.
 
 ---
+
+## Consultas de soporte — Brahian Montoya Obando — 26 de octubre de 2026
+
+Todas las horas corresponden a Colombia (UTC-5).
+
+Cada entrada utiliza el enlace actualizado del chat de soporte, que reúne las consultas anteriores a la generación del archivo.
+
+### CONSULTA 1 — 2:34 p. m.
+
+- **Pregunta realizada:** Si dos usuarios se siguen entre sí, ¿se necesitan dos relaciones en mockFollows o basta con una?
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6adfb7c293b48191b494d504b1ff9993)
+- **Resumen breve de la respuesta:** Se explicó que el modelo con followerId y followingId requiere dos relaciones, una por cada dirección. Cada usuario puede dejar de seguir al otro de forma independiente.
+- **Archivos o conceptos involucrados:** mockFollows, followerId, followingId y seguimiento direccional.
+- **Estado:** Explicación y ejemplo propuestos. No se modificaron archivos ni se ejecutaron pruebas.
+
+---
+
+### CONSULTA 2 — 2:39 p. m.
+
+- **Pregunta realizada:** ¿Qué problemas causa guardar dos veces la misma relación de seguimiento? ¿El usuario aparecería repetido?
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6adfb7c293b48191b494d504b1ff9993)
+- **Resumen breve de la respuesta:** Se explicó que la repetición visual depende de cómo se construya la lista. Con Set y el filtro de mockUsers, el usuario no se repite si existe una sola vez en mockUsers. Los duplicados pueden alterar los contadores y la eliminación del seguimiento. Se propuso comprobar la pareja de identificadores con some antes de agregarla.
+- **Archivos o conceptos involucrados:** mockFollows, mockUsers, Set, some, relaciones duplicadas y conteo de seguidos.
+- **Estado:** Explicación y ejemplo propuestos. No se modificaron archivos ni se ejecutaron pruebas.
+
+---
+
+### CONSULTA 3 — 2:44 p. m. (14:44:05)
+
+- **Pregunta realizada:** ¿Para qué comprobar currents.includes(userId) si el botón ya se desactiva cuando sigo al usuario?
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6adfb7c293b48191b494d504b1ff9993)
+- **Resumen breve de la respuesta:** Se explicó que desactivar el botón evita interacciones desde la interfaz, mientras que comprobar el estado dentro de una actualización funcional evita agregar identificadores duplicados ante llamadas repetidas. Si la lista contiene objetos, corresponde utilizar some.
+- **Archivos o conceptos involucrados:** includes, some, estado de React, actualización funcional y prevención de duplicados.
+- **Estado:** Explicación y ejemplo propuestos suponiendo una lista de identificadores. No se revisaron archivos ni se ejecutaron pruebas.
+
+---
+
+### CONSULTA 4 — 2:44 p. m. (14:44:44)
+
+- **Pregunta realizada:** ¿Se conserva el seguimiento al pulsar seguir y cambiar a la segunda página?
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6adfb7c293b48191b494d504b1ff9993)
+- **Resumen breve de la respuesta:** Se explicó que el seguimiento se conserva si su estado permanece montado al cambiar de página. Si se guarda únicamente en una fila que se desmonta, puede perderse. Para conservarlo entre pantallas, se propuso mantenerlo en un estado compartido que permanezca montado, por ejemplo mediante contexto.
+- **Archivos o conceptos involucrados:** UserListItem, followingIds, paginación, estado de React, desmontaje y contexto.
+- **Estado:** Explicación condicional. No se revisó el código ni se comprobó la persistencia en la aplicación.
+
+---
+
+### CONSULTA 5 — 3:26 p. m.
+
+- **Pregunta realizada:** Actualizar el enlace de la conversación para incluirlo en la bitácora.
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6adfb7c293b48191b494d504b1ff9993)
+- **Resumen breve de la respuesta:** Se generó un enlace actualizado que incluía las explicaciones sobre seguimiento mutuo, relaciones duplicadas, validación con includes y conservación del estado al cambiar de página.
+- **Archivos o conceptos involucrados:** bitacora.md, mockFollows, includes, estado de React y paginación.
+- **Estado:** Enlace generado y registro preparado para copiar. No se modificaron archivos ni se ejecutaron pruebas.
+
+---
+
+### CONSULTA 6 — 3:27 p. m.
+
+- **Pregunta realizada:** Reunir las bitácoras de hoy en un archivo descargable.
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6adfb7c293b48191b494d504b1ff9993)
+- **Resumen breve de la respuesta:** Se recopilaron las cinco consultas anteriores del 26 de octubre y esta solicitud de descarga en un archivo TXT, con horas de Colombia, preguntas, enlaces, resúmenes, conceptos y estados.
+- **Archivos o conceptos involucrados:** bitacoras_2026-10-26.txt y enlaces compartidos de la conversación.
+- **Estado:** Archivo TXT generado. No se modificó el código de EXEX ni se ejecutaron pruebas del proyecto.
+
+---
+
