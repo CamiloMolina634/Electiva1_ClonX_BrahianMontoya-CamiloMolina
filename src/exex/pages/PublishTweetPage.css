@@ -1,0 +1,13 @@
+.publish-tweet-page {
+  max-width: 720px;
+}
+
+.publish-tweet-page textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.publish-tweet-page .tweet-message {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

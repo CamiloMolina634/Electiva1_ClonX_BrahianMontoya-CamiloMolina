@@ -2,70 +2,66 @@
 
 ## Registro de Interacciones
 
-### [2026-10-21 20:00] - 
-
-- **Herramienta / Modelo:** Codex / Modelo no identificado en el historial consultado.
+### [2026-10-21 20:00]
+- **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
   > Quiero entender desde cero cómo configurar Bootstrap en mi proyecto de React, siguiendo el ejemplo de clase bloc_app. Explícame un paso a la vez y dime qué hace cada cambio
 - **Resumen de la respuesta:**
-  Se revisaron EXEX y bloc_app. Se explicó que Bootstrap ya estaba conectado mediante una CDN en index.html y para qué sirven href, rel, integrity y crossorigin. También se explicó el uso de className para aplicar sus estilos.
+  Bootstrap ya estaba conectado en index.html. La respuesta explicó los enlaces de carga y cómo usar sus clases en React.
 - **Archivos creados/modificados:**
   - Ninguno. Se revisaron `index.html`, `src/main.tsx` y `package.json`, junto con los archivos del ejemplo `bloc_app`.
 
 ---
 
-### [2026-10-21 20:10] - 
-
-- **Herramienta / Modelo:** Codex / Modelo no identificado en el historial consultado.
-- **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b) (enlace interno de Codex; no es un enlace público compartido).
+### [2026-10-21 20:10]
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
   > Muéstrame cómo quedaría con Bootstrap 5.3.8, usando los enlaces en index.html.
 - **Resumen de la respuesta:**
-  Se mostró un ejemplo completo de index.html con el CSS de Bootstrap y su archivo JavaScript bundle. Se explicó la función de cada enlace y la necesidad de conexión a Internet. La configuración mostrada ya existía en el proyecto.
+  El ejemplo mostró dónde van los enlaces del CSS y del JavaScript de Bootstrap 5.3.8. Esa configuración ya estaba en el proyecto.
 - **Archivos creados/modificados:**
   - Ninguno. Archivo relacionado: `index.html` (configuración existente, explicada en la respuesta).
 
---
+---
 
-### [2026-10-21 20:12] - 
-
-- **Herramienta / Modelo:** Codex / Modelo no identificado en el historial consultado.
+### [2026-10-21 20:12]
+- **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
   > ¿Qué tendría que quitar si antes lo instalé con npm y lo importé en main.tsx?
 - **Resumen de la respuesta:**
-  Se explicó cómo evitar una carga duplicada: retirar los imports de Bootstrap y ejecutar npm uninstall bootstrap, conservando el import de index.css. Se aclaró que los archivos revisados ya usaban solamente los enlaces de index.html.
+  Para usar los enlaces basta con quitar los imports de Bootstrap y desinstalar el paquete. El import de index.css se conserva. En esta consulta no se hicieron cambios.
 - **Archivos creados/modificados:**
   - Ninguno. Archivos relacionados: `src/main.tsx`, `package.json` y `package-lock.json`. Los pasos fueron explicados; no se ejecutaron en esta conversación.
 
 ---
 
-### [2026-10-21 20:15] - 
-
+### [2026-10-21 20:15]
 - **Herramienta / Modelo:** Codex 
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
   > ¿Cómo dejo index.css básico, sin personalizar todavía los botones ni los formularios?
 - **Resumen de la respuesta:**
-  Se revisó index.css y se propuso conservar únicamente el ancho mínimo del body si se desea retirar también el diseño inicial. Se explicó que project-start y project-mark controlan la presentación inicial, y que botones y campos utilizan clases de Bootstrap.
+  La propuesta fue dejar el ancho mínimo del body y quitar las reglas de la pantalla inicial si ya no se necesitan. Los botones y campos usarían las clases de Bootstrap.
 - **Archivos creados/modificados:**
   - Ninguno. Se revisó `src/index.css` y se propuso una simplificación, sin modificarlo.
 
 ---
 
-### [2026-10-21 20:30] - 
-
+### [2026-10-21 20:30]
 - **Herramienta / Modelo:** Codex 
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
   > ¿Cómo compruebo que quedó funcionando?
 - **Resumen de la respuesta:**
-  Se propuso agregar temporalmente un botón con las clases btn y btn-primary, dentro de un contenedor con container y py-4, y ejecutar npm run dev. Se explicó cómo reconocer el resultado y que esa prueba comprueba el CSS, no los componentes JavaScript. La conversación no registra la ejecución de esta prueba.
+  La prueba propuesta fue mostrar un botón con btn btn-primary y abrir la aplicación con npm run dev. Eso permite revisar el CSS. La prueba no se ejecutó en ese chat.
 - **Archivos creados/modificados:**
   - Ninguno. Se sugirió una prueba en `src/ExexApp.tsx`, sin aplicarla.
 
 ---
+
 
 
 ## Consultas de soporte — Brahian Montoya Obando — 25 de octubre de 2026
@@ -185,3 +181,185 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
+---
+
+
+## Consultas de soporte — Brahian Montoya Obando
+
+### Consulta — 23/10/2026, 10:56 a. m. (Colombia)
+
+- **Pregunta realizada:** Solicitud de apoyo para comprender conceptos y resolver dudas o errores puntuales de EXEX.
+- **Resumen de la respuesta:** Se acordó brindar explicaciones breves y claras, usar identificadores y comentarios de código en inglés y registrar únicamente consultas y acciones reales.
+- **Archivos o conceptos involucrados:** React, TypeScript, Vite, React Router v6, datos mock, tweets, seguidores, seguidos y feed.
+- **Estado:** Alcance de apoyo establecido. No se revisaron ni modificaron archivos.
+
+### Consulta — 23/10/2026, 11:03 a. m. (Colombia)
+
+- **Pregunta realizada:** Ayuda para completar la descripción de un pull request sobre la publicación simulada de tweets.
+- **Resumen de la respuesta:** Se redactó la descripción con funcionalidades, requisito relacionado, pruebas reportadas y revisión pendiente de Camilo.
+- **Archivos o conceptos involucrados:** RF-04, publicación de tweets, datos mock, validación del formulario, persistencia durante la navegación y revisión de pull requests.
+- **Estado:** Texto preparado para copiar. No se modificó el repositorio ni se ejecutaron pruebas; los resultados descritos fueron proporcionados por el usuario. No se creó el pull request.
+
+### Consulta — 23/10/2026, 11:30 a. m. (Colombia)
+
+- **Pregunta realizada:** Obtener el enlace de este chat y añadirlo debajo de «Pregunta realizada» en el registro de bitácora.
+- **Enlace para este chat:** (https://chatgpt.com/s/cx_6adb8b9cbf9c81918b7ae2226e9808c7)
+- **Resumen breve de la respuesta:** Se generó el enlace compartido y se incorporó a la estructura del registro.
+- **Archivos o conceptos involucrados:** `bitacora.md`, enlace compartido del chat.
+- **Estado:** Enlace generado. No se modificaron archivos.
+---
+
+## Consultas de soporte — Camilo Molina
+### [2026-10-25 12:40]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
+- **Mensaje enviado (Prompt):**
+  > ya tengo Firebase configurado  para el login. ¿Puedes revisar providers.ts y AuthProvider y explicarme qué falta para que el formulario inicie sesión correctamente? Por ahora no cambies nada.
+- **Resumen de la respuesta:**
+  El formulario ya estaba conectado con Firebase y TypeScript no mostraba errores. Faltaba probar una cuenta real. También apareció una actualización repetida del usuario.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivos relacionados: `src/auth/contexts/AuthProvider.tsx` y `src/auth/reducers/authReducer.ts`.
+
+---
+
+### [2026-10-25 12:41]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
+- **Mensaje enviado (Prompt):**
+  > Porque se repite logica?
+- **Resumen de la respuesta:**
+  login y onAuthStateChanged guardaban el mismo usuario. La recomendación fue dejar esa tarea solamente en onAuthStateChanged.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivos relacionados: `src/auth/contexts/AuthProvider.tsx` y `src/auth/reducers/authReducer.ts`.
+
+---
+
+### [2026-10-25 12:41]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
+- **Mensaje enviado (Prompt):**
+  > Explicame con un ejemplo
+- **Resumen de la respuesta:**
+  El ejemplo mostró que login puede enviar las credenciales mientras el observador guarda la sesión, sin repetir el mismo dispatch.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivos relacionados: `src/auth/contexts/AuthProvider.tsx` y `src/auth/reducers/authReducer.ts`.
+
+---
+
+### [2026-10-25 12:42]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
+- **Mensaje enviado (Prompt):**
+  > entiendo, entonces haz el cambio
+- **Resumen de la respuesta:**
+  Se modificó AuthProvider.tsx: se quitaron los dispatch repetidos de login y logout. onAuthStateChanged quedó encargado de actualizar la sesión, y login de enviar las credenciales y manejar los errores. TypeScript y lint pasaron. Falta probar una cuenta real.
+- **Archivos creados/modificados:**
+  - `src/auth/contexts/AuthProvider.tsx` (modificado: se eliminó la actualización duplicada de la sesión).
+
+---
+
+### [2026-10-25 12:43]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
+- **Mensaje enviado (Prompt):**
+  > En providers tengo AuthResult y AuthErrorResult. qu pongo para `errorMessage?`
+- **Resumen de la respuesta:**
+  Cuando el resultado es correcto se usa errorMessage?: never. Cuando falla se exige un mensaje de tipo string. ok permite distinguir los dos resultados.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+### [2026-10-25 12:46]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
+- **Mensaje enviado (Prompt):**
+  > cuando consulte el never es para valores que nunca van a ocurrir cierto es la mejor opcion para este proyecto
+- **Resumen de la respuesta:**
+  never evita que un resultado exitoso lleve un mensaje de error. Es una restricción de TypeScript para no mezclar las dos respuestas.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+### [2026-10-25 12:52]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
+- **Mensaje enviado (Prompt):**
+  > Qué casos puedo poner en el switch de errores del login ya que  const user = result.user;
+  >     const { uid, displayName, photoURL } = user;
+  >     return {
+  >       ok: true,
+  >       uid, email, displayName, photoURL
+  >     };
+  >   } catch (error : any) {
+  >     return {
+  >       ok: false,
+  >       errorMessage: error.message
+  >     }
+  >   }tengo estas opciones para poner o cual es la mejor y que puedo añaidr  pues cómo manejo credenciales incorrectas, muchos intentos y problemas de conexión?
+- **Resumen de la respuesta:**
+  La recomendación fue revisar error.code y mostrar mensajes para credenciales incorrectas, correo inválido, muchos intentos, problemas de conexión y cuentas inhabilitadas.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+### [2026-10-25 12:53]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
+- **Mensaje enviado (Prompt):**
+  > que son error.code
+- **Resumen de la respuesta:**
+  error.code identifica el fallo de Firebase. error.message contiene la explicación técnica. El switch usa el código para escoger un mensaje.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+### [2026-10-25 13:07]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
+- **Mensaje enviado (Prompt):**
+  > y de donde saco esos case?
+- **Resumen de la respuesta:**
+  Los case salen de la documentación de Firebase. Deben coincidir con el código que devuelve el error.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+### [2026-10-25 13:10]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
+- **Mensaje enviado (Prompt):**
+  > cómo evito enviar el formulario varias veces mientras responde Firebase?
+- **Resumen de la respuesta:**
+  submitting permite bloquear el botón mientras responde Firebase. try/finally permite volver a habilitarlo al terminar la solicitud.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/auth/pages/LoginPage.tsx`.
+
+---
+
+### [2026-10-25 13:11]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
+- **Mensaje enviado (Prompt):**
+  > Cómo construyo el usuario y qué debe llevar el payload del dispatch y que caso llevo al reducer?
+- **Resumen de la respuesta:**
+  El usuario se arma con los datos de Firebase. El dispatch lleva type y payload, y el reducer responde a login, logout y error.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivos relacionados: `src/auth/contexts/AuthProvider.tsx` y `src/auth/reducers/authReducer.ts`.
+
+---
