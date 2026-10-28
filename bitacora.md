@@ -2,7 +2,7 @@
 
 ## Registro de Interacciones
 
-### [2026-10-21 20:00]
+### [2026-10-21]
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
@@ -14,7 +14,7 @@
 
 ---
 
-### [2026-10-21 20:10]
+### [2026-10-21]
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
@@ -26,7 +26,7 @@
 
 ---
 
-### [2026-10-21 20:12]
+### [2026-10-21]
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
@@ -38,7 +38,7 @@
 
 ---
 
-### [2026-10-21 20:15]
+### [2026-10-21]
 - **Herramienta / Modelo:** Codex 
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
@@ -50,7 +50,7 @@
 
 ---
 
-### [2026-10-21 20:30]
+### [2026-10-21]
 - **Herramienta / Modelo:** Codex 
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
@@ -70,7 +70,7 @@ Todas las horas corresponden a Colombia (UTC-5).
 
 Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las comprobaciones realizadas por el asistente.
 
-### CONSULTA 1 — 1:20 p. m.
+### CONSULTA 1
 
 - **Pregunta realizada:** Mi componente UserListItem recibe una propiedad user de tipo User. ¿Qué son las props y cómo funciona ({ user }: UserListItemProps)?
 - **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ade87ebcc488191bf018ef8f9715e45)
@@ -80,7 +80,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### CONSULTA 2 — 1:25 p. m.
+### CONSULTA 2
 
 - **Pregunta realizada:** ¿Por qué conviene crear un componente reutilizable para cada usuario y cómo se utiliza dentro de una lista con map?
 - **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ade87ebcc488191bf018ef8f9715e45)
@@ -90,7 +90,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### CONSULTA 3 — 1:36 p. m.
+### CONSULTA 3
 
 - **Pregunta realizada:** ¿Cómo combinar mockUsers y mockFollows para obtener únicamente los usuarios que sigue Brahian, excluyendo a quienes solo lo siguen a él?
 - **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ade87ebcc488191bf018ef8f9715e45)
@@ -100,7 +100,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### CONSULTA 4 — 1:36 p. m. (13:36:53)
+### CONSULTA 4
 
 - **Pregunta realizada:** Se indicó que el enlace compartido también debe actualizarse en cada consulta.
 - **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ade87ebcc488191bf018ef8f9715e45)
@@ -110,7 +110,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### CONSULTA 5 — 1:39 p. m.
+### CONSULTA 5
 
 - **Pregunta realizada:** ¿Ana queda excluida de mis seguidos porque, aunque ella me sigue, yo no la sigo?
 - **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ade87ebcc488191bf018ef8f9715e45)
@@ -120,7 +120,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### CONSULTA 6 — 2:01 p. m.
+### CONSULTA 6
 
 - **Pregunta realizada:** ¿Cómo mantener la correspondencia de los seguimientos al sustituir identificadores mock por UID de Firebase? ¿Basta con renombrar id a uid?
 - **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ade87ebcc488191bf018ef8f9715e45)
@@ -131,7 +131,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### CONSULTA 7 — 2:40 p. m.
+### CONSULTA 7
 
 - **Pregunta realizada:** Ayuda para completar la descripción de un pull request sobre la pantalla de usuarios seguidos.
 - **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ade87ebcc488191bf018ef8f9715e45)
@@ -141,7 +141,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### CONSULTA 8 — 2:43 p. m.
+### CONSULTA 8
 
 - **Pregunta realizada:** Se precisó que el requisito de la pantalla de usuarios seguidos es RF-05.
 - **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ade87ebcc488191bf018ef8f9715e45)
@@ -151,7 +151,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### CONSULTA 9 — 5:32 p. m.
+### CONSULTA 9
 
 - **Pregunta realizada:** Transcribir los valores de configuración de Firebase de una imagen para copiarlos y pegarlos.
 - **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ade87ebcc488191bf018ef8f9715e45)
@@ -161,7 +161,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### CONSULTA 10 — 5:47 p. m.
+### CONSULTA 10
 
 - **Pregunta realizada:** ¿Es importante conservar .env.example si es una plantilla? ¿Por qué Git la muestra como eliminada después de renombrarla?
 - **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ade87ebcc488191bf018ef8f9715e45)
@@ -171,7 +171,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### CONSULTA 11 — 5:51 p. m.
+### CONSULTA 11
 
 - **Pregunta realizada:** Reunir todas las bitácoras de hoy en un archivo TXT con sus enlaces.
 - **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ade87ebcc488191bf018ef8f9715e45)
@@ -186,21 +186,21 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ## Consultas de soporte — Brahian Montoya Obando
 
-### Consulta — 23/10/2026, 10:56 a. m. (Colombia)
+### Consulta — 23/10/2026
 
 - **Pregunta realizada:** Solicitud de apoyo para comprender conceptos y resolver dudas o errores puntuales de EXEX.
 - **Resumen de la respuesta:** Se acordó brindar explicaciones breves y claras, usar identificadores y comentarios de código en inglés y registrar únicamente consultas y acciones reales.
 - **Archivos o conceptos involucrados:** React, TypeScript, Vite, React Router v6, datos mock, tweets, seguidores, seguidos y feed.
 - **Estado:** Alcance de apoyo establecido. No se revisaron ni modificaron archivos.
 
-### Consulta — 23/10/2026, 11:03 a. m. (Colombia)
+### Consulta — 23/10/2026
 
 - **Pregunta realizada:** Ayuda para completar la descripción de un pull request sobre la publicación simulada de tweets.
 - **Resumen de la respuesta:** Se redactó la descripción con funcionalidades, requisito relacionado, pruebas reportadas y revisión pendiente de Camilo.
 - **Archivos o conceptos involucrados:** RF-04, publicación de tweets, datos mock, validación del formulario, persistencia durante la navegación y revisión de pull requests.
 - **Estado:** Texto preparado para copiar. No se modificó el repositorio ni se ejecutaron pruebas; los resultados descritos fueron proporcionados por el usuario. No se creó el pull request.
 
-### Consulta — 23/10/2026, 11:30 a. m. (Colombia)
+### Consulta — 23/10/2026
 
 - **Pregunta realizada:** Obtener el enlace de este chat y añadirlo debajo de «Pregunta realizada» en el registro de bitácora.
 - **Enlace para este chat:** (https://chatgpt.com/s/cx_6adb8b9cbf9c81918b7ae2226e9808c7)
@@ -210,7 +210,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 ---
 
 ## Consultas de soporte — Camilo Molina
-### [2026-10-25 12:40]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -223,7 +223,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### [2026-10-25 12:41]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -236,7 +236,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### [2026-10-25 12:41]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -249,7 +249,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### [2026-10-25 12:42]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -262,7 +262,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### [2026-10-25 12:43]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -275,7 +275,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### [2026-10-25 12:46]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -288,7 +288,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### [2026-10-25 12:52]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -312,7 +312,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### [2026-10-25 12:53]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -325,7 +325,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### [2026-10-25 13:07]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -338,7 +338,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### [2026-10-25 13:10]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -351,7 +351,7 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
 
 ---
 
-### [2026-10-25 13:11]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -361,5 +361,135 @@ Las pruebas y aprobaciones mencionadas por el usuario se distinguen de las compr
   El usuario se arma con los datos de Firebase. El dispatch lleva type y payload, y el reducer responde a login, logout y error.
 - **Archivos creados/modificados:**
   - Sin cambios. Archivos relacionados: `src/auth/contexts/AuthProvider.tsx` y `src/auth/reducers/authReducer.ts`.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > que diferencia hay en firebase de la base de datos de prueba y la de produccion?
+- **Resumen de la respuesta:**
+  Los modos cambian las reglas iniciales: prueba permite acceso temporal y producción empieza bloqueado. La base es real en ambos casos y los datos no se borran al vencer el permiso.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se explicó la configuración de Firestore en la consola.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > y que reglas tengo que crear en produccion?
+- **Resumen de la respuesta:**
+  Se propusieron reglas para users y usernames que permiten crear el perfil propio y reservar el nombre de usuario. Se revisó el código, pero no se modificaron archivos ni se publicaron o probaron las reglas.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se revisó `src/firebase/providers.ts`; las reglas se mostraron en la respuesta.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > y como serian la de prueba?
+- **Resumen de la respuesta:**
+  Se mostró un ejemplo de reglas abiertas hasta una fecha. Al vencer se bloquea el acceso desde la aplicación; los documentos siguen guardados.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se explicó la configuración de Firestore en la consola.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > pero yo puedo modificar esas fechas?
+- **Resumen de la respuesta:**
+  La fecha de las reglas se puede cambiar y publicar de nuevo. Mientras el acceso esté abierto, cualquiera puede leer, modificar o borrar documentos.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se explicó la configuración de Firestore en la consola.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > Estas seguro que los 30 dias no se me borra
+- **Resumen de la respuesta:**
+  Se verificó que el plazo de prueba solo afecta los permisos. Los documentos permanecen en Firestore y pueden volver a utilizarse al publicar reglas que permitan el acceso.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se explicó la configuración de Firestore en la consola.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > puedo empezar con pruebas y despues pasar a produccion?
+- **Resumen de la respuesta:**
+  Se puede pasar de prueba a producción cambiando las reglas, sin crear otra base ni cambiar la conexión del proyecto.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se explicó la configuración de Firestore en la consola.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > ya cree la base de datos, creo la coleccion manual o desde el codigo mejor?
+- **Resumen de la respuesta:**
+  El registro ya guarda users/{uid} y usernames/{username}. Firestore crea las colecciones al escribir el primer documento; no hace falta crearlas manualmente.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > dame un ejemplo
+- **Resumen de la respuesta:**
+  El ejemplo mostró cómo quedan el perfil y la reserva del usuario después del registro. El UID viene de Authentication y la contraseña no se guarda en Firestore.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > y como hago para que se guarden juntas, con transaction?
+- **Resumen de la respuesta:**
+  runTransaction guarda el perfil y la reserva juntos, o no guarda ninguno. Authentication queda fuera de esa transacción; el código intenta eliminar la cuenta si falla el guardado del perfil.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > de donde sale uid
+- **Resumen de la respuesta:**
+  Firebase Authentication genera el UID al crear la cuenta. Ese identificador se usa para el documento del perfil en users y se conserva cuando la cuenta vuelve a iniciar sesión.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
 
 ---

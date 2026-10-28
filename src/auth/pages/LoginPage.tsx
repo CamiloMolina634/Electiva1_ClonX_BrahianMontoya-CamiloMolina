@@ -1,5 +1,5 @@
 import { useContext, useState, type SubmitEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 
 export const LoginPage = () => {
@@ -47,6 +47,7 @@ export const LoginPage = () => {
               {submitting ? 'Iniciando sesión…' : 'Iniciar sesión'}
             </button>
           </form>
+          <p className="mt-3">¿No tienes cuenta? <Link to="/register">Regístrate</Link></p>
         </div>
       </div>
     </main>
