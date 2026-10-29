@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../auth/contexts/AuthContext'
 import { mockHomeProfile } from '../../data/home'
@@ -7,22 +7,7 @@ import './HomePage.css'
 
 export const HomePage = () => {
   const { fullname, username, followersCount, followingCount } = mockHomeProfile
-  const { logout } = useContext(AuthContext)
-  const [closing, setClosing] = useState(false)
-  const [error, setError] = useState('')
-
-  const onLogout = async () => {
-    if (closing) return
-    setClosing(true)
-    setError('')
-    try {
-      await logout()
-    } catch {
-      setError('No se pudo cerrar la sesión. Inténtalo de nuevo.')
-    } finally {
-      setClosing(false)
-    }
-  }
+  const { authState } = useContext(AuthContext)
 
   return (
     <main className="home-page">
@@ -50,14 +35,12 @@ export const HomePage = () => {
             <Link to="/followers" className="nav-link link-body-emphasis">Seguidores</Link>
           </nav>
           <Link to="/tweets/new" className="btn btn-primary rounded-pill w-100">Publicar</Link>
-          <button type="button" className="btn btn-outline-secondary rounded-pill w-100 mt-3" onClick={onLogout} disabled={closing}>
-            {closing ? 'Cerrando sesión…' : 'Cerrar sesión'}
-          </button>
-          {error && <p className="text-danger mt-3" role="alert">{error}</p>}
+
         </aside>
 
         <div className="home-feed">
           <div className="home-feed-content">
+            {authState.errorMessage && <p className="text-danger p-3" role="alert">{authState.errorMessage}</p>}
             <div className="home-feed-header">
               <h1 className="h4 mb-0">Inicio</h1>
             </div>
