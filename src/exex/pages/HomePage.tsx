@@ -10,6 +10,8 @@ export const HomePage = () => {
     <p>Electiva I · Primera entrega</p>
     <p>La base de EXEX está lista para crear las primeras pantallas.</p>
     <p>Sesión de {authState.user?.email}</p>
+    {authState.user?.username && <p>{authState.user.fullname} · @{authState.user.username}</p>}
+    {authState.errorMessage && <p className="text-danger" role="alert">{authState.errorMessage}</p>}
   </main>
   );
 };
