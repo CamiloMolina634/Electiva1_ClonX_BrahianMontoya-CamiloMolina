@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { HomePage } from '../pages/HomePage'
 import { FollowingPage } from '../pages/FollowingPage'
+
 import { PublishTweetPage } from '../pages/PublishTweetPage'
 import { TweetsProvider } from '../contexts/TweetsProvider'
 import { FollowersPage } from '../pages/FollowersPage'

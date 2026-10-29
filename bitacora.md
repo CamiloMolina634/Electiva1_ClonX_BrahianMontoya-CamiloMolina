@@ -663,3 +663,103 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
   - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
 
 ---
+
+## Página de inicio — Camilo Molina
+
+### [2026-10-28] - Datos de ejemplo
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Agregar usuarios mock a home.ts](https://chatgpt.com/s/cx_6ae2a0c989c88191b21866f01c79d945)
+- **Mensaje enviado (Prompt):**
+  > Voy a hacer la pagina de inicio de EXEX y necesito que en home.ts pongas los datos mokeados de diferentes usuarios, bastantes para que la pagina se vea nutrida
+- **Resumen de la respuesta:** Se agregaron 32 publicaciones de ejemplo reutilizando los 13 usuarios existentes. Se usaron fechas fijas y pasaron compilación y lint. Estas publicaciones se retiraron después para dejar el feed a cargo de Brahian.
+- **Archivos creados/modificados:**
+  - `src/data/home.ts` (modificado en esa consulta; las publicaciones se retiraron después).
+
+---
+
+### [2026-10-28] - Diseño del inicio
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Agregar usuarios mock a home.ts](https://chatgpt.com/s/cx_6ae2a0c989c88191b21866f01c79d945)
+- **Mensaje enviado (Prompt):**
+  > y podrias ayudarme acomando bien las tarjetas y el contenido del usuario para que se vea un poco parecido a la red social x y que mas tengo que añadir, si la caréta hometilen es necesaria y para que sirve?
+- **Resumen de la respuesta:** Se acomodó el inicio con perfil y navegación a la izquierda, publicaciones en el centro y usuarios de ejemplo a la derecha. Se explicó que HomeTimeline mostraba las publicaciones y HomePage organizaba la pantalla. Compilación y lint pasaron.
+- **Archivos creados/modificados:**
+  - `src/exex/pages/HomePage.tsx` (modificado).
+  - `src/exex/pages/HomePage.css` (creado).
+  - `src/exex/components/HomeTimeline.tsx` (modificado en esa consulta; eliminado después).
+
+---
+
+### [2026-10-28] - Cómo se muestran las publicaciones
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Agregar usuarios mock a home.ts](https://chatgpt.com/s/cx_6ae2a0c989c88191b21866f01c79d945)
+- **Mensaje enviado (Prompt):**
+  > hometimeline organiza los datos de que manera dame ejemplos
+- **Resumen de la respuesta:** HomeTimeline recorría las publicaciones con map y mostraba el nombre, usuario, fecha y mensaje. No las ordenaba: respetaba el orden del arreglo. También se explicó para qué sirven key, el identificador y la fecha.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se explicó `src/exex/components/HomeTimeline.tsx` y `src/data/home.ts`.
+
+---
+
+### [2026-10-28] - Tarjetas de usuarios
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Agregar usuarios mock a home.ts](https://chatgpt.com/s/cx_6ae2a0c989c88191b21866f01c79d945)
+- **Mensaje enviado (Prompt):**
+  > repito eso para los usuarios pero dime que hace cada linea
+- **Resumen de la respuesta:** Se mostró un ejemplo para recorrer mockUsers con map y se explicó cada línea: importar los usuarios, identificar cada tarjeta con key y mostrar la inicial, el nombre y el @usuario. El ejemplo no se agregó como un componente nuevo.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se explicaron `src/data/users.ts` y las clases de `src/exex/pages/HomePage.css`.
+
+---
+
+### [2026-10-28] - Datos mockeados y reales
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Agregar usuarios mock a home.ts](https://chatgpt.com/s/cx_6ae2a0c989c88191b21866f01c79d945)
+- **Mensaje enviado (Prompt):**
+  > pero esto es por los datos mokeados cierto
+- **Resumen de la respuesta:** La lista usa usuarios de ejemplo, pero map también sirve con usuarios obtenidos de Firebase. Después cambia el origen de los datos y se puede mantener la forma de mostrarlos.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/data/users.ts`.
+
+---
+
+### [2026-10-28] - Usuarios y tarjetas del inicio
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Agregar usuarios mock a home.ts](https://chatgpt.com/s/cx_6ae2a0c989c88191b21866f01c79d945)
+- **Mensaje enviado (Prompt):**
+  > Cuantos usuarios pusiste mokiados y como hiciste las tarjetas, viene de hometimeline
+- **Resumen de la respuesta:** Los 13 usuarios ya existían. HomeTimeline mostraba las publicaciones y HomePage mostraba cinco usuarios en el panel derecho, excluyendo al usuario actual. Los estilos de las tarjetas estaban en HomePage.css.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se revisaron `src/data/users.ts`, `src/data/home.ts`, `src/exex/components/HomeTimeline.tsx`, `src/exex/pages/HomePage.tsx` y `src/exex/pages/HomePage.css`.
+
+---
+
+### [2026-10-28] - Espacio para el feed del compañero
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Agregar usuarios mock a home.ts](https://chatgpt.com/s/cx_6ae2a0c989c88191b21866f01c79d945)
+- **Mensaje enviado (Prompt):**
+  > mi compañero es que hace el feed y los tweets, ya borre esa parte porque habia hecho algunos, verifica si ya los borre
+- **Resumen de la respuesta:** Se confirmó que HomeTimeline y las 32 publicaciones de ejemplo ya no estaban. En Inicio quedó el espacio para integrar el feed de Brahian. El formulario para publicar y sus rutas seguían disponibles.
+- **Archivos creados/modificados:**
+  - Sin cambios en esta consulta. Se verificaron `src/exex/pages/HomePage.tsx`, `src/data/home.ts` y las referencias al componente eliminado.
+
+---
+
+### [2026-10-28] - Revisión de la página de inicio
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Agregar usuarios mock a home.ts](https://chatgpt.com/s/cx_6ae2a0c989c88191b21866f01c79d945)
+- **Mensaje enviado (Prompt):**
+  > Ya tengo lo necesario de pagina de inicio
+- **Resumen de la respuesta:** Se repasó lo que tiene la interfaz: perfil, contadores, navegación, acceso para publicar, usuarios de ejemplo y espacio para el feed. La integración del feed y los datos reales quedaron pendientes.
+- **Archivos creados/modificados:**
+  - Sin cambios.
+
+---
