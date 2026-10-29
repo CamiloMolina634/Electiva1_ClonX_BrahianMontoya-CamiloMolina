@@ -1,21 +1,8 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../auth/contexts/AuthContext';
 
 export const HomePage = () => {
-  const { authState, logout } = useContext(AuthContext);
-  const [error, setError] = useState('');
-  const [closing, setClosing] = useState(false);
-
-  const onLogout = async () => {
-    setError('');
-    setClosing(true);
-    try {
-      await logout();
-    } catch {
-      setError('No se pudo cerrar la sesión. Inténtalo de nuevo.');
-      setClosing(false);
-    }
-  };
+  const { authState } = useContext(AuthContext);
 
   return (
   <main className="project-start">
@@ -25,10 +12,6 @@ export const HomePage = () => {
     <p>Sesión de {authState.user?.email}</p>
     {authState.user?.username && <p>{authState.user.fullname} · @{authState.user.username}</p>}
     {authState.errorMessage && <p className="text-danger" role="alert">{authState.errorMessage}</p>}
-    <button type="button" className="btn btn-outline-secondary" onClick={onLogout} disabled={closing}>
-      {closing ? 'Cerrando sesión…' : 'Cerrar sesión'}
-    </button>
-    {error && <p className="text-danger" role="alert">{error}</p>}
   </main>
   );
 };
