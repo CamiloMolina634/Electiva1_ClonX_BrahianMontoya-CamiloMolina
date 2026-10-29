@@ -2,7 +2,7 @@
 
 ## Registro de Interacciones
 
-### [2026-10-21 20:00]
+### [2026-10-21]
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
@@ -14,7 +14,7 @@
 
 ---
 
-### [2026-10-21 20:10]
+### [2026-10-21]
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
@@ -26,7 +26,7 @@
 
 ---
 
-### [2026-10-21 20:12]
+### [2026-10-21]
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
@@ -38,7 +38,7 @@
 
 ---
 
-### [2026-10-21 20:15]
+### [2026-10-21]
 - **Herramienta / Modelo:** Codex 
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
@@ -50,7 +50,7 @@
 
 ---
 
-### [2026-10-21 20:30]
+### [2026-10-21]
 - **Herramienta / Modelo:** Codex 
 - **Enlace a la conversación:** [Configura Bootstrap en React](https://chatgpt.com/s/cx_6ad968288d008191bd046d2aed47719b)
 - **Mensaje enviado (Prompt):**
@@ -65,7 +65,7 @@
 
 
 ## Consultas de soporte — Camilo Molina
-### [2026-10-25 12:40]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -78,7 +78,7 @@
 
 ---
 
-### [2026-10-25 12:41]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -91,7 +91,7 @@
 
 ---
 
-### [2026-10-25 12:41]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -104,7 +104,7 @@
 
 ---
 
-### [2026-10-25 12:42]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -117,7 +117,7 @@
 
 ---
 
-### [2026-10-25 12:43]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -130,7 +130,7 @@
 
 ---
 
-### [2026-10-25 12:46]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -143,7 +143,7 @@
 
 ---
 
-### [2026-10-25 12:52]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -167,7 +167,7 @@
 
 ---
 
-### [2026-10-25 12:53]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -180,7 +180,7 @@
 
 ---
 
-### [2026-10-25 13:07]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -193,7 +193,7 @@
 
 ---
 
-### [2026-10-25 13:10]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -206,7 +206,7 @@
 
 ---
 
-### [2026-10-25 13:11]
+### [2026-10-25]
 
 - **Herramienta / Modelo:** Codex
 - **Enlace a la conversación:** [Revisa el login con Firebase](https://chatgpt.com/s/cx_6ade46d1fbcc819182c32983e8233092)
@@ -529,3 +529,137 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 - **Resumen breve de la respuesta:** Se reunieron los registros del 23, 25, 26 y 27 de octubre, incluyendo las entradas posteriores a las descargas anteriores, con un enlace actualizado del chat.
 - **Archivos o conceptos involucrados:** bitacora_completa_2026-10-23_al_2026-10-27.txt, registros de consultas y enlaces compartidos.
 - **Estado:** Archivo TXT completo generado. Se conservan las diferencias entre ejemplos propuestos, acciones realizadas y pruebas reportadas por el usuario. No se modificó el código de EXEX ni se ejecutaron pruebas del proyecto.
+
+---
+
+## Registro con Firebase — Camilo Molina
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > que diferencia hay en firebase de la base de datos de prueba y la de produccion?
+- **Resumen de la respuesta:**
+  Los modos cambian las reglas iniciales: prueba permite acceso temporal y producción empieza bloqueado. La base es real en ambos casos y los datos no se borran al vencer el permiso.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se explicó la configuración de Firestore en la consola.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > y que reglas tengo que crear en produccion?
+- **Resumen de la respuesta:**
+  Se propusieron reglas para users y usernames que permiten crear el perfil propio y reservar el nombre de usuario. Se revisó el código, pero no se modificaron archivos ni se publicaron o probaron las reglas.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se revisó `src/firebase/providers.ts`; las reglas se mostraron en la respuesta.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > y como serian la de prueba?
+- **Resumen de la respuesta:**
+  Se mostró un ejemplo de reglas abiertas hasta una fecha. Al vencer se bloquea el acceso desde la aplicación; los documentos siguen guardados.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se explicó la configuración de Firestore en la consola.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > pero yo puedo modificar esas fechas?
+- **Resumen de la respuesta:**
+  La fecha de las reglas se puede cambiar y publicar de nuevo. Mientras el acceso esté abierto, cualquiera puede leer, modificar o borrar documentos.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se explicó la configuración de Firestore en la consola.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > Estas seguro que los 30 dias no se me borra
+- **Resumen de la respuesta:**
+  Se verificó que el plazo de prueba solo afecta los permisos. Los documentos permanecen en Firestore y pueden volver a utilizarse al publicar reglas que permitan el acceso.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se explicó la configuración de Firestore en la consola.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > puedo empezar con pruebas y despues pasar a produccion?
+- **Resumen de la respuesta:**
+  Se puede pasar de prueba a producción cambiando las reglas, sin crear otra base ni cambiar la conexión del proyecto.
+- **Archivos creados/modificados:**
+  - Sin cambios. Se explicó la configuración de Firestore en la consola.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > ya cree la base de datos, creo la coleccion manual o desde el codigo mejor?
+- **Resumen de la respuesta:**
+  El registro ya guarda users/{uid} y usernames/{username}. Firestore crea las colecciones al escribir el primer documento; no hace falta crearlas manualmente.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > dame un ejemplo
+- **Resumen de la respuesta:**
+  El ejemplo mostró cómo quedan el perfil y la reserva del usuario después del registro. El UID viene de Authentication y la contraseña no se guarda en Firestore.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > y como hago para que se guarden juntas, con transaction?
+- **Resumen de la respuesta:**
+  runTransaction guarda el perfil y la reserva juntos, o no guarda ninguno. Authentication queda fuera de esa transacción; el código intenta eliminar la cuenta si falla el guardado del perfil.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+### [2026-10-28]
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explicar bases de Firebase](https://chatgpt.com/s/cx_6ae2879a834c8191aac11c97e0362a48)
+- **Mensaje enviado (Prompt):**
+  > de donde sale uid
+- **Resumen de la respuesta:**
+  Firebase Authentication genera el UID al crear la cuenta. Ese identificador se usa para el documento del perfil en users y se conserva cuando la cuenta vuelve a iniciar sesión.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
