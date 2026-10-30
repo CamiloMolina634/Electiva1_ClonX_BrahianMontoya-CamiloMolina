@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../../auth/contexts/AuthContext'
 import { mockHomeProfile } from '../../data/home'
 import { mockUsers } from '../../data/users'
+import { Feed } from '../components/Feed'
 import './HomePage.css'
 
 export const HomePage = () => {
@@ -55,10 +56,7 @@ export const HomePage = () => {
                 <Link to="/tweets/new" className="btn btn-primary rounded-pill px-4">Publicar</Link>
               </div>
             </section>
-            <section className="p-4 text-center" aria-labelledby="feed-heading">
-              <h2 id="feed-heading" className="h5">Publicaciones recientes</h2>
-              <p className="text-body-secondary mb-0">Aquí aparecerán tus publicaciones y las de las personas que sigues.</p>
-            </section>
+            <Feed />
           </div>
         </div>
 
