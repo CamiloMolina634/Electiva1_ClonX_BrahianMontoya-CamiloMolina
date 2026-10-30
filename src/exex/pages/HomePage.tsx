@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../auth/contexts/AuthContext'
-import { mockHomeProfile, mockHomeTweets } from '../../data/home'
-import { TweetCard } from '../components/TweetCard'
+import { mockHomeProfile } from '../../data/home'
 import { mockUsers } from '../../data/users'
+import { Feed } from '../components/Feed'
 import './HomePage.css'
 
 export const HomePage = () => {
@@ -55,18 +55,7 @@ export const HomePage = () => {
                 <Link to="/tweets/new" className="btn btn-primary rounded-pill px-4">Publicar</Link>
               </div>
             </section>
-            <section className="home-timeline" aria-labelledby="feed-heading">
-              <div className="home-timeline-heading">
-                <h2 id="feed-heading" className="h6 fw-bold mb-1">Publicaciones recientes</h2>
-                <p className="small text-body-secondary mb-0">Contenido de ejemplo · Vista previa de la comunidad</p>
-              </div>
-              <div className="home-tweet-list">
-                {mockHomeTweets.map((tweet) => {
-                  const author = mockUsers.find((user) => user.uid === tweet.authorId)
-                  return author ? <TweetCard key={tweet.id} tweet={tweet} author={author} /> : null
-                })}
-              </div>
-            </section>
+            <Feed />
           </div>
         </div>
 

@@ -219,9 +219,9 @@
 
 ---
 
-## Consultas de soporte — Brahian Montoya Obando — 23 al 27 de octubre de 2026
+## Consultas de soporte — Brahian Montoya Obando — 23 al 30 de octubre de 2026
 
-Todas las horas corresponden a Colombia (UTC-5). No hubo consultas registradas el 24 de octubre.
+Todas las horas corresponden a Colombia (UTC-5). No hay consultas registradas en este chat el 24 ni el 28 de octubre.
 
 Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobaciones realizadas por el asistente.
 
@@ -230,7 +230,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 1 — 10:56 a. m.
 
 - **Pregunta realizada:** Solicitud de apoyo para comprender conceptos y resolver dudas o errores de EXEX.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se estableció el alcance de apoyo: explicaciones breves, identificadores y comentarios en inglés y registros de acciones reales.
 - **Archivos o conceptos involucrados:** React, TypeScript, Vite, React Router v6, datos mock, tweets, seguidores, seguidos y feed.
 - **Estado:** Alcance establecido. No se revisaron ni modificaron archivos.
@@ -238,7 +238,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 2 — 11:03 a. m.
 
 - **Pregunta realizada:** Completar la descripción de un pull request sobre publicación simulada de tweets.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se redactó la descripción de RF-04 con validación de mensajes, confirmación, limpieza del formulario, autor, fecha, contenido, estado durante la navegación y usuario provisional. Se dejó pendiente la revisión de Camilo.
 - **Archivos o conceptos involucrados:** RF-04, publicación de tweets, datos mock, formulario y descripción del pull request.
 - **Estado:** Texto preparado. Las funcionalidades, pruebas y revisión del trabajo de Camilo fueron reportadas por el usuario. No se ejecutaron pruebas ni se creó el pull request.
@@ -246,7 +246,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 3 — 11:30 a. m.
 
 - **Pregunta realizada:** Obtener el enlace del chat y añadirlo debajo de Pregunta realizada en la bitácora.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se generó un enlace compartido y se incorporó al formato del registro.
 - **Archivos o conceptos involucrados:** bitacora.md y enlaces compartidos.
 - **Estado:** Enlace generado. No se modificaron archivos.
@@ -256,7 +256,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 4 — 1:20 p. m.
 
 - **Pregunta realizada:** Mi componente UserListItem recibe una propiedad user de tipo User. ¿Qué son las props y cómo funciona ({ user }: UserListItemProps)?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se explicó cómo un componente padre pasa datos a un hijo mediante props y cómo se combinan la desestructuración y el tipado de TypeScript, con un ejemplo sencillo.
 - **Archivos o conceptos involucrados:** UserListItem, User, UserListItemProps, props, desestructuración y tipos.
 - **Estado:** Ejemplo explicativo propuesto. No se revisaron ni modificaron archivos ni se ejecutó código.
@@ -264,7 +264,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 5 — 1:25 p. m.
 
 - **Pregunta realizada:** ¿Por qué conviene crear un componente reutilizable para cada usuario y cómo se utiliza dentro de una lista con map?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se explicó cómo reutilizar la presentación de cada usuario y generar una lista con map, pasando la prop user y asignando una key estable. Se mostró un enlace al perfil mediante Link.
 - **Archivos o conceptos involucrados:** UserListItem, UserList, props, map, key, Link, ul y li.
 - **Estado:** Ejemplo propuesto con una ruta de perfil supuesta. No se modificaron archivos ni se ejecutó código.
@@ -272,7 +272,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 6 — 1:36 p. m.
 
 - **Pregunta realizada:** ¿Cómo combinar mockUsers y mockFollows para obtener únicamente los usuarios que sigue Brahian, excluyendo a quienes solo lo siguen a él?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se propuso filtrar las relaciones donde Brahian es el seguidor, extraer los identificadores seguidos y buscar los usuarios correspondientes mediante filter, map y Set.
 - **Archivos o conceptos involucrados:** mockUsers, mockFollows, filter, map, Set, followerId, followingId y UserListItem.
 - **Estado:** Ejemplo propuesto con nombres de campos y datos supuestos. No se revisaron archivos ni se ejecutó código.
@@ -280,7 +280,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 7 — 1:36 p. m. (13:36:53)
 
 - **Pregunta realizada:** Se indicó que el enlace compartido también debe actualizarse en cada consulta.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se generó un nuevo enlace que incluía la explicación sobre mockUsers y mockFollows, y se actualizó el registro de esa consulta.
 - **Archivos o conceptos involucrados:** Bitácora y enlaces compartidos del chat.
 - **Estado:** Enlace generado y registro actualizado en el chat. No se modificaron archivos.
@@ -288,7 +288,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 8 — 1:39 p. m.
 
 - **Pregunta realizada:** ¿Ana queda excluida de mis seguidos porque, aunque ella me sigue, yo no la sigo?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se confirmó que el seguimiento es direccional. Ana pertenece a los seguidores, pero solo aparecerá en los seguidos si Brahian también la sigue.
 - **Archivos o conceptos involucrados:** Seguidores, seguidos, followerId y followingId.
 - **Estado:** Aclaración conceptual realizada. No se modificaron archivos ni se ejecutaron pruebas.
@@ -296,7 +296,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 9 — 2:01 p. m.
 
 - **Pregunta realizada:** ¿Cómo mantener la correspondencia de los seguimientos al sustituir identificadores mock por UID de Firebase? ¿Basta con renombrar id a uid?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se explicó que deben coincidir los valores de los identificadores, no solo los nombres de los campos. Se propuso mantener id en el modelo y asignarle el UID real, actualizando también las referencias en las relaciones.
 - **Archivos o conceptos involucrados:** User, datos mock, Firebase Authentication, uid, followerId, followingId y correspondencia de identificadores.
 - **Estado:** Documentación oficial consultada y solución propuesta. No se modificaron archivos ni se comprobó una integración con Firebase.
@@ -305,7 +305,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 10 — 2:40 p. m.
 
 - **Pregunta realizada:** Ayuda para completar la descripción de un pull request sobre la pantalla de usuarios seguidos.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se redactó la descripción con datos mock, compatibilidad del modelo de Camilo, orden alfabético por nombre completo, paginación de diez usuarios, botones desactivados en los extremos, enlaces hacia los tweets de cada usuario y diseño adaptable. Se incorporaron las pruebas y la aprobación de Camilo reportadas por el usuario.
 - **Archivos o conceptos involucrados:** Usuarios seguidos, modelo de usuario, componentes reutilizables, paginación, diseño adaptable y descripción del pull request.
 - **Estado:** Texto preparado para copiar. Las pruebas y la aprobación fueron reportadas por el usuario. No se modificaron archivos, no se ejecutaron pruebas ni se creó el pull request.
@@ -313,7 +313,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 11 — 2:43 p. m.
 
 - **Pregunta realizada:** Se precisó que el requisito de la pantalla de usuarios seguidos es RF-05.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se actualizó la tarea relacionada de la descripción a RF-05: Usuarios seguidos.
 - **Archivos o conceptos involucrados:** RF-05 y descripción del pull request.
 - **Estado:** Texto actualizado en el chat. No se modificaron archivos ni el pull request.
@@ -321,7 +321,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 12 — 5:32 p. m.
 
 - **Pregunta realizada:** Transcribir los valores de configuración de Firebase de una imagen para copiarlos y pegarlos.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se transcribieron las variables de entorno mostradas en la imagen para colocarlas en .env.local.
 - **Archivos o conceptos involucrados:** Imagen adjunta, .env.example, .env.local y configuración de Firebase.
 - **Estado:** Transcripción realizada. No se crearon archivos ni se comprobó la conexión con Firebase. En esa consulta quedó pendiente generar el enlace; se incorpora aquí el enlace actualizado.
@@ -329,7 +329,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 13 — 5:47 p. m.
 
 - **Pregunta realizada:** ¿Es importante conservar .env.example si es una plantilla? ¿Por qué Git la muestra como eliminada después de renombrarla?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se explicó que debe conservarse la plantilla compartida y crear una copia llamada .env.local. Se propuso restaurar la plantilla con git restore .env.example y comprobar que la configuración local esté excluida mediante .gitignore.
 - **Archivos o conceptos involucrados:** .env.example, .env.local, .gitignore, renombrado de archivos y git restore.
 - **Estado:** Explicación y comandos propuestos. No se inspeccionó el repositorio ni se ejecutaron cambios.
@@ -337,7 +337,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 14 — 5:51 p. m.
 
 - **Pregunta realizada:** Reunir todas las bitácoras de hoy en un archivo TXT con sus enlaces.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se recopilaron las consultas reales del 25 de octubre de 2026 y se preparó un archivo de texto con sus horas, preguntas, resúmenes, conceptos, estados y enlace actualizado del chat.
 - **Archivos o conceptos involucrados:** bitacoras_2026-10-25.txt, registros de consultas y enlaces compartidos.
 - **Estado:** Archivo TXT generado. No se modificó el código de EXEX ni se ejecutaron pruebas del proyecto.
@@ -347,7 +347,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 15 — 2:34 p. m.
 
 - **Pregunta realizada:** Si dos usuarios se siguen entre sí, ¿se necesitan dos relaciones en mockFollows o basta con una?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se explicó que el modelo con followerId y followingId requiere dos relaciones, una por cada dirección. Cada usuario puede dejar de seguir al otro de forma independiente.
 - **Archivos o conceptos involucrados:** mockFollows, followerId, followingId y seguimiento direccional.
 - **Estado:** Explicación y ejemplo propuestos. No se modificaron archivos ni se ejecutaron pruebas.
@@ -355,7 +355,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 16 — 2:39 p. m.
 
 - **Pregunta realizada:** ¿Qué problemas causa guardar dos veces la misma relación de seguimiento? ¿El usuario aparecería repetido?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se explicó que la repetición visual depende de cómo se construya la lista. Con Set y el filtro de mockUsers, el usuario no se repite si existe una sola vez en mockUsers. Los duplicados pueden alterar los contadores y la eliminación del seguimiento. Se propuso comprobar la pareja de identificadores con some antes de agregarla.
 - **Archivos o conceptos involucrados:** mockFollows, mockUsers, Set, some, relaciones duplicadas y conteo de seguidos.
 - **Estado:** Explicación y ejemplo propuestos. No se modificaron archivos ni se ejecutaron pruebas.
@@ -363,7 +363,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 17 — 2:44 p. m. (14:44:05)
 
 - **Pregunta realizada:** ¿Para qué comprobar currents.includes(userId) si el botón ya se desactiva cuando sigo al usuario?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se explicó que desactivar el botón evita interacciones desde la interfaz, mientras que comprobar el estado dentro de una actualización funcional evita agregar identificadores duplicados ante llamadas repetidas. Si la lista contiene objetos, corresponde utilizar some.
 - **Archivos o conceptos involucrados:** includes, some, estado de React, actualización funcional y prevención de duplicados.
 - **Estado:** Explicación y ejemplo propuestos suponiendo una lista de identificadores. No se revisaron archivos ni se ejecutaron pruebas.
@@ -371,7 +371,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 18 — 2:44 p. m. (14:44:44)
 
 - **Pregunta realizada:** ¿Se conserva el seguimiento al pulsar seguir y cambiar a la segunda página?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se explicó que el seguimiento se conserva si su estado permanece montado al cambiar de página. Si se guarda únicamente en una fila que se desmonta, puede perderse. Para conservarlo entre pantallas, se propuso mantenerlo en un estado compartido que permanezca montado, por ejemplo mediante contexto.
 - **Archivos o conceptos involucrados:** UserListItem, followingIds, paginación, estado de React, desmontaje y contexto.
 - **Estado:** Explicación condicional. No se revisó el código ni se comprobó la persistencia en la aplicación.
@@ -379,7 +379,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 19 — 3:26 p. m.
 
 - **Pregunta realizada:** Actualizar el enlace de la conversación para incluirlo en la bitácora.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se generó un enlace actualizado que incluía las explicaciones sobre seguimiento mutuo, relaciones duplicadas, validación con includes y conservación del estado al cambiar de página.
 - **Archivos o conceptos involucrados:** bitacora.md, mockFollows, includes, estado de React y paginación.
 - **Estado:** Enlace generado y registro preparado para copiar. No se modificaron archivos ni se ejecutaron pruebas.
@@ -387,7 +387,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 20 — 3:27 p. m.
 
 - **Pregunta realizada:** Reunir las bitácoras de hoy en un archivo descargable.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se recopilaron las cinco consultas anteriores del 26 de octubre y esta solicitud de descarga en un archivo TXT, con horas de Colombia, preguntas, enlaces, resúmenes, conceptos y estados.
 - **Archivos o conceptos involucrados:** bitacoras_2026-10-26.txt y enlaces compartidos de la conversación.
 - **Estado:** Archivo TXT generado. No se modificó el código de EXEX ni se ejecutaron pruebas del proyecto.
@@ -395,7 +395,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 21 — 3:34 p. m.
 
 - **Pregunta realizada:** Completar la descripción de un pull request sobre la pantalla de seguidores.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se redactó la descripción con orden alfabético, diez usuarios por página, componentes reutilizables, botón Seguir/Siguiendo y estado temporal que persiste entre páginas y se reinicia al salir o recargar. Los enlaces a tweets y la aprobación de Camilo quedaron pendientes.
 - **Archivos o conceptos involucrados:** Seguidores, paginación, componentes reutilizables, estado temporal y diseño adaptable.
 - **Estado:** Texto preparado. Las funcionalidades y pruebas fueron reportadas por el usuario. No se modificaron archivos, no se ejecutaron pruebas ni se creó el pull request.
@@ -403,7 +403,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 22 — 3:36 p. m.
 
 - **Pregunta realizada:** Precisar que el requisito de la pantalla de seguidores es RF-06.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se actualizó la tarea relacionada a RF-06: Seguidores.
 - **Archivos o conceptos involucrados:** RF-06 y descripción del pull request.
 - **Estado:** Texto actualizado en el chat. No se modificaron archivos ni el pull request.
@@ -413,7 +413,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 23 — 12:35 p. m.
 
 - **Pregunta realizada:** ¿Conviene pasar el tweet y el autor por separado a una tarjeta o buscar al autor dentro del componente?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se propuso buscar al autor en la lista y pasar tweet y author como props para mantener la tarjeta reutilizable e independiente de los mocks.
 - **Archivos o conceptos involucrados:** TweetCard, Tweet, User, props, map, find y authorId.
 - **Estado:** Diseño y ejemplo propuestos con campos supuestos. No se revisaron archivos ni se ejecutó código.
@@ -421,7 +421,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 24 — 12:37 p. m.
 
 - **Pregunta realizada:** ¿En qué formato guardar las fechas para mostrar fecha y hora y ordenar las publicaciones de más reciente a más antigua?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se propuso guardar createdAt como texto ISO 8601 en UTC, ordenar con getTime y formatear al mostrar con Intl.DateTimeFormat.
 - **Archivos o conceptos involucrados:** createdAt, ISO 8601, UTC, Date, toISOString, getTime, sort e Intl.DateTimeFormat.
 - **Estado:** Explicación y ejemplos propuestos para datos mock. No se modificaron archivos ni se ejecutó código.
@@ -429,7 +429,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 25 — 12:38 p. m.
 
 - **Pregunta realizada:** ¿Debo configurar la zona horaria para que las fechas concuerden con Colombia?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se explicó que pueden guardarse en UTC y mostrarse en hora de Colombia con timeZone: America/Bogota, sin restar horas manualmente.
 - **Archivos o conceptos involucrados:** createdAt, UTC, toISOString, Intl.DateTimeFormat, es-CO y America/Bogota.
 - **Estado:** Explicación y ejemplo propuestos. No se modificaron archivos ni se ejecutó código.
@@ -437,7 +437,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 26 — 12:40 p. m.
 
 - **Pregunta realizada:** ¿Conviene usar es-CO y permitir que el navegador utilice la zona horaria local de quien abre la página?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se aclaró que es-CO define el formato y omitir timeZone permite usar la zona horaria del navegador. Se mantienen los datos en UTC y el orden cronológico no cambia.
 - **Archivos o conceptos involucrados:** Intl.DateTimeFormat, es-CO, timeZone, UTC y createdAt.
 - **Estado:** Explicación y ejemplo propuestos. No se modificaron archivos ni se ejecutó código.
@@ -445,7 +445,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 27 — 12:45 p. m.
 
 - **Pregunta realizada:** ¿Cómo relacionar el identificador de la URL con los autores para mostrar únicamente los tweets del usuario visitado?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se propuso leer userId mediante useParams, buscar al usuario y filtrar las publicaciones cuyo authorId coincida con su identificador. Se distinguió el usuario visitado del conectado.
 - **Archivos o conceptos involucrados:** React Router v6, useParams, rutas dinámicas, mockUsers, mockTweets, find, filter y TweetCard.
 - **Estado:** Ejemplo propuesto con rutas y campos supuestos. No se revisaron archivos ni se ejecutó código.
@@ -453,7 +453,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 28 — 12:46 p. m.
 
 - **Pregunta realizada:** ¿Qué diferencia hay entre obtener el identificador con useParams y pasarlo como una prop?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se explicó que useParams obtiene datos de la URL y una prop recibe datos del padre. Se propuso leer el identificador en la pantalla y pasarlo a una lista reutilizable.
 - **Archivos o conceptos involucrados:** useParams, props, rutas dinámicas, UserTweetsPage y UserTweetList.
 - **Estado:** Explicación y ejemplo propuestos. No se modificaron archivos ni se ejecutó código.
@@ -461,7 +461,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 29 — 12:48 p. m.
 
 - **Pregunta realizada:** ¿Qué mostrar si el identificador de la URL no corresponde a ningún usuario?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se propuso mostrar Usuario no encontrado con un enlace al inicio y distinguirlo de un usuario válido sin publicaciones.
 - **Archivos o conceptos involucrados:** useParams, find, renderizado condicional, Link, UserTweetsPage y UserTweetList.
 - **Estado:** Explicación y ejemplo propuestos suponiendo que / es la ruta de inicio. No se modificaron archivos ni se ejecutó código.
@@ -469,7 +469,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 30 — 12:49 p. m.
 
 - **Pregunta realizada:** ¿Cómo hacer que un tweet nuevo aparezca en la lista del usuario sin recargar?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se propuso compartir el estado entre el formulario y la lista, actualizarlo con setTweets y calcular el filtro y el orden a partir de ese estado.
 - **Archivos o conceptos involucrados:** useState, estado compartido, contexto, props, filter, sort y UserTweetList.
 - **Estado:** Explicación y ejemplo propuestos con campos supuestos. No se modificaron archivos ni se comprobó el comportamiento en la aplicación.
@@ -477,7 +477,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 31 — 12:51 p. m.
 
 - **Pregunta realizada:** ¿En qué orden filtrar, ordenar y paginar para mostrar tweets del más reciente al más antiguo, con diez por página?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se explicó el orden filtrar, ordenar y paginar mediante filter, sort y slice, calculando el total de páginas sobre los tweets del usuario.
 - **Archivos o conceptos involucrados:** authorId, createdAt, filter, sort, slice, currentPage, pageSize y totalPages.
 - **Estado:** Explicación y ejemplo propuestos. No se modificaron archivos ni se ejecutó código.
@@ -485,7 +485,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 32 — 12:59 p. m.
 
 - **Pregunta realizada:** ¿El uso de sort podría modificar los tweets guardados en el contexto?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se explicó que sort modifica el arreglo sobre el que se ejecuta. Copiarlo antes o utilizar el arreglo nuevo de filter evita alterar el orden del arreglo del contexto; los objetos siguen siendo compartidos.
 - **Archivos o conceptos involucrados:** Contexto, estado de React, sort, filter, copia superficial e inmutabilidad.
 - **Estado:** Explicación y ejemplos propuestos. No se modificaron archivos ni se ejecutó código.
@@ -493,7 +493,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 33 — 1:00 p. m.
 
 - **Pregunta realizada:** ¿Cómo evitar que un perfil abra en la segunda página al cambiar de usuario?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se propuso asignar key={userId} al componente con la paginación para reiniciar su estado local en la página 1 al cambiar de usuario.
 - **Archivos o conceptos involucrados:** UserTweetsPage, UserTweetList, useParams, key, useState y paginación.
 - **Estado:** Solución propuesta suponiendo que la paginación pertenece a UserTweetList. No se modificaron archivos ni se ejecutó código.
@@ -501,7 +501,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 34 — 1:07 p. m.
 
 - **Pregunta realizada:** ¿Cómo calcular seguidores y seguidos usando relaciones mock y permitir seguir a un usuario desde su perfil?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se propuso calcular contadores con filter, comprobar el seguimiento con some y agregar la relación mediante estado compartido, evitando duplicados y seguirse a uno mismo.
 - **Archivos o conceptos involucrados:** mockFollows, follows, setFollows, followerId, followingId, estado compartido y perfil.
 - **Estado:** Explicación y ejemplos propuestos suponiendo relaciones únicas y acceso al estado compartido. No se modificaron archivos ni se ejecutó código.
@@ -509,7 +509,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 35 — 1:11 p. m.
 
 - **Pregunta realizada:** ¿Cómo evitar contar dos veces a alguien si hay relaciones de seguimiento duplicadas?
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se propuso filtrar las relaciones, extraer los identificadores y contarlos con Set.size para obtener seguidores y seguidos únicos.
 - **Archivos o conceptos involucrados:** follows, filter, map, Set, size, followerId y followingId.
 - **Estado:** Explicación y ejemplos propuestos. No se modificaron archivos ni se ejecutó código.
@@ -517,7 +517,7 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 36 — 1:35 p. m.
 
 - **Pregunta realizada:** Completar la descripción de un pull request sobre el perfil de usuario y la consulta de sus tweets.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se redactó la descripción con orden cronológico, paginación, fechas en es-CO y zona horaria del navegador, contadores, seguimiento local, mensajes informativos, enlaces y actualización sin recargar. El identificador del requisito quedó pendiente.
 - **Archivos o conceptos involucrados:** Perfil de usuario, tarjeta de tweets, paginación, es-CO, seguidores, seguidos y estado compartido.
 - **Estado:** Texto preparado para copiar. Las funcionalidades y pruebas fueron reportadas por el usuario. La revisión de Camilo está pendiente. No se modificaron archivos, no se ejecutaron pruebas ni se creó el pull request.
@@ -525,12 +525,70 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 #### Consulta 37 — 1:42 p. m.
 
 - **Pregunta realizada:** Solicitar toda la bitácora de la conversación en un archivo descargable.
-- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae0f0ac52cc819182b29f00c22a360a)
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
 - **Resumen breve de la respuesta:** Se reunieron los registros del 23, 25, 26 y 27 de octubre, incluyendo las entradas posteriores a las descargas anteriores, con un enlace actualizado del chat.
 - **Archivos o conceptos involucrados:** bitacora_completa_2026-10-23_al_2026-10-27.txt, registros de consultas y enlaces compartidos.
 - **Estado:** Archivo TXT completo generado. Se conservan las diferencias entre ejemplos propuestos, acciones realizadas y pruebas reportadas por el usuario. No se modificó el código de EXEX ni se ejecutaron pruebas del proyecto.
 
----
+### 29/10/2026
+
+#### Consulta 38 — 7:11 p. m.
+
+- **Pregunta realizada:** ¿Cómo combinar los tweets con las relaciones de seguimiento para construir un feed con publicaciones propias y de las personas que sigo?
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
+- **Resumen breve de la respuesta:** Se propuso reunir el identificador propio y los de los usuarios seguidos en un Set, filtrar por autor, ordenar por fecha descendente y paginar al final.
+- **Archivos o conceptos involucrados:** tweets, follows, currentUserId, authorId, Set, filter, map, sort, slice y estado compartido.
+- **Estado:** Explicación y ejemplo propuestos con campos supuestos. No se modificaron archivos ni se ejecutó código.
+
+#### Consulta 39 — 10:26 p. m.
+
+- **Pregunta realizada:** ¿Cómo evitar incluir en el feed a alguien que me sigue, pero a quien yo no sigo?
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
+- **Resumen breve de la respuesta:** Se explicó que deben seleccionarse las relaciones donde el usuario conectado es followerId, tomando sus followingId como autores permitidos e incluyendo las publicaciones propias.
+- **Archivos o conceptos involucrados:** follows, followerId, followingId, currentUserId, Set y filter.
+- **Estado:** Explicación y ejemplo propuestos. No se modificaron archivos ni se ejecutó código. El enlace quedó pendiente en la consulta original; se incorpora aquí la copia actualizada.
+
+### 30/10/2026
+
+#### Consulta 40 — 10:56 a. m.
+
+- **Pregunta realizada:** ¿Debería ordenar todos los tweets antes de filtrarlos o después para mostrar primero los más recientes?
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
+- **Resumen breve de la respuesta:** Se recomendó filtrar primero, ordenar por fecha descendente y paginar al final. Se aclaró que ordenar el resultado de filter no modifica el arreglo original.
+- **Archivos o conceptos involucrados:** tweets, followingIds, filter, sort, createdAt y paginación.
+- **Estado:** Explicación y ejemplo propuestos. No se modificaron archivos ni se ejecutó código.
+
+#### Consulta 41 — 10:58 a. m.
+
+- **Pregunta realizada:** ¿Cómo compartir los tweets entre el formulario e Inicio para que una publicación nueva aparezca al volver, sin recargar?
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
+- **Resumen breve de la respuesta:** Se propuso mantener un único estado por encima de ambas rutas, compartirlo mediante props o contexto y actualizarlo antes de navegar a Inicio.
+- **Archivos o conceptos involucrados:** App, Home, CreateTweet, useState, props, contexto, Routes y navigate.
+- **Estado:** Diseño y ejemplo propuestos con rutas y componentes supuestos. No se modificaron archivos ni se comprobó el comportamiento en la aplicación.
+
+#### Consulta 42 — 10:59 a. m.
+
+- **Pregunta realizada:** ¿Necesito guardar otra copia de los tweets dentro del feed?
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
+- **Resumen breve de la respuesta:** Se recomendó mantener un único estado compartido y calcular el feed como una lista derivada, evitando un segundo estado que pueda desactualizarse.
+- **Archivos o conceptos involucrados:** Estado compartido, datos derivados, useState, filter, sort y currentPage.
+- **Estado:** Explicación y ejemplos propuestos. No se modificaron archivos ni se ejecutó código.
+
+#### Consulta 43 — 11:06 a. m.
+
+- **Pregunta realizada:** Completar la descripción de un pull request sobre el feed principal de tweets.
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
+- **Resumen breve de la respuesta:** Se redactó la descripción con publicaciones propias y de cuentas seguidas, orden cronológico, paginación, actualización sin recargar y manejo de autores inexistentes y feed vacío. Se dejó pendiente el identificador del requisito y la aprobación de Camilo.
+- **Archivos o conceptos involucrados:** Inicio, feed, datos mock, tarjeta de tweets, paginación y estado compartido.
+- **Estado:** Texto preparado para copiar. Las funcionalidades y pruebas fueron reportadas por el usuario. No se modificaron archivos, no se ejecutaron pruebas ni se creó el pull request.
+
+#### Consulta 44 — 11:09 a. m.
+
+- **Pregunta realizada:** Solicitar la bitácora para descargar.
+- **Enlace para este chat:** [Dar soporte al clon EXEX](https://chatgpt.com/s/cx_6ae4c165ec608191a7c9fa076dfe9f31)
+- **Resumen breve de la respuesta:** Se actualizó la bitácora completa hasta el 30 de octubre, incorporando las consultas sobre el feed y un enlace actualizado de la conversación.
+- **Archivos o conceptos involucrados:** bitacora_completa_2026-10-23_al_2026-10-30.txt y enlaces compartidos.
+- **Estado:** Archivo TXT actualizado y verificado mediante conteo de registros y enlaces. No se modificó el código de EXEX ni se ejecutaron pruebas del proyecto.
 
 ## Registro con Firebase — Camilo Molina
 
