@@ -24,12 +24,12 @@ export const LoginPage = () => {
   };
 
   return (
-    <main className="container py-5">
+    <main className="container py-5 exex-auth">
       <div className="row justify-content-center">
-        <div className="col-12 col-md-6 col-lg-4">
-          <h1 className="display-4 fw-bold text-center mb-4" aria-label="EXEX">∃ꊼ∃ꊼ</h1>
+        <div className="col-12 col-md-8 col-lg-6">
+          <h1 className="display-4 exex-brand text-center mb-4" aria-label="EXEX">∃ꊼ∃ꊼ</h1>
           <h2 className="h4 mb-4">Inicia sesión</h2>
-          <form onSubmit={onLogin}>
+          <form onSubmit={onLogin} className="exex-auth-panel">
             <div className="mb-3">
               <label htmlFor="email" className="form-label">Correo electrónico</label>
               <input id="email" name="email" type="email" className="form-control"
@@ -47,7 +47,7 @@ export const LoginPage = () => {
               {submitting ? 'Iniciando sesión…' : 'Iniciar sesión'}
             </button>
           </form>
-          <p className="mt-3">¿No tienes cuenta? <Link to="/register">Regístrate</Link></p>
+          <p className="mt-3 exex-auth-footer">¿No tienes cuenta? <Link to="/register">Regístrate</Link></p>
         </div>
       </div>
     </main>

@@ -83,14 +83,14 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
       <main className="container py-4">
         <h1>Usuario no encontrado</h1>
         <p>No existe un usuario con ese identificador.</p>
-        <Link to="/">Volver al inicio</Link>
+        <Link to="/" className="btn btn-primary">← Volver al inicio</Link>
       </main>
     )
   }
 
   return (
     <main className="container py-4">
-      <Link to="/" className="d-inline-block mb-3">
+      <Link to="/" className="btn btn-primary mb-3">
         ← Volver al inicio
       </Link>
 
@@ -113,7 +113,7 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
               type="button"
               className={
                 isFollowing
-                  ? 'btn btn-outline-secondary'
+                  ? 'btn btn-primary'
                   : 'btn btn-primary'
               }
               disabled={isFollowing}

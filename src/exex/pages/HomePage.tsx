@@ -1,7 +1,8 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../auth/contexts/AuthContext'
-import { mockHomeProfile } from '../../data/home'
+import { mockHomeProfile, mockHomeTweets } from '../../data/home'
+import { TweetCard } from '../components/TweetCard'
 import { mockUsers } from '../../data/users'
 import './HomePage.css'
 
@@ -13,7 +14,6 @@ export const HomePage = () => {
     <main className="home-page">
       <div className="home-layout">
         <aside className="home-sidebar" aria-label="Perfil y accesos">
-          <p className="home-brand">EXEX</p>
           <section className="border rounded-4 p-3" aria-labelledby="profile-heading">
             <span className="d-inline-flex rounded-circle bg-primary-subtle text-primary fw-bold px-3 py-2 mb-3" aria-hidden="true">
               {fullname.charAt(0)}
@@ -55,9 +55,17 @@ export const HomePage = () => {
                 <Link to="/tweets/new" className="btn btn-primary rounded-pill px-4">Publicar</Link>
               </div>
             </section>
-            <section className="p-4 text-center" aria-labelledby="feed-heading">
-              <h2 id="feed-heading" className="h5">Publicaciones recientes</h2>
-              <p className="text-body-secondary mb-0">Aquí aparecerán tus publicaciones y las de las personas que sigues.</p>
+            <section className="home-timeline" aria-labelledby="feed-heading">
+              <div className="home-timeline-heading">
+                <h2 id="feed-heading" className="h6 fw-bold mb-1">Publicaciones recientes</h2>
+                <p className="small text-body-secondary mb-0">Contenido de ejemplo · Vista previa de la comunidad</p>
+              </div>
+              <div className="home-tweet-list">
+                {mockHomeTweets.map((tweet) => {
+                  const author = mockUsers.find((user) => user.uid === tweet.authorId)
+                  return author ? <TweetCard key={tweet.id} tweet={tweet} author={author} /> : null
+                })}
+              </div>
             </section>
           </div>
         </div>

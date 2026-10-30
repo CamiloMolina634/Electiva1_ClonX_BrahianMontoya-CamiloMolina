@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../auth/contexts/AuthContext';
 
 export const NavBar = () => {
@@ -26,14 +26,17 @@ export const NavBar = () => {
   const userLabel = user?.username ? `@${user.username}` : user?.fullname || user?.email || 'Usuario';
 
   return (
-    <header className="border-bottom bg-body-tertiary">
+    <header className="exex-header border-bottom">
       <nav className="navbar" aria-label="Navegación principal">
-        <div className="container d-flex flex-wrap gap-3">
-          <Link to="/" className="navbar-brand fw-bold me-0">EXEX</Link>
-          <NavLink to="/" end className="nav-link">Inicio</NavLink>
-          <div className="d-flex flex-wrap align-items-center gap-3 ms-sm-auto">
-            <span className="text-break" aria-label={`Usuario conectado: ${userLabel}`}>{userLabel}</span>
-            <button type="button" className="btn btn-outline-secondary" onClick={onLogout} disabled={closing}>
+        <div className="container exex-header-content d-flex flex-wrap gap-3">
+          <Link to="/" className="navbar-brand exex-brand me-0" aria-label="EXEX, inicio">∃ꊼ∃ꊼ</Link>
+          <div className="exex-account d-flex align-items-center gap-3 ms-sm-auto">
+            <span className="exex-account-avatar" aria-hidden="true">{(user?.fullname || userLabel).charAt(0).toUpperCase()}</span>
+            <div className="exex-account-info">
+              <span className="exex-account-caption">Tu cuenta</span>
+              <span className="exex-account-name" title={userLabel} aria-label={`Usuario conectado: ${userLabel}`}>{userLabel}</span>
+            </div>
+            <button type="button" className="btn btn-primary rounded-pill" onClick={onLogout} disabled={closing}>
               {closing ? 'Cerrando sesión…' : 'Cerrar sesión'}
             </button>
           </div>

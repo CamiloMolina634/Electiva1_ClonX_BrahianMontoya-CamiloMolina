@@ -33,12 +33,12 @@ export const RegisterPage = () => {
   };
 
   return (
-    <main className="container py-5">
+    <main className="container py-5 exex-auth">
       <div className="row justify-content-center">
-        <div className="col-12 col-md-6 col-lg-4">
-          <h1 className="display-4 fw-bold text-center mb-4" aria-label="EXEX">∃ꊼ∃ꊼ</h1>
+        <div className="col-12 col-md-8 col-lg-6">
+          <h1 className="display-4 exex-brand text-center mb-4" aria-label="EXEX">∃ꊼ∃ꊼ</h1>
           <h2 className="h4 mb-4">Crea tu cuenta</h2>
-          <form onSubmit={onRegister} aria-busy={submitting}>
+          <form onSubmit={onRegister} aria-busy={submitting} className="exex-auth-panel">
             <fieldset disabled={submitting}>
               <div className="mb-3">
                 <label htmlFor="fullname" className="form-label">Nombre completo</label>
@@ -68,7 +68,7 @@ export const RegisterPage = () => {
               <button type="submit" className="btn btn-primary w-100">{submitting ? 'Creando cuenta…' : 'Registrarse'}</button>
             </fieldset>
           </form>
-          <p className="mt-3">¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link></p>
+          <p className="mt-3 exex-auth-footer">¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link></p>
         </div>
       </div>
     </main>
