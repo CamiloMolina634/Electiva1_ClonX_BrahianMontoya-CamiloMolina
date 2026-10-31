@@ -59,8 +59,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return () => { active = false; unsubscribe(); };
   }, [sessionVersion]);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
-    const result = await loginUserByCredentials(email, password);
+  const login = async (username: string, password: string): Promise<boolean> => {
+    const result = await loginUserByCredentials(username, password);
 
     if (!result.ok) {
       dispatch({

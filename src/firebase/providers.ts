@@ -24,11 +24,27 @@ interface AuthErrorResult {
   errorMessage: string;
 }
 
-export const loginUserByCredentials = async (email: string, password: string): Promise<AuthResult | AuthErrorResult> => {
+export const loginUserByCredentials = async (username: string, password: string): Promise<AuthResult | AuthErrorResult> => {
+  const normalizedUsername = username.trim().replace(/^@/, '').toLowerCase();
+  const invalidCredentials = 'Usuario o contraseña incorrectos.';
+  if (!/^[a-z0-9_]{3,20}$/.test(normalizedUsername) || !password) {
+    return { ok: false, errorMessage: invalidCredentials };
+  }
+
   try {
+    const usernameSnapshot = await getDoc(doc(FirebaseDB, 'usernames', normalizedUsername));
+    const uid = usernameSnapshot.exists() ? usernameSnapshot.data().uid : null;
+    if (typeof uid !== 'string' || !uid || uid.includes('/')) {
+      return { ok: false, errorMessage: invalidCredentials };
+    }
+    const profileSnapshot = await getDoc(doc(FirebaseDB, 'users', uid));
+    const email = profileSnapshot.exists() ? profileSnapshot.data().email : null;
+    if (typeof email !== 'string' || !email.trim()) {
+      return { ok: false, errorMessage: invalidCredentials };
+    }
     const result = await signInWithEmailAndPassword(FirebaseAuth, email, password);
-    const { uid, displayName, photoURL } = result.user;
-    return { ok: true, uid, email: result.user.email || email, displayName, photoURL };
+    const { displayName, photoURL } = result.user;
+    return { ok: true, uid: result.user.uid, email: result.user.email || email, displayName, photoURL };
   } catch (error: unknown) {
     let errorMessage = 'No se pudo iniciar sesión. Inténtalo de nuevo.';
     if (error instanceof FirebaseError) {
@@ -37,13 +53,17 @@ export const loginUserByCredentials = async (email: string, password: string): P
         case 'auth/user-not-found':
         case 'auth/wrong-password':
         case 'auth/invalid-email':
-          errorMessage = 'Correo o contraseña incorrectos.';
+          errorMessage = invalidCredentials;
           break;
         case 'auth/network-request-failed':
+        case 'unavailable':
           errorMessage = 'Revisa tu conexión a internet e inténtalo de nuevo.';
           break;
         case 'auth/too-many-requests':
           errorMessage = 'Demasiados intentos. Espera un momento antes de volver a intentar.';
+          break;
+        case 'permission-denied':
+          errorMessage = 'No se pudo consultar el usuario. Revisa los permisos de Firestore.';
           break;
       }
     }

@@ -5,7 +5,7 @@ import { AuthContext } from '../contexts/AuthContext';
 export const LoginPage = () => {
   const { authState, login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
@@ -14,7 +14,7 @@ export const LoginPage = () => {
     if (submitting) return;
     setSubmitting(true);
     try {
-      const result = await login(email.trim(), password);
+      const result = await login(username.trim(), password);
       if (result) {
         navigate('/', { replace: true });
       }
@@ -31,10 +31,11 @@ export const LoginPage = () => {
           <h2 className="h4 mb-4">Inicia sesión</h2>
           <form onSubmit={onLogin}>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">Correo electrónico</label>
-              <input id="email" name="email" type="email" className="form-control"
-                autoComplete="username" value={email} disabled={submitting}
-                onChange={(event) => setEmail(event.target.value)} required />
+              <label htmlFor="username" className="form-label">Nombre de usuario</label>
+              <input id="username" name="username" type="text" className="form-control"
+                autoComplete="username" autoCapitalize="none" spellCheck={false}
+                placeholder="Tu usuario, con o sin @" value={username} disabled={submitting}
+                onChange={(event) => setUsername(event.target.value)} required />
             </div>
             <div className="mb-3">
               <label htmlFor="password" className="form-label">Contraseña</label>

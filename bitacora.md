@@ -821,3 +821,41 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
   - Sin cambios.
 
 ---
+
+## Inicio de sesión con usuario — Camilo Molina
+
+### [2026-10-30] - Conexión del nombre de usuario
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explica conexión del usuario en login](https://chatgpt.com/s/cx_6ae52fe36698819192eeba785b8ab8b4)
+- **Mensaje enviado (Prompt):**
+  > como conecto el nombre de usuario en el login, dame un ejemplo, que logica reutilizo
+- **Resumen de la respuesta:** Se revisó el login que ya estaba conectado. El nombre de usuario permite encontrar el UID en usernames y después el correo en users para autenticar con Firebase. AuthProvider carga el perfil y lo guarda en AuthContext. También se propuso reutilizar ese contexto para mostrar el usuario real en Inicio, sin volver a consultar Firebase.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Se revisaron `src/firebase/providers.ts`, `src/auth/pages/LoginPage.tsx`, `src/auth/contexts/AuthProvider.tsx`, `src/ui/components/NavBar.tsx`, `src/exex/pages/HomePage.tsx` y `src/data/home.ts`.
+
+---
+
+### [2026-10-30] - Usuario elegido en el registro
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explica conexión del usuario en login](https://chatgpt.com/s/cx_6ae52fe36698819192eeba785b8ab8b4)
+- **Mensaje enviado (Prompt):**
+  > pero el con el login entraria con el nombre de usuario que el puso cuando registro
+- **Resumen de la respuesta:** Se confirmó que se entra con el usuario elegido al registrarse y su contraseña, con o sin @. Para encontrar la cuenta deben existir los documentos usernames/{usuario} y users/{uid}, creados durante el registro.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+### [2026-10-30] - Perfil de ejemplo y perfil de la sesión
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Explica conexión del usuario en login](https://chatgpt.com/s/cx_6ae52fe36698819192eeba785b8ab8b4)
+- **Mensaje enviado (Prompt):**
+  > que esta antes y que estaria depues en el codigo
+- **Resumen de la respuesta:** Se comparó el perfil de Inicio, que toma fullname y username de mockHomeProfile, con una propuesta para leerlos de authState.user. Los contadores seguirían usando los datos de ejemplo. La respuesta mostró el cambio antes y después, pero no lo aplicó.
+- **Archivos creados/modificados:**
+  - Sin cambios. Archivo relacionado: `src/exex/pages/HomePage.tsx`.
+
+---
