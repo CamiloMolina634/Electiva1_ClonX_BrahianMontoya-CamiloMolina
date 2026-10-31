@@ -1,3 +1,115 @@
+:root {
+  --exex-green: #16a34a;
+  --exex-green-dark: #15803d;
+  --exex-surface: #f8fafc;
+  --exex-border: #e5e7eb;
+  --bs-primary: #15803d;
+  --bs-primary-rgb: 21, 128, 61;
+  --bs-primary-bg-subtle: #eaf7ee;
+  --bs-primary-text-emphasis: #166534;
+  --bs-body-color: #111827;
+  --bs-secondary-color: #6b7280;
+  --bs-border-color: var(--exex-border);
+  --bs-link-color: #15803d;
+  --bs-link-color-rgb: 21, 128, 61;
+  --bs-link-hover-color: #166534;
+  --bs-link-hover-color-rgb: 22, 101, 52;
+}
+
 body { min-width: 320px; }
+
+.exex-brand {
+  color: var(--exex-green);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+a.exex-brand:hover { color: var(--exex-green-dark); }
+
+.exex-header { background: #fff; }
+.exex-header-content { max-width: 1200px; padding-block: 0.5rem; }
+.exex-header .exex-brand {
+  --bs-navbar-brand-color: var(--exex-green);
+  --bs-navbar-brand-hover-color: var(--exex-green);
+  color: var(--exex-green);
+  font-size: 1.8rem;
+  line-height: 1.3;
+}
+.exex-header .exex-brand:hover,
+.exex-header .exex-brand:focus,
+.exex-header .exex-brand:active,
+.exex-header .exex-brand:visited { color: var(--exex-green); }
+.exex-header-link { padding: 0.55rem 1rem; border-radius: 999px; font-weight: 600; }
+.exex-header-link.active { color: var(--exex-green-dark); background: var(--bs-primary-bg-subtle); }
+.exex-header-link:hover { color: var(--exex-green-dark); background: var(--exex-surface); }
+.exex-account { min-width: 0; }
+.exex-account-avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--bs-primary-bg-subtle);
+  color: var(--exex-green-dark);
+  font-weight: 700;
+}
+.exex-account-info { min-width: 0; }
+.exex-account-caption { display: block; font-size: 0.7rem; color: var(--bs-secondary-color); }
+.exex-account-name { display: block; max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.85rem; font-weight: 600; }
+.exex-account .btn { flex-shrink: 0; font-size: 0.8rem; }
+@media (max-width: 575px) {
+  .exex-account { width: 100%; padding-top: 0.75rem; border-top: 1px solid var(--exex-border); }
+  .exex-account-info { flex: 1; }
+  .exex-account-name { max-width: 100%; }
+}
+
+/* Bootstrap buttons keep their loading, disabled and keyboard states. */
+.btn-primary {
+  --bs-btn-bg: var(--exex-green-dark);
+  --bs-btn-border-color: var(--exex-green-dark);
+  --bs-btn-hover-bg: #166534;
+  --bs-btn-hover-border-color: #166534;
+  --bs-btn-active-bg: #14532d;
+  --bs-btn-active-border-color: #14532d;
+  --bs-btn-disabled-bg: var(--exex-green-dark);
+  --bs-btn-disabled-border-color: var(--exex-green-dark);
+  --bs-btn-focus-shadow-rgb: 21, 128, 61;
+  border-radius: 999px;
+  font-weight: 700;
+  padding: 0.65rem 1.25rem;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.form-control {
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
+}
+
+.form-control:focus {
+  border-color: var(--exex-green);
+  box-shadow: 0 0 0 0.25rem rgb(22 163 74 / 18%);
+}
+
+.card {
+  --bs-card-border-color: var(--exex-border);
+  --bs-card-border-radius: 14px;
+  --bs-card-cap-bg: var(--exex-surface);
+}
+
+.exex-auth { max-width: 960px; }
+.exex-auth-panel {
+  background: var(--exex-surface);
+  border: 1px solid var(--exex-border);
+  border-radius: 14px;
+  padding: clamp(1rem, 4vw, 2rem);
+}
+.exex-auth .form-label { font-weight: 600; }
+.exex-auth-footer { color: var(--bs-secondary-color); text-align: center; }
 .project-start { max-width: 640px; margin: 12vh auto; padding: 24px; }
 .project-mark { font-size: 64px; font-weight: 700; }

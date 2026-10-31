@@ -1,10 +1,11 @@
-import { useEffect, useReducer, useState, type ReactNode } from 'react';
+import { useEffect, useReducer, useRef, useState, type ReactNode } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { FirebaseAuth } from '../../firebase/config';
-import { loginUserByCredentials, logoutUser } from '../../firebase/providers';
+import { getUserProfile, loginUserByCredentials, logoutUser, registerUser } from '../../firebase/providers';
 import { AuthContext } from './AuthContext';
 import { authReducer } from '../reducers/authReducer';
 import type { AuthState } from '../types/authReducerInterfaces';
+import type { RegisterData } from '../types/registerInterfaces';
 
 const initialState: AuthState = { logged: false, user: null, errorMessage: null };
 
@@ -16,31 +17,50 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authState, dispatch] = useReducer(authReducer, initialState);
 
   const [checking, setChecking] = useState(true);
+  const [sessionVersion, setSessionVersion] = useState(0);
+  const registering = useRef(false);
 
-  useEffect(() => onAuthStateChanged(FirebaseAuth, (user) => {
-    if (user) {
+  useEffect(() => {
+    let active = true;
+    let request = 0;
+    const unsubscribe = onAuthStateChanged(FirebaseAuth, async (user) => {
+      const currentRequest = ++request;
+      if (registering.current) return;
+      if (!user) {
+        dispatch({ type: 'logout', payload: initialState });
+        setChecking(false);
+        return;
+      }
+
+      let profile = null;
+      let errorMessage: string | null = null;
+      try {
+        profile = await getUserProfile(user.uid);
+      } catch {
+        errorMessage = 'La sesión está abierta, pero no se pudo cargar el perfil. Revisa la conexión y las reglas de Firestore.';
+      }
+      if (!active || currentRequest !== request || registering.current) return;
       dispatch({
         type: 'login',
         payload: {
           logged: true,
-          errorMessage: null,
-          user: {
+          errorMessage,
+          user: profile ? { ...profile, email: user.email || '' } : {
             uid: user.uid,
             photoURL: user.photoURL,
-            username: user.displayName || '',
+            username: '',
             fullname: user.displayName || '',
             email: user.email || '',
           },
         },
       });
-    } else {
-      dispatch({ type: 'logout', payload: initialState });
-    }
-    setChecking(false);
-  }), []);
+      setChecking(false);
+    });
+    return () => { active = false; unsubscribe(); };
+  }, [sessionVersion]);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
-    const result = await loginUserByCredentials(email, password);
+  const login = async (username: string, password: string): Promise<boolean> => {
+    const result = await loginUserByCredentials(username, password);
 
     if (!result.ok) {
       dispatch({
@@ -56,8 +76,25 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     await logoutUser();
   };
 
+  const register = async (data: RegisterData): Promise<boolean> => {
+    if (registering.current) return false;
+    registering.current = true;
+    try {
+      const result = await registerUser(data);
+      if (!result.ok) {
+        dispatch({ type: 'error', payload: { ...initialState, errorMessage: result.errorMessage } });
+        return false;
+      }
+      setChecking(true);
+      setSessionVersion((version) => version + 1);
+      return true;
+    } finally {
+      registering.current = false;
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ authState, checking, login, logout }}>
+    <AuthContext.Provider value={{ authState, checking, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
