@@ -2,7 +2,6 @@
 
 Proyecto de Electiva I: clon de X hecho con React y TypeScript.
 
-**Equipo:** Brahian Montoya y Camilo Molina.
 
 **Integrantes:** Brahian Montoya Obando y Camilo Molina.
 
