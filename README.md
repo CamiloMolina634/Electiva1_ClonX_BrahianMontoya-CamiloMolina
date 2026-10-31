@@ -17,14 +17,4 @@ Se necesita Node.js 20.19+ o 22.12+ y npm. Usamos React, Vite, Bootstrap y Fireb
 
 Para revisar el proyecto: `npm run build` y `npm run lint`.
 
-## Primera entrega
 
-Incluye registro, login con usuario, inicio, publicaciones, seguidores, seguidos, perfiles y feed paginado.
-
-El registro y login usan Firebase. Los tweets y seguimientos son de prueba; los tweets nuevos se pierden al recargar. El perfil de Inicio también usa datos de ejemplo.
-
-Queda pendiente la opción de Google que aparece en el documento.
-
-Las consultas con IA están en `bitacora.md`. La rama de entrega es `release/milestone-1`.
-
-**Licencia:** todavía no hemos definido una.
