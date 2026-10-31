@@ -18,7 +18,7 @@ export const Pagination = ({
     >
       <button
         type="button"
-        className="btn btn-outline-secondary"
+        className="btn btn-primary"
         disabled={page === 1}
         onClick={() => onPageChange(page - 1)}
       >
@@ -31,7 +31,7 @@ export const Pagination = ({
 
       <button
         type="button"
-        className="btn btn-outline-secondary"
+        className="btn btn-primary"
         disabled={page === totalPages}
         onClick={() => onPageChange(page + 1)}
       >

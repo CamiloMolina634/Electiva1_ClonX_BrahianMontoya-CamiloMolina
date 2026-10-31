@@ -1,7 +1,6 @@
 import { mockFollows } from './follows'
 import { mockCurrentUserId, mockUsers } from './users'
 import type { User } from '../exex/types/User'
-
 interface HomeProfile extends Pick<User, 'fullname' | 'username'> {
   followersCount: number
   followingCount: number

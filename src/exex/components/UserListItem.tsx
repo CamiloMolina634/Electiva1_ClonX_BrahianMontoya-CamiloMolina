@@ -25,7 +25,7 @@ export const UserListItem = ({
         <div className="d-flex flex-wrap gap-2">
           <Link
             to={`/users/${user.uid}`}
-            className="btn btn-outline-primary"
+            className="btn btn-primary"
             aria-label={`Ver tweets de ${user.fullname}`}
           >
             Ver tweets
@@ -36,7 +36,7 @@ export const UserListItem = ({
               type="button"
               className={
                 isFollowing
-                  ? 'btn btn-outline-secondary'
+                  ? 'btn btn-primary'
                   : 'btn btn-primary'
               }
               disabled={isFollowing}

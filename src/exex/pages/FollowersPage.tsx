@@ -54,7 +54,7 @@ export const FollowersPage = () => {
 
   return (
     <main className="container py-4">
-      <Link to="/" className="d-inline-block mb-3">
+      <Link to="/" className="btn btn-primary mb-3">
         ← Volver al inicio
       </Link>
 

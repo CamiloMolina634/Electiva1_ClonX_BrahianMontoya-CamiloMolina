@@ -1,21 +1,23 @@
 .home-page {
-  --home-border: #e7ecf0;
-  color: #17212b;
+  --home-border: var(--exex-border);
+  color: var(--bs-body-color);
   background: #fff;
   min-height: 100vh;
 }
 .home-layout { display: grid; grid-template-columns: 250px minmax(0, 600px) 300px; max-width: 1200px; margin: auto; }
 .home-sidebar { padding: 24px 24px 24px 12px; position: sticky; top: 0; align-self: start; }
 .home-brand { font-size: 32px; font-weight: 900; letter-spacing: -2px; margin-bottom: 28px; }
-.home-page .btn-primary { background: #17212b; border-color: #17212b; font-weight: 700; padding-block: 11px; }
-.home-page .btn-primary:hover { background: #334453; border-color: #334453; }
 .home-page .nav-link { border-radius: 999px; padding: 12px 18px; font-size: 18px; }
-.home-page .nav-link.active { color: #17212b; background: #eef6fc; font-weight: 700; }
-.home-page .nav-link:hover { background: #f1f4f6; }
-.home-page .home-sidebar section { border-color: var(--home-border) !important; background: #fafcfd; }
+.home-page .nav-link.active { color: var(--exex-green-dark); background: var(--bs-primary-bg-subtle); font-weight: 700; }
+.home-page .nav-link:hover { background: var(--exex-surface); }
+.home-page .home-sidebar section { border-color: var(--home-border) !important; background: var(--exex-surface); }
 .home-feed { min-width: 0; border-inline: 1px solid var(--home-border); }
 .home-feed-header { padding: 22px 20px; border-bottom: 1px solid var(--home-border); }
 .home-feed-header h1 { font-weight: 800; }
+.home-tweet-list { display: grid; gap: 14px; padding: 16px; background: var(--exex-surface); }
+.home-tweet-list .card-body { padding: 20px; }
+.home-tweet-list .card { box-shadow: 0 2px 6px rgb(17 24 39 / 3%); }
+.home-tweet-list .card p:last-child { line-height: 1.7; }
 .home-timeline-heading { padding: 15px 20px; border-bottom: 1px solid var(--home-border); border-top: 6px solid #f5f7f9; }
 .home-post { padding: 20px; border-bottom: 1px solid var(--home-border); transition: background .15s; }
 .home-post:hover { background: #fafcfd; }
@@ -28,8 +30,8 @@
 .home-post-body { line-height: 1.65; font-size: 15px; white-space: pre-wrap; }
 .home-discover { padding: 24px 0 24px 24px; }
 .home-panel { padding: 20px; border: 1px solid var(--home-border); border-radius: 20px; margin-bottom: 18px; }
-.home-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 1.8px; color: #547a98; }
-.home-text-link { color: #226a9e; font-size: 13px; text-decoration: none; font-weight: 600; }
+.home-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 1.8px; color: var(--exex-green-dark); }
+.home-text-link { color: var(--exex-green-dark); font-size: 13px; text-decoration: none; font-weight: 600; }
 .home-text-link:hover { text-decoration: underline; }
 .home-person { display: flex; align-items: center; gap: 10px; padding-block: 12px; }
 .home-person-info { min-width: 0; overflow-wrap: anywhere; font-size: 13px; }

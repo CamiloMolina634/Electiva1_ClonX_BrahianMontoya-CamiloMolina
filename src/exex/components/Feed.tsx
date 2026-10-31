@@ -34,19 +34,22 @@ export const Feed = () => {
   )
 
   return (
-    <section className="p-3" aria-labelledby="feed-heading">
-      <h2 id="feed-heading" className="h5 mb-3">
-        Publicaciones recientes
-      </h2>
+    <section className="home-timeline" aria-labelledby="feed-heading">
+      <div className="home-timeline-heading">
+        <h2 id="feed-heading" className="h6 fw-bold mb-1">
+          Publicaciones recientes
+        </h2>
+        <p className="small text-body-secondary mb-0">Tus publicaciones y las de las personas que sigues.</p>
+      </div>
 
       {feedTweets.length === 0 ? (
-        <p className="alert alert-info">
+        <p className="alert alert-light m-3" role="status">
           Todavía no hay publicaciones tuyas ni de las
           personas que sigues.
         </p>
       ) : (
         <>
-          <div className="d-grid gap-3">
+          <div className="home-tweet-list">
             {visibleTweets.map((tweet) => {
               const author = mockUsers.find(
                 (user) => user.uid === tweet.authorId,
@@ -64,11 +67,13 @@ export const Feed = () => {
             })}
           </div>
 
-          <Pagination
-            page={currentPage}
-            totalPages={totalPages}
-            onPageChange={setPage}
-          />
+          <div className="px-3 pb-4">
+            <Pagination
+              page={currentPage}
+              totalPages={totalPages}
+              onPageChange={setPage}
+            />
+          </div>
         </>
       )}
     </section>

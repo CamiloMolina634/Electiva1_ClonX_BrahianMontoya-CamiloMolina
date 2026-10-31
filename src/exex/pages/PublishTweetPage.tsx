@@ -14,7 +14,7 @@ export const PublishTweetPage = () => {
 
   return (
     <main className="container py-4 py-sm-5 publish-tweet-page">
-      <Link to="/" className="d-inline-block mb-4">← Volver al inicio</Link>
+      <Link to="/" className="btn btn-primary mb-4">← Volver al inicio</Link>
       <h1 className="h2 mb-2">Publicar un tweet</h1>
       <p className="text-body-secondary mb-4">Comparte lo que estás pensando.</p>
       <section className="card mb-4" aria-label="Nueva publicación">

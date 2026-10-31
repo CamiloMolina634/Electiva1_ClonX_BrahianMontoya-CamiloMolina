@@ -14,7 +14,6 @@ export const HomePage = () => {
     <main className="home-page">
       <div className="home-layout">
         <aside className="home-sidebar" aria-label="Perfil y accesos">
-          <p className="home-brand">EXEX</p>
           <section className="border rounded-4 p-3" aria-labelledby="profile-heading">
             <span className="d-inline-flex rounded-circle bg-primary-subtle text-primary fw-bold px-3 py-2 mb-3" aria-hidden="true">
               {fullname.charAt(0)}
