@@ -859,3 +859,78 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
   - Sin cambios. Archivo relacionado: `src/exex/pages/HomePage.tsx`.
 
 ---
+
+
+## Seguimientos con Firebase — Camilo Molina
+
+### [2026-11-04] - Contexto compartido de seguimientos
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Crear contexto global para follows](https://chatgpt.com/s/cx_6aebd0c53bb88191b3102ce378c4db82)
+- **Mensaje enviado (Prompt):**
+  > Quiero crear un contexto para el foloow y que se utilice en todos y obviamente hacer el provider, para los seguidos y seguidores, eso como se hace paso a paso
+- **Resumen de la respuesta:** Se explicó cómo el proveedor carga perfiles y relaciones de Firestore y cómo las pantallas internas acceden al mismo estado con `useFollows()`.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/contexts/FollowsContext.ts`, `src/exex/contexts/FollowsProvider.tsx`, `src/exex/hooks/useFollows.ts` y `src/exex/routes/ExexRouter.tsx`.
+
+---
+
+### [2026-11-04] - Del botón a la lista de Seguidos
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Crear contexto global para follows](https://chatgpt.com/s/cx_6aebd0c53bb88191b3102ce378c4db82)
+- **Mensaje enviado (Prompt):**
+  > Ya tengo el botón de seguir y dejar de seguir. Muéstrame qué pasa en el código desde que pulso Seguir hasta que la persona aparece en Seguidos. Dime en qué archivo pasa cada cosa.
+- **Resumen de la respuesta:** Se siguió el clic hasta `setFollowing`. La transacción crea o elimina la relación y Seguidos cruza los UID de las relaciones con los perfiles para mostrar la lista.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/UserListItem.tsx`, `src/exex/contexts/FollowsProvider.tsx`, `src/exex/pages/FollowersPage.tsx` y `src/exex/pages/FollowingPage.tsx`.
+
+---
+
+### [2026-11-04] - Actualización de los contadores
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Crear contexto global para follows](https://chatgpt.com/s/cx_6aebd0c53bb88191b3102ce378c4db82)
+- **Mensaje enviado (Prompt):**
+  > ¿Qué hace `onSnapshot` y cómo se enteran Inicio y Seguidos de que cambió el contador
+- **Resumen de la respuesta:** Se explicó cómo `onSnapshot` actualiza el contexto cuando cambia Firestore. Inicio recalcula los contadores y Seguidos vuelve a filtrar los perfiles.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/contexts/FollowsProvider.tsx`, `src/exex/pages/HomePage.tsx` y `src/exex/pages/FollowingPage.tsx`.
+
+---
+
+### [2026-11-04] - Comprobar cambios en Firestore
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Crear contexto global para follows](https://chatgpt.com/s/cx_6aebd0c53bb88191b3102ce378c4db82)
+- **Mensaje enviado (Prompt):**
+  > Cómo compruebo en Firebase que el seguimiento se guardó y que después sí se borró
+- **Resumen de la respuesta:** Se indicó cómo verificar en la pestaña Datos que el documento con los dos UID aparece al seguir y desaparece al dejar de seguir.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/contexts/FollowsProvider.tsx`.
+
+---
+
+### [2026-11-04] - Comparación con la versión anterior
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Crear contexto global para follows](https://chatgpt.com/s/cx_6aebd0c53bb88191b3102ce378c4db82)
+- **Mensaje enviado (Prompt):**
+  > Me puedes dar el paso a paso de si lo que cambie con lo que estaba antes y si esta bien hecho
+- **Resumen de la respuesta:** Se comparó el estado local anterior con el contexto compartido y la persistencia en Firestore. Se comprobó la compilación y se identificó que el feed todavía usa relaciones de ejemplo.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/routes/ExexRouter.tsx`, `src/exex/pages/HomePage.tsx`, `src/exex/pages/FollowersPage.tsx`, `src/exex/pages/FollowingPage.tsx`, `src/exex/pages/UserTweetsPage.tsx` y `src/exex/components/Feed.tsx`.
+
+---
+
+### [2026-11-04] - Datos de ejemplo pendientes
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Crear contexto global para follows](https://chatgpt.com/s/cx_6aebd0c53bb88191b3102ce378c4db82)
+- **Mensaje enviado (Prompt):**
+  > los datos mokiados los quito o los dejo?
+- **Resumen de la respuesta:** Se recomendó conservar los datos de ejemplo mientras el feed y los perfiles de demostración todavía los usen.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/Feed.tsx`, `src/exex/pages/UserTweetsPage.tsx`, `src/data/users.ts` y `src/data/follows.ts`.
+
+---

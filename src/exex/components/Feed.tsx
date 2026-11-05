@@ -34,14 +34,7 @@ export const Feed = () => {
   )
 
   return (
-    <section className="home-timeline" aria-labelledby="feed-heading">
-      <div className="home-timeline-heading">
-        <h2 id="feed-heading" className="h6 fw-bold mb-1">
-          Publicaciones recientes
-        </h2>
-        <p className="small text-body-secondary mb-0">Tus publicaciones y las de las personas que sigues.</p>
-      </div>
-
+    <section className="home-timeline" aria-label="Publicaciones">
       {feedTweets.length === 0 ? (
         <p className="alert alert-light m-3" role="status">
           Todavía no hay publicaciones tuyas ni de las

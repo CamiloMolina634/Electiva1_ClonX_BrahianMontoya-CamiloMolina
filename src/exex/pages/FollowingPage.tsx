@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { mockUsers, mockCurrentUserId } from '../../data/users'
-import { mockFollows } from '../../data/follows'
+import { useFollows } from '../hooks/useFollows'
 import { Pagination } from '../../ui/components/Pagination'
 import { UserListItem } from '../components/UserListItem'
 
@@ -9,12 +8,13 @@ const PAGE_SIZE = 10
 
 export const FollowingPage = () => {
   const [page, setPage] = useState(1)
+  const { users, follows, currentUserId, ready, saving, setFollowing } = useFollows()
 
-  const followingIds = mockFollows
-    .filter((follow) => follow.followerId === mockCurrentUserId)
+  const followingIds = follows
+    .filter((follow) => follow.followerId === currentUserId)
     .map((follow) => follow.followingId)
 
-  const followedUsers = mockUsers
+  const followedUsers = users
     .filter((user) => followingIds.includes(user.uid))
     .sort((firstUser, secondUser) =>
       firstUser.fullname.localeCompare(secondUser.fullname, 'es', {
@@ -27,7 +27,8 @@ export const FollowingPage = () => {
     Math.ceil(followedUsers.length / PAGE_SIZE),
   )
 
-  const startIndex = (page - 1) * PAGE_SIZE
+  const currentPage = Math.min(page, totalPages)
+  const startIndex = (currentPage - 1) * PAGE_SIZE
 
   const visibleUsers = followedUsers.slice(
     startIndex,
@@ -42,11 +43,11 @@ export const FollowingPage = () => {
 
       <h1>Usuarios seguidos</h1>
 
-      <p className="text-body-secondary">
+      {ready && <p className="text-body-secondary">
         Sigues a {followedUsers.length} personas.
-      </p>
+      </p>}
 
-      {followedUsers.length === 0 ? (
+      {ready && (followedUsers.length === 0 ? (
         <p className="alert alert-info">
           Todavía no sigues a ningún usuario.
         </p>
@@ -54,17 +55,23 @@ export const FollowingPage = () => {
         <>
           <ul className="list-group">
             {visibleUsers.map((user) => (
-              <UserListItem key={user.uid} user={user} />
+              <UserListItem
+                key={user.uid}
+                user={user}
+                isFollowing
+                onFollow={(uid) => void setFollowing(uid, false)}
+                followDisabled={saving}
+              />
             ))}
           </ul>
 
           <Pagination
-            page={page}
+            page={currentPage}
             totalPages={totalPages}
             onPageChange={setPage}
           />
         </>
-      )}
+      ))}
     </main>
   )
 }

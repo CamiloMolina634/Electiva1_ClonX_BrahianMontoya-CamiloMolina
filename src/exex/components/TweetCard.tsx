@@ -4,7 +4,7 @@ import type { User } from '../types/User'
 
 interface TweetCardProps {
   tweet: Tweet
-  author: User
+  author: Pick<User, 'uid' | 'fullname' | 'username'>
 }
 
 const dateFormatter = new Intl.DateTimeFormat('es-CO', {

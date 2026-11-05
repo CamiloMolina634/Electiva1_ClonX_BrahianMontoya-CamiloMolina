@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { mockUsers, mockCurrentUserId } from '../../data/users'
+import { mockUsers } from '../../data/users'
 import { mockFollows } from '../../data/follows'
 import { Pagination } from '../../ui/components/Pagination'
 import { TweetCard } from '../components/TweetCard'
+import { useFollows } from '../hooks/useFollows'
 import { useTweets } from '../hooks/useTweets'
 
 const PAGE_SIZE = 10
@@ -15,24 +16,25 @@ interface UserTweetsContentProps {
 const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
   const { tweets } = useTweets()
   const [page, setPage] = useState(1)
-  const [follows, setFollows] = useState(() => [...mockFollows])
-
-  const user = mockUsers.find((item) => item.uid === userId)
+  const { users, follows, currentUserId, ready, saving, setFollowing } = useFollows()
+  const demoUser = mockUsers.find((item) => item.uid === userId)
+  const user = users.find((item) => item.uid === userId) ?? demoUser
+  const profileFollows = demoUser ? mockFollows : follows
 
   const isFollowing = follows.some(
     (follow) =>
-      follow.followerId === mockCurrentUserId &&
+      follow.followerId === currentUserId &&
       follow.followingId === userId,
   )
 
   const followersCount = new Set(
-    follows
+    profileFollows
       .filter((follow) => follow.followingId === userId)
       .map((follow) => follow.followerId),
   ).size
 
   const followingCount = new Set(
-    follows
+    profileFollows
       .filter((follow) => follow.followerId === userId)
       .map((follow) => follow.followingId),
   ).size
@@ -56,27 +58,7 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
     startIndex + PAGE_SIZE,
   )
 
-  const handleFollow = () => {
-    if (userId === mockCurrentUserId) return
-
-    setFollows((currentFollows) => {
-      const alreadyFollowing = currentFollows.some(
-        (follow) =>
-          follow.followerId === mockCurrentUserId &&
-          follow.followingId === userId,
-      )
-
-      if (alreadyFollowing) return currentFollows
-
-      return [
-        ...currentFollows,
-        {
-          followerId: mockCurrentUserId,
-          followingId: userId,
-        },
-      ]
-    })
-  }
+  if (!user && !ready) return null
 
   if (!user) {
     return (
@@ -101,14 +83,14 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
 
           <div className="d-flex flex-wrap gap-3 mb-3">
             <span>
-              <strong>{followersCount}</strong> seguidores
+              <strong>{ready || demoUser ? followersCount : '—'}</strong> seguidores
             </span>
             <span>
-              <strong>{followingCount}</strong> seguidos
+              <strong>{ready || demoUser ? followingCount : '—'}</strong> seguidos
             </span>
           </div>
 
-          {userId !== mockCurrentUserId && (
+          {!demoUser && userId !== currentUserId && (
             <button
               type="button"
               className={
@@ -116,10 +98,12 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
                   ? 'btn btn-primary'
                   : 'btn btn-primary'
               }
-              disabled={isFollowing}
-              onClick={handleFollow}
+              disabled={saving || !ready}
+              onClick={() => void setFollowing(userId, !isFollowing)}
+              aria-label={isFollowing ? 'Dejar de seguir a ' + user.fullname : 'Seguir a ' + user.fullname}
+              title={isFollowing ? 'Dejar de seguir' : undefined}
             >
-              {isFollowing ? 'Siguiendo' : 'Seguir'}
+              {isFollowing ? 'Dejar de seguir' : 'Seguir'}
             </button>
           )}
         </div>
