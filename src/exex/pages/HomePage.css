@@ -29,6 +29,11 @@
 .home-post-content { min-width: 0; flex: 1; }
 .home-post-body { line-height: 1.65; font-size: 15px; white-space: pre-wrap; }
 .home-discover { padding: 24px 0 24px 24px; }
+.home-user-search { margin-bottom: 16px; }
+.home-search-field { position: relative; color: var(--bs-secondary-color); }
+.home-search-field svg { position: absolute; inset-inline-start: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.home-search-field input { padding-inline-start: 40px; }
+.home-search-result:hover, .home-search-result:focus-visible { background: var(--exex-surface); }
 .home-panel { padding: 20px; border: 1px solid var(--home-border); border-radius: 20px; margin-bottom: 18px; }
 .home-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 1.8px; color: var(--exex-green-dark); }
 .home-text-link { color: var(--exex-green-dark); font-size: 13px; text-decoration: none; font-weight: 600; }
@@ -40,16 +45,21 @@
 .home-footnote { color: #687785; font-size: 12px; line-height: 1.8; padding-inline: 12px; }
 @media (max-width: 1100px) {
   .home-layout { grid-template-columns: 230px minmax(0, 600px); max-width: 830px; }
-  .home-discover { display: none; }
+  .home-sidebar { grid-area: 1 / 1 / 3 / 2; }
+  .home-discover { grid-area: 1 / 2; padding: 16px; }
+  .home-discover > :not(.home-user-search) { display: none; }
+  .home-user-search { margin-bottom: 0; }
+  .home-feed { grid-area: 2 / 2; }
 }
 @media (max-width: 650px) {
   .home-layout { grid-template-columns: minmax(0, 1fr); }
-  .home-sidebar { position: static; padding: 16px; border-bottom: 1px solid var(--home-border); }
+  .home-sidebar { grid-area: 1 / 1; position: static; padding: 16px; border-bottom: 1px solid var(--home-border); }
+  .home-discover { grid-area: 2 / 1; }
   .home-brand { font-size: 27px; margin-bottom: 16px; }
   .home-page .home-sidebar section { padding: 12px !important; }
   .home-page .home-sidebar section > span { display: none !important; }
   .home-page .home-sidebar nav { flex-direction: row !important; flex-wrap: wrap; }
   .home-page .nav-link { font-size: 14px; padding: 8px 12px; }
-  .home-feed { border: 0; }
+  .home-feed { grid-area: 3 / 1; border: 0; }
   .home-post { padding: 16px; }
 }

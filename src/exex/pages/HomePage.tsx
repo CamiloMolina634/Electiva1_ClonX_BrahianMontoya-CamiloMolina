@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../../auth/contexts/AuthContext'
 import { useFollows } from '../hooks/useFollows'
 import { Feed } from '../components/Feed'
+import { UserSearch } from '../components/UserSearch'
 import './HomePage.css'
 
 export const HomePage = () => {
@@ -63,6 +64,7 @@ export const HomePage = () => {
         </div>
 
         <aside className="home-discover" aria-label="Descubre la comunidad">
+          <UserSearch />
           <section className="home-panel">
             <span className="home-eyebrow">TU COMUNIDAD</span>
             <h2 className="h5 fw-bold mt-2">Conecta en EXEX</h2>
