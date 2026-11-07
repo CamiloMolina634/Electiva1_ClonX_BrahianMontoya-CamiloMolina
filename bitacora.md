@@ -961,3 +961,31 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
   - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/UserSearch.tsx` y `src/exex/contexts/FollowsProvider.tsx`.
 
 ---
+
+## Perfil y menú lateral — Camilo Molina
+
+### [2026-11-07] - Reutilizar la pantalla de tweets de un usuario
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Reutilizar pantalla de perfil](https://chatgpt.com/share/6aef58dd-b66c-83e9-9131-c1262308c0f4)
+- **Mensaje enviado (Prompt):**
+  > no es crear una pagina si no que desde ver los tweets de lo usuario cojerlo y añadirle lo que le falta
+- **Resumen de la respuesta:** Se explicó cómo aprovechar la pantalla de tweets del usuario para mostrar el perfil. La ruta indica qué usuario se está viendo. El enlace de Mi perfil usa el UID de la sesión y la búsqueda usa el UID de la persona seleccionada. También se explicó dónde mostrar la foto redonda o la inicial.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/pages/UserTweetsPage.tsx` y `src/exex/pages/UserTweetsPage.css`.
+
+---
+
+### [2026-11-07] - Mantener el menú lateral al cambiar de pantalla
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Reutilizar pantalla de perfil](https://chatgpt.com/share/6aef58dd-b66c-83e9-9131-c1262308c0f4)
+- **Mensaje enviado (Prompt):**
+  > ah ya te entendi, y para que se vea simpre la barra lateral si crear un archivo, y para que se vea en todas como la conecto?
+  >
+  > en exex router la conecto para que se vean en todas
+- **Resumen de la respuesta:** Se revisó que `ExexSidebar` está una sola vez en `ExexRouter`, por fuera de `Routes`. Así el menú sigue visible cuando cambia la pantalla dentro de las rutas con sesión iniciada.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/ExexSidebar.tsx` y `src/exex/routes/ExexRouter.tsx`.
+
+---

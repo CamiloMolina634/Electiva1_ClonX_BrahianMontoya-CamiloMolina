@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { AuthContext } from '../../auth/contexts/AuthContext'
 import { mockUsers } from '../../data/users'
 import { mockFollows } from '../../data/follows'
 import { Pagination } from '../../ui/components/Pagination'
 import { TweetCard } from '../components/TweetCard'
+import type { SocialProfile } from '../contexts/FollowsContext'
 import { useFollows } from '../hooks/useFollows'
 import { useTweets } from '../hooks/useTweets'
+import './UserTweetsPage.css'
 
 const PAGE_SIZE = 10
 
@@ -15,10 +18,14 @@ interface UserTweetsContentProps {
 
 const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
   const { tweets } = useTweets()
+  const { authState } = useContext(AuthContext)
   const [page, setPage] = useState(1)
   const { users, follows, currentUserId, ready, saving, setFollowing } = useFollows()
-  const demoUser = mockUsers.find((item) => item.uid === userId)
-  const user = users.find((item) => item.uid === userId) ?? demoUser
+  const ownProfile = userId === currentUserId
+  const account: SocialProfile | null = users.find((item) => item.uid === userId) ?? (ownProfile ? authState.user : null)
+  const demoUser = account ? undefined : mockUsers.find((item) => item.uid === userId)
+  const user = account ?? demoUser
+  const bio = account?.bio
   const profileFollows = demoUser ? mockFollows : follows
 
   const isFollowing = follows.some(
@@ -70,70 +77,87 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
     )
   }
 
+  const displayName = user.fullname || user.username || 'Usuario'
+
   return (
-    <main className="container py-4">
-      <Link to="/" className="btn btn-primary mb-3">
-        ← Volver al inicio
-      </Link>
+    <main className="profile-page">
+      <section aria-labelledby="profile-title">
+        <header className="profile-header">
+          <Link to="/" className="profile-back link-body-emphasis" aria-label="Volver al inicio">
+            <span aria-hidden="true">←</span>
+          </Link>
+          <div className="text-break">
+            <h1 id="profile-title" className="h5 fw-bold mb-0">{displayName}</h1>
+            <p className="text-body-secondary small mb-0">
+              {userTweets.length} {userTweets.length === 1 ? 'publicación' : 'publicaciones'}
+            </p>
+          </div>
+        </header>
 
-      <section className="card mb-4">
-        <div className="card-body">
-          <h1 className="h2">{user.fullname}</h1>
-          <p className="text-body-secondary">@{user.username}</p>
+        <div className="profile-cover" aria-hidden="true" />
+        <div className="profile-details">
+          <div className="profile-actions">
+            {user.photoURL ? (
+              <img src={user.photoURL} alt="" className="profile-avatar" referrerPolicy="no-referrer" />
+            ) : (
+              <span className="profile-avatar" aria-hidden="true">
+                {displayName.charAt(0).toUpperCase()}
+              </span>
+            )}
 
-          <div className="d-flex flex-wrap gap-3 mb-3">
-            <span>
-              <strong>{ready || demoUser ? followersCount : '—'}</strong> seguidores
-            </span>
-            <span>
-              <strong>{ready || demoUser ? followingCount : '—'}</strong> seguidos
-            </span>
+            {!demoUser && !ownProfile && (
+              <button
+                type="button"
+                className="btn btn-primary"
+                disabled={saving || !ready}
+                onClick={() => void setFollowing(userId, !isFollowing)}
+                aria-label={isFollowing ? 'Dejar de seguir a ' + displayName : 'Seguir a ' + displayName}
+              >
+                {isFollowing ? 'Dejar de seguir' : 'Seguir'}
+              </button>
+            )}
           </div>
 
-          {!demoUser && userId !== currentUserId && (
-            <button
-              type="button"
-              className={
-                isFollowing
-                  ? 'btn btn-primary'
-                  : 'btn btn-primary'
-              }
-              disabled={saving || !ready}
-              onClick={() => void setFollowing(userId, !isFollowing)}
-              aria-label={isFollowing ? 'Dejar de seguir a ' + user.fullname : 'Seguir a ' + user.fullname}
-              title={isFollowing ? 'Dejar de seguir' : undefined}
-            >
-              {isFollowing ? 'Dejar de seguir' : 'Seguir'}
-            </button>
-          )}
+          <p className="h4 fw-bold text-break mb-1">{displayName}</p>
+          {user.username && <p className="text-body-secondary text-break mb-0">@{user.username}</p>}
+          {bio && <p className="text-break mt-3 mb-0">{bio}</p>}
+
+          <div className="d-flex flex-wrap gap-3 small mt-3">
+            <Link to={`/users/${userId}/following`} className="link-body-emphasis link-underline-opacity-0 link-underline-opacity-100-hover">
+              <strong>{ready || demoUser ? followingCount : '—'}</strong> seguidos
+            </Link>
+            <Link to={`/users/${userId}/followers`} className="link-body-emphasis link-underline-opacity-0 link-underline-opacity-100-hover">
+              <strong>{ready || demoUser ? followersCount : '—'}</strong> seguidores
+            </Link>
+          </div>
         </div>
       </section>
 
-      <h2 className="h4 mb-3">Tweets</h2>
+      <section className="profile-posts" aria-labelledby="profile-posts-title">
+        <h2 id="profile-posts-title" className="h5 fw-bold mb-3">Publicaciones</h2>
 
-      {userTweets.length === 0 ? (
-        <p className="alert alert-info">
-          Este usuario todavía no ha publicado tweets.
-        </p>
-      ) : (
-        <>
-          <div className="d-grid gap-3">
-            {visibleTweets.map((tweet) => (
-              <TweetCard
-                key={tweet.id}
-                tweet={tweet}
-                author={user}
-              />
-            ))}
-          </div>
+        {userTweets.length === 0 ? (
+          <p className="text-body-secondary mb-0">Este usuario todavía no ha publicado tweets.</p>
+        ) : (
+          <>
+            <div className="d-grid gap-3">
+              {visibleTweets.map((tweet) => (
+                <TweetCard
+                  key={tweet.id}
+                  tweet={tweet}
+                  author={user}
+                />
+              ))}
+            </div>
 
-          <Pagination
-            page={page}
-            totalPages={totalPages}
-            onPageChange={setPage}
-          />
-        </>
-      )}
+            <Pagination
+              page={page}
+              totalPages={totalPages}
+              onPageChange={setPage}
+            />
+          </>
+        )}
+      </section>
     </main>
   )
 }
