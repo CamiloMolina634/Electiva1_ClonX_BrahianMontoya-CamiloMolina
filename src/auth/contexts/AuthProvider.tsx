@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useRef, useState, type ReactNode } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { FirebaseAuth } from '../../firebase/config';
-import { getUserProfile, loginUserByCredentials, logoutUser, registerUser } from '../../firebase/providers';
+import { getUserProfile, loginUserByCredentials, loginUserByGoogleProvider, logoutUser, registerUser } from '../../firebase/providers';
 import { AuthContext } from './AuthContext';
 import { authReducer } from '../reducers/authReducer';
 import type { AuthState } from '../types/authReducerInterfaces';
@@ -72,6 +72,26 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return result.ok;
   };
 
+  const loginWithGoogle = async (): Promise<boolean> => {
+    if (registering.current) return false;
+    registering.current = true;
+    try {
+      const result = await loginUserByGoogleProvider();
+      if (!result.ok) {
+        dispatch({ type: 'error', payload: { ...initialState, errorMessage: result.errorMessage } });
+        return false;
+      }
+      setChecking(true);
+      setSessionVersion((version) => version + 1);
+      return true;
+    } catch {
+      dispatch({ type: 'error', payload: { ...initialState, errorMessage: 'No se pudo finalizar el acceso con Google. Inténtalo de nuevo.' } });
+      return false;
+    } finally {
+      registering.current = false;
+    }
+  };
+
   const logout = async (): Promise<void> => {
     await logoutUser();
   };
@@ -94,7 +114,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ authState, checking, login, register, logout }}>
+    <AuthContext.Provider value={{ authState, checking, login, loginWithGoogle, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
