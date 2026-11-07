@@ -934,3 +934,30 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
   - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/Feed.tsx`, `src/exex/pages/UserTweetsPage.tsx`, `src/data/users.ts` y `src/data/follows.ts`.
 
 ---
+
+
+## Búsqueda de usuarios — Camilo Molina
+
+### [2026-11-04] - Diseño y conexión de la barra
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Diseñar barra de búsqueda](https://chatgpt.com/s/cx_6aebd6575b248191a421e351c4ad0469)
+- **Mensaje enviado (Prompt):**
+  > Para crear la barra de busqueda necesito del follow provider cierto?y tambien me muestras como hacer el diseño para eso
+- **Resumen de la respuesta:** Se explicó cómo `useFollows()` obtiene los usuarios del proveedor existente. Se revisaron el campo de búsqueda, la lupa, los estilos y el enlace al perfil por UID.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/UserSearch.tsx`, `src/exex/pages/HomePage.css` y `src/exex/routes/ExexRouter.tsx`.
+
+---
+
+### [2026-11-04] - Coincidencias por nombre de usuario
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Diseñar barra de búsqueda](https://chatgpt.com/s/cx_6aebd6575b248191a421e351c4ad0469)
+- **Mensaje enviado (Prompt):**
+  > y con el starwith puedo asemejar las busquedas cierto, porque el followprovider me trae lo de firestore
+- **Resumen de la respuesta:** Se explicó que `startsWith()` encuentra usuarios cuyo nombre empieza por lo escrito. La búsqueda quita el `@`, ignora mayúsculas y usa los usuarios ya cargados de Firestore.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/UserSearch.tsx` y `src/exex/contexts/FollowsProvider.tsx`.
+
+---
