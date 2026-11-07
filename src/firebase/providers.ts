@@ -1,5 +1,5 @@
 import { FirebaseError } from 'firebase/app';
-import { createUserWithEmailAndPassword, deleteUser, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, deleteUser, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import type { User as FirebaseUser } from 'firebase/auth';
 import { doc, getDoc, runTransaction } from 'firebase/firestore';
 import { FirebaseAuth, FirebaseDB } from './config';
@@ -68,6 +68,63 @@ export const loginUserByCredentials = async (username: string, password: string)
       }
     }
     return { ok: false, errorMessage };
+  }
+};
+
+const googleProvider = new GoogleAuthProvider();
+
+export const loginUserByGoogleProvider = async (): Promise<AuthResult | AuthErrorResult> => {
+  let signedIn = false;
+  try {
+    const { user } = await signInWithPopup(FirebaseAuth, googleProvider);
+    signedIn = true;
+    const { uid, email, displayName, photoURL } = user;
+    if (!email) throw new Error('google-email-missing');
+
+    const base = email.split('@')[0].toLowerCase().replace(/[^a-z0-9_]/g, '_').slice(0, 12).padEnd(3, '_');
+    const suffix = uid.toLowerCase().replace(/[^a-z0-9]/g, '').slice(-6);
+    const candidates = [base, `${base}_${suffix}`, ...[1, 2, 3].map((number) => `${base}_${suffix}${number}`)];
+    const profileRef = doc(FirebaseDB, 'users', uid);
+
+    await runTransaction(FirebaseDB, async (transaction) => {
+      if ((await transaction.get(profileRef)).exists()) return;
+
+      for (const username of candidates) {
+        const usernameRef = doc(FirebaseDB, 'usernames', username);
+        const reservation = await transaction.get(usernameRef);
+        if (reservation.exists() && reservation.data().uid !== uid) continue;
+
+        if (!reservation.exists()) transaction.set(usernameRef, { uid });
+        const profile: User = { uid, fullname: displayName?.trim().slice(0, 80) || base, username, email, photoURL };
+        transaction.set(profileRef, profile);
+        return;
+      }
+
+      throw new Error('google-username-unavailable');
+    });
+
+    return { ok: true, uid, email, displayName, photoURL };
+  } catch (error: unknown) {
+    if (signedIn) {
+      await signOut(FirebaseAuth);
+      return { ok: false, errorMessage: 'No se pudo preparar tu perfil de Google. Inténtalo de nuevo.' };
+    }
+
+    if (error instanceof FirebaseError) {
+      switch (error.code) {
+        case 'auth/popup-closed-by-user':
+          return { ok: false, errorMessage: 'Cerraste la ventana de Google antes de iniciar sesión.' };
+        case 'auth/popup-blocked':
+          return { ok: false, errorMessage: 'Permite las ventanas emergentes para iniciar sesión con Google.' };
+        case 'auth/operation-not-allowed':
+          return { ok: false, errorMessage: 'El acceso con Google aún no está habilitado en Firebase.' };
+        case 'auth/unauthorized-domain':
+          return { ok: false, errorMessage: 'Este dominio no está autorizado para iniciar sesión con Google.' };
+        case 'auth/account-exists-with-different-credential':
+          return { ok: false, errorMessage: 'Esta cuenta ya existe. Entra con el método que usaste al registrarte.' };
+      }
+    }
+    return { ok: false, errorMessage: 'No se pudo iniciar sesión con Google. Inténtalo de nuevo.' };
   }
 };
 
