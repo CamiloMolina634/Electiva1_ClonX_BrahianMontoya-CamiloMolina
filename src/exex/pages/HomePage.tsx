@@ -1,14 +1,17 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../auth/contexts/AuthContext'
-import { mockHomeProfile } from '../../data/home'
-import { mockUsers } from '../../data/users'
+import { useFollows } from '../hooks/useFollows'
 import { Feed } from '../components/Feed'
 import './HomePage.css'
 
 export const HomePage = () => {
-  const { fullname, username, followersCount, followingCount } = mockHomeProfile
   const { authState } = useContext(AuthContext)
+  const { users, follows, currentUserId, ready } = useFollows()
+  const fullname = authState.user?.fullname || authState.user?.username || 'Usuario'
+  const username = authState.user?.username
+  const followersCount = new Set(follows.filter((relation) => relation.followingId === currentUserId).map((relation) => relation.followerId)).size
+  const followingCount = new Set(follows.filter((relation) => relation.followerId === currentUserId).map((relation) => relation.followingId)).size
 
   return (
     <main className="home-page">
@@ -19,13 +22,13 @@ export const HomePage = () => {
               {fullname.charAt(0)}
             </span>
             <h2 id="profile-heading" className="h5 text-break mb-1">{fullname}</h2>
-            <p className="text-body-secondary text-break mb-3">@{username}</p>
+            {username && <p className="text-body-secondary text-break mb-3">@{username}</p>}
             <div className="d-flex flex-wrap gap-3 small">
               <Link to="/followers" className="link-body-emphasis text-decoration-none">
-                <strong>{followersCount}</strong> seguidores
+                <strong>{ready ? followersCount : '—'}</strong> seguidores
               </Link>
               <Link to="/following" className="link-body-emphasis text-decoration-none">
-                <strong>{followingCount}</strong> seguidos
+                <strong>{ready ? followingCount : '—'}</strong> seguidos
               </Link>
             </div>
           </section>
@@ -68,18 +71,18 @@ export const HomePage = () => {
           </section>
           <section className="home-panel" aria-labelledby="community-heading">
             <h2 id="community-heading" className="h5 fw-bold mb-1">Personas en EXEX</h2>
-            <p className="small text-body-secondary mb-3">Perfiles de ejemplo de la comunidad</p>
-            {mockUsers.filter((user) => user.username !== username).slice(0, 5).map((user, index) => (
+            <p className="small text-body-secondary mb-3">Cuentas registradas en EXEX</p>
+            {users.filter((user) => user.uid !== currentUserId).slice(0, 5).map((user, index) => (
               <div key={user.uid} className="home-person">
                 <span className={`home-avatar home-avatar-${index % 4}`} aria-hidden="true">{user.fullname.charAt(0)}</span>
                 <div className="home-person-info">
-                  <strong>{user.fullname}</strong>
+                  <Link to={`/users/${user.uid}`}>{user.fullname}</Link>
                   <span>@{user.username}</span>
                 </div>
               </div>
             ))}
           </section>
-          <p className="home-footnote">EXEX · Proyecto de Electiva<br />Comunidad de prueba · 2026</p>
+          <p className="home-footnote">EXEX · Proyecto de Electiva<br />2026</p>
         </aside>
       </div>
     </main>

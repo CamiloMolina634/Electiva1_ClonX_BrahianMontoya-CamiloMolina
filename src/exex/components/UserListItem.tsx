@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom'
-import type { User } from '../types/User'
+import type { SocialProfile } from '../contexts/FollowsContext'
 
 interface UserListItemProps {
-  user: User
+  user: SocialProfile
   isFollowing?: boolean
-  onFollow?: (userId: User['uid']) => void
+  followDisabled?: boolean
+  onFollow?: (userId: SocialProfile['uid']) => void
 }
 
 export const UserListItem = ({
   user,
   isFollowing = false,
+  followDisabled = false,
   onFollow,
 }: UserListItemProps) => {
   return (
@@ -39,15 +41,16 @@ export const UserListItem = ({
                   ? 'btn btn-primary'
                   : 'btn btn-primary'
               }
-              disabled={isFollowing}
+              disabled={followDisabled}
               onClick={() => onFollow(user.uid)}
               aria-label={
                 isFollowing
-                  ? `Ya sigues a ${user.fullname}`
+                  ? `Dejar de seguir a ${user.fullname}`
                   : `Seguir a ${user.fullname}`
               }
+              title={isFollowing ? 'Dejar de seguir' : undefined}
             >
-              {isFollowing ? 'Siguiendo' : 'Seguir'}
+              {isFollowing ? 'Dejar de seguir' : 'Seguir'}
             </button>
           )}
         </div>
