@@ -1,0 +1,10 @@
+@media (max-width: 1100px) {
+  .explore-page .home-feed { grid-area: 1 / 2; }
+  .explore-page .home-discover { grid-area: 2 / 2; }
+  .explore-page .home-discover > .home-panel { display: block; }
+}
+
+@media (max-width: 650px) {
+  .explore-page .home-feed { grid-area: 2 / 1; }
+  .explore-page .home-discover { grid-area: 3 / 1; }
+}
