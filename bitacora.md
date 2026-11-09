@@ -989,3 +989,55 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
   - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/ExexSidebar.tsx` y `src/exex/routes/ExexRouter.tsx`.
 
 ---
+
+## Editar perfil — Camilo Molina
+
+### [2026-11-08] - Actualizar el perfil en la sesión
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Editar perfil con updateDoc](chatgpt-conversation://6af10c17-3554-83e9-b4d2-e6a5ba7ed689)
+- **Mensaje enviado (Prompt):**
+  > en el reducer que tengo que poner?
+- **Resumen de la respuesta:** Se revisó el caso `profile-updated`. Después de guardar en Firestore, el reducer comprueba el UID y actualiza el nombre y la bio de la cuenta activa. Así se ven los cambios en la misma sesión.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/auth/reducers/authReducer.ts`, `src/auth/types/authReducerInterfaces.ts` y `src/auth/contexts/AuthProvider.tsx`.
+
+---
+
+### [2026-11-08] - Conectar la foto y la portada con Firebase
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Editar perfil con updateDoc](chatgpt-conversation://6af10c17-3554-83e9-b4d2-e6a5ba7ed689)
+- **Mensaje enviado (Prompt):**
+  > y como hago para que tambien el edite su foto de perfil y portada, tendria que pagar en firebase?
+  >
+  > muestrame como seria
+- **Resumen de la respuesta:** Se explicó cómo conectar Storage a la app de Firebase, subir los archivos y guardar sus enlaces en Firestore. También se revisó que Storage requiere el plan Blaze y que las reglas pueden limitar la subida al dueño del perfil.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/firebase/config.ts`, `src/firebase/providers.ts`, `src/exex/components/EditProfileForm.tsx` y `storage.rules`.
+
+---
+
+### [2026-11-08] - Diferencia entre la foto y la portada
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Editar perfil con updateDoc](chatgpt-conversation://6af10c17-3554-83e9-b4d2-e6a5ba7ed689)
+- **Mensaje enviado (Prompt):**
+  > el cover lo que hace es actualizar la foto
+- **Resumen de la respuesta:** Se aclaró que `photoURL` corresponde a la foto redonda y `coverURL` a la imagen ancha que se muestra en la parte superior del perfil.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivo relacionado: `src/exex/pages/UserTweetsPage.tsx`.
+
+---
+
+### [2026-11-09] - Separar las rutas de las imágenes
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Editar perfil con updateDoc](chatgpt-conversation://6af10c17-3554-83e9-b4d2-e6a5ba7ed689)
+- **Mensaje enviado (Prompt):**
+  > y utilizo el kind para saber que voy a pasar la foto
+- **Resumen de la respuesta:** Se explicó que `kind` indica el tipo de imagen al armar la ruta de Storage. En EXEX se usa `photo` para la foto de perfil y `cover` para la portada.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/firebase/providers.ts` y `storage.rules`.
+
+---

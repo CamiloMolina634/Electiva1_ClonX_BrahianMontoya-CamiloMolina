@@ -4,6 +4,7 @@ import type { User } from '../types/User'
 
 export type SocialProfile = Pick<User, 'uid' | 'fullname' | 'username' | 'photoURL'> & {
   bio?: string
+  coverURL?: string
 }
 
 export interface FollowsState {
