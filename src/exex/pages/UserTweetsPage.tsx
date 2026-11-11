@@ -1,9 +1,11 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { AuthContext } from '../../auth/contexts/AuthContext'
+import { PROFILE_IMAGE_TYPES, type ProfileEdit } from '../../auth/profile'
 import { mockUsers } from '../../data/users'
 import { mockFollows } from '../../data/follows'
 import { Pagination } from '../../ui/components/Pagination'
+import { EditProfileForm } from '../components/EditProfileForm'
 import { TweetCard } from '../components/TweetCard'
 import type { SocialProfile } from '../contexts/FollowsContext'
 import { useFollows } from '../hooks/useFollows'
@@ -16,10 +18,48 @@ interface UserTweetsContentProps {
   userId: string
 }
 
+interface ProfileImageShortcutProps {
+  label: string
+  className: string
+  onSelect: (file: File) => void
+  children: ReactNode
+  disabled: boolean
+}
+
+const ProfileImageShortcut = ({ label, className, onSelect, children, disabled }: ProfileImageShortcutProps) => {
+  const input = useRef<HTMLInputElement>(null)
+
+  return (
+    <>
+      <button type="button" className={className} aria-label={label} title={label} disabled={disabled} onClick={() => input.current?.click()}>
+        {children}
+      </button>
+      <input
+        ref={input}
+        type="file"
+        accept={PROFILE_IMAGE_TYPES.join(',')}
+        disabled={disabled}
+        hidden
+        onChange={(event) => {
+          const file = event.currentTarget.files?.[0]
+          event.currentTarget.value = ''
+          if (file) onSelect(file)
+        }}
+      />
+    </>
+  )
+}
+
 const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
   const { tweets } = useTweets()
   const { authState } = useContext(AuthContext)
   const [page, setPage] = useState(1)
+  const [editing, setEditing] = useState(false)
+  const [savingProfile, setSavingProfile] = useState(false)
+  const [selectedImages, setSelectedImages] = useState<Pick<ProfileEdit, 'photo' | 'cover'>>({})
+  const [profileSaved, setProfileSaved] = useState(false)
+  const editButton = useRef<HTMLButtonElement>(null)
+  const restoreEditFocus = useRef(false)
   const { users, follows, currentUserId, ready, saving, setFollowing } = useFollows()
   const ownProfile = userId === currentUserId
   const account: SocialProfile | null = users.find((item) => item.uid === userId) ?? (ownProfile ? authState.user : null)
@@ -27,6 +67,25 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
   const user = account ?? demoUser
   const bio = account?.bio
   const profileFollows = demoUser ? mockFollows : follows
+
+  useEffect(() => {
+    if (!editing && restoreEditFocus.current) {
+      editButton.current?.focus()
+      restoreEditFocus.current = false
+    }
+  }, [editing])
+
+  const closeEditor = () => {
+    restoreEditFocus.current = true
+    setSelectedImages({})
+    setEditing(false)
+  }
+
+  const openEditor = (images: Pick<ProfileEdit, 'photo' | 'cover'> = {}) => {
+    setSelectedImages((current) => ({ ...current, ...images }))
+    setProfileSaved(false)
+    setEditing(true)
+  }
 
   const isFollowing = follows.some(
     (follow) =>
@@ -94,15 +153,53 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
           </div>
         </header>
 
-        <div className="profile-cover" aria-hidden="true" />
+        <div className="profile-cover">
+          {account?.coverURL && <img src={account.coverURL} alt="" referrerPolicy="no-referrer" />}
+          {ownProfile && (
+            <ProfileImageShortcut
+              label="Cambiar portada"
+              className="profile-cover-edit btn btn-light btn-sm rounded-pill shadow-sm"
+              disabled={savingProfile}
+              onSelect={(cover) => openEditor({ cover })}
+            >
+              Cambiar portada
+            </ProfileImageShortcut>
+          )}
+        </div>
         <div className="profile-details">
           <div className="profile-actions">
-            {user.photoURL ? (
-              <img src={user.photoURL} alt="" className="profile-avatar" referrerPolicy="no-referrer" />
-            ) : (
-              <span className="profile-avatar" aria-hidden="true">
-                {displayName.charAt(0).toUpperCase()}
-              </span>
+            <div className="profile-avatar-wrap">
+              {user.photoURL ? (
+                <img src={user.photoURL} alt="" className="profile-avatar" referrerPolicy="no-referrer" />
+              ) : (
+                <span className="profile-avatar" aria-hidden="true">
+                  {displayName.charAt(0).toUpperCase()}
+                </span>
+              )}
+              {ownProfile && (
+                <ProfileImageShortcut
+                  label="Cambiar foto de perfil"
+                  className="profile-avatar-edit btn btn-light rounded-circle shadow-sm"
+                  disabled={savingProfile}
+                  onSelect={(photo) => openEditor({ photo })}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                    <path d="M3 7h4l2-3h6l2 3h4v13H3z" />
+                    <circle cx="12" cy="13" r="3" />
+                  </svg>
+                </ProfileImageShortcut>
+              )}
+            </div>
+
+            {ownProfile && !editing && (
+              <button
+                type="button"
+                ref={editButton}
+                className="btn btn-outline-secondary rounded-pill"
+                onClick={() => openEditor()}
+              >
+                Editar perfil
+              </button>
             )}
 
             {!demoUser && !ownProfile && (
@@ -130,6 +227,23 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
               <strong>{ready || demoUser ? followersCount : '—'}</strong> seguidores
             </Link>
           </div>
+
+          {ownProfile && editing && (
+            <EditProfileForm
+              initialName={user.fullname}
+              initialBio={bio ?? ''}
+              photo={selectedImages.photo}
+              cover={selectedImages.cover}
+              saving={savingProfile}
+              onSavingChange={setSavingProfile}
+              onCancel={closeEditor}
+              onSaved={() => {
+                setProfileSaved(true)
+                closeEditor()
+              }}
+            />
+          )}
+          {profileSaved && <p className="text-success mt-3 mb-0" role="status">Perfil actualizado.</p>}
         </div>
       </section>
 

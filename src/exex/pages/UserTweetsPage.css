@@ -28,8 +28,22 @@
 .profile-back:hover { background: var(--exex-surface); }
 
 .profile-cover {
+  position: relative;
   height: clamp(8rem, 30vw, 13rem);
   background: linear-gradient(120deg, var(--exex-green-dark), var(--exex-green) 65%, #86efac);
+}
+
+.profile-cover-edit {
+  position: absolute;
+  inset-block-start: 0.75rem;
+  inset-inline-end: 0.75rem;
+}
+
+.profile-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .profile-details,
@@ -59,6 +73,19 @@
   font-size: clamp(1.75rem, 6vw, 3rem);
   font-weight: 700;
   object-fit: cover;
+}
+
+.profile-avatar-wrap { position: relative; }
+
+.profile-avatar-edit {
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-end: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
 }
 
 .profile-actions .btn { margin-bottom: 0.25rem; }
