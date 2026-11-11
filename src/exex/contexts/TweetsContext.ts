@@ -1,8 +1,7 @@
 import { createContext } from 'react'
-import type { Tweet, User } from '../types/social'
+import type { Tweet } from '../types/social'
 
 interface TweetsContextValue {
-  currentUser: User
   tweets: Tweet[]
   loading: boolean
   loadError: string

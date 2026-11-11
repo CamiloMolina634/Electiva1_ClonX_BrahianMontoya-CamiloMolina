@@ -1,5 +1,4 @@
 import { useEffect, useState, type ReactNode } from 'react'
-import { mockCurrentUser, mockTweets } from '../../data/tweets'
 import { createTweet, watchTweets } from '../../firebase/tweets'
 import type { Tweet } from '../types/social'
 import { TweetsContext } from './TweetsContext'
@@ -20,8 +19,7 @@ export const TweetsProvider = ({ uid, children }: { uid: string; children: React
 
   return (
     <TweetsContext.Provider value={{
-      currentUser: mockCurrentUser,
-      tweets: [...(savedTweets ?? []), ...mockTweets],
+      tweets: savedTweets ?? [],
       loading: savedTweets === null && !loadError,
       loadError,
       publishTweet,
