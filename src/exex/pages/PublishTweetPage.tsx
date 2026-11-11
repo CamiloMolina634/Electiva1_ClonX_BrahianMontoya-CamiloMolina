@@ -1,16 +1,19 @@
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../auth/contexts/AuthContext'
+import { TweetCard } from '../components/TweetCard'
 import { TweetComposer } from '../components/TweetComposer'
 import { useTweets } from '../hooks/useTweets'
 import './PublishTweetPage.css'
 
-const dateFormatter = new Intl.DateTimeFormat('es-CO', {
-  dateStyle: 'medium',
-  timeStyle: 'short',
-})
-
 export const PublishTweetPage = () => {
-  const { currentUser, tweets, publishTweet } = useTweets()
-  const latestTweet = tweets.find((tweet) => tweet.authorId === currentUser.id)
+  const { authState } = useContext(AuthContext)
+  const { tweets, loading, loadError, publishTweet } = useTweets()
+  const user = authState.user
+
+  if (!user) return null
+
+  const latestTweet = tweets.find((tweet) => tweet.authorId === user.uid)
 
   return (
     <main className="container py-4 py-sm-5 publish-tweet-page">
@@ -20,24 +23,18 @@ export const PublishTweetPage = () => {
       <section className="card mb-4" aria-label="Nueva publicación">
         <div className="card-body p-3 p-sm-4">
           <p className="mb-4">
-            <strong>{currentUser.fullName}</strong>
-            <span className="text-body-secondary d-block">@{currentUser.username} · Usuario de prueba</span>
+            <strong>{user.fullname || user.username || 'Usuario'}</strong>
+            {user.username && <span className="text-body-secondary d-block">@{user.username}</span>}
           </p>
           <TweetComposer onPublish={publishTweet} />
         </div>
       </section>
+      {loading && <p role="status">Cargando tu última publicación…</p>}
+      {loadError && <p className="text-danger" role="alert">{loadError}</p>}
       {latestTweet && (
         <section aria-labelledby="latest-tweet-heading">
           <h2 id="latest-tweet-heading" className="h5 mb-3">Tu última publicación</h2>
-          <article className="card">
-            <div className="card-body p-3 p-sm-4">
-              <p className="mb-1 fw-semibold">{currentUser.fullName}</p>
-              <p className="text-body-secondary small">
-                @{currentUser.username} · <time dateTime={latestTweet.createdAt}>{dateFormatter.format(new Date(latestTweet.createdAt))}</time>
-              </p>
-              <p className="tweet-message mb-0">{latestTweet.body}</p>
-            </div>
-          </article>
+          <TweetCard tweet={latestTweet} author={user} />
         </section>
       )}
     </main>

@@ -16,7 +16,7 @@ export const ExexRouter = () => {
 
   return (
     <FollowsProvider key={uid} uid={uid}>
-      <TweetsProvider>
+      <TweetsProvider uid={uid}>
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="tweets/new" element={<PublishTweetPage />} />
