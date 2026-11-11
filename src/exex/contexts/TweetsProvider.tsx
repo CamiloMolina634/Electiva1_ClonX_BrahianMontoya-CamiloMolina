@@ -1,27 +1,31 @@
-import { useState } from 'react'
-import type { ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { mockCurrentUser, mockTweets } from '../../data/tweets'
+import { createTweet, watchTweets } from '../../firebase/tweets'
 import type { Tweet } from '../types/social'
 import { TweetsContext } from './TweetsContext'
 
-export const TweetsProvider = ({ children }: { children: ReactNode }) => {
-  const [tweets, setTweets] = useState<Tweet[]>(() => [...mockTweets])
+export const TweetsProvider = ({ uid, children }: { uid: string; children: ReactNode }) => {
+  const [savedTweets, setSavedTweets] = useState<Tweet[] | null>(null)
+  const [loadError, setLoadError] = useState('')
 
-  const publishTweet = (body: string): Tweet => {
-    const text = body.trim()
-    if (!text) throw new Error('A tweet must contain text.')
-    const tweet: Tweet = {
-      id: crypto.randomUUID(),
-      authorId: mockCurrentUser.id,
-      body: text,
-      createdAt: new Date().toISOString(),
-    }
-    setTweets((previousTweets) => [tweet, ...previousTweets])
-    return tweet
-  }
+  useEffect(() => {
+    if (!uid) return
+
+    return watchTweets(setSavedTweets, () => {
+      setLoadError('No se pudieron cargar los tweets. Revisa la conexión y los permisos.')
+    })
+  }, [uid])
+
+  const publishTweet = (body: string) => createTweet(uid, body)
 
   return (
-    <TweetsContext.Provider value={{ currentUser: mockCurrentUser, tweets, publishTweet }}>
+    <TweetsContext.Provider value={{
+      currentUser: mockCurrentUser,
+      tweets: [...(savedTweets ?? []), ...mockTweets],
+      loading: savedTweets === null && !loadError,
+      loadError,
+      publishTweet,
+    }}>
       {children}
     </TweetsContext.Provider>
   )
