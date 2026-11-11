@@ -962,6 +962,86 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
 
 ---
 
+## Perfil y menú lateral — Camilo Molina
+
+### [2026-11-07] - Reutilizar la pantalla de tweets de un usuario
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Reutilizar pantalla de perfil](https://chatgpt.com/share/6aef58dd-b66c-83e9-9131-c1262308c0f4)
+- **Mensaje enviado (Prompt):**
+  > no es crear una pagina si no que desde ver los tweets de lo usuario cojerlo y añadirle lo que le falta
+- **Resumen de la respuesta:** Se explicó cómo aprovechar la pantalla de tweets del usuario para mostrar el perfil. La ruta indica qué usuario se está viendo. El enlace de Mi perfil usa el UID de la sesión y la búsqueda usa el UID de la persona seleccionada. También se explicó dónde mostrar la foto redonda o la inicial.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/pages/UserTweetsPage.tsx` y `src/exex/pages/UserTweetsPage.css`.
+
+---
+
+### [2026-11-07] - Mantener el menú lateral al cambiar de pantalla
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Reutilizar pantalla de perfil](https://chatgpt.com/share/6aef58dd-b66c-83e9-9131-c1262308c0f4)
+- **Mensaje enviado (Prompt):**
+  > ah ya te entendi, y para que se vea simpre la barra lateral si crear un archivo, y para que se vea en todas como la conecto?
+  >
+  > en exex router la conecto para que se vean en todas
+- **Resumen de la respuesta:** Se revisó que `ExexSidebar` está una sola vez en `ExexRouter`, por fuera de `Routes`. Así el menú sigue visible cuando cambia la pantalla dentro de las rutas con sesión iniciada.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/ExexSidebar.tsx` y `src/exex/routes/ExexRouter.tsx`.
+
+---
+
+## Editar perfil — Camilo Molina
+
+### [2026-11-08] - Actualizar el perfil en la sesión
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Editar perfil con updateDoc](chatgpt-conversation://6af10c17-3554-83e9-b4d2-e6a5ba7ed689)
+- **Mensaje enviado (Prompt):**
+  > en el reducer que tengo que poner?
+- **Resumen de la respuesta:** Se revisó el caso `profile-updated`. Después de guardar en Firestore, el reducer comprueba el UID y actualiza el nombre y la bio de la cuenta activa. Así se ven los cambios en la misma sesión.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/auth/reducers/authReducer.ts`, `src/auth/types/authReducerInterfaces.ts` y `src/auth/contexts/AuthProvider.tsx`.
+
+---
+
+### [2026-11-08] - Conectar la foto y la portada con Firebase
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Editar perfil con updateDoc](chatgpt-conversation://6af10c17-3554-83e9-b4d2-e6a5ba7ed689)
+- **Mensaje enviado (Prompt):**
+  > y como hago para que tambien el edite su foto de perfil y portada, tendria que pagar en firebase?
+  >
+  > muestrame como seria
+- **Resumen de la respuesta:** Se explicó cómo conectar Storage a la app de Firebase, subir los archivos y guardar sus enlaces en Firestore. También se revisó que Storage requiere el plan Blaze y que las reglas pueden limitar la subida al dueño del perfil.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/firebase/config.ts`, `src/firebase/providers.ts`, `src/exex/components/EditProfileForm.tsx` y `storage.rules`.
+
+---
+
+### [2026-11-08] - Diferencia entre la foto y la portada
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Editar perfil con updateDoc](chatgpt-conversation://6af10c17-3554-83e9-b4d2-e6a5ba7ed689)
+- **Mensaje enviado (Prompt):**
+  > el cover lo que hace es actualizar la foto
+- **Resumen de la respuesta:** Se aclaró que `photoURL` corresponde a la foto redonda y `coverURL` a la imagen ancha que se muestra en la parte superior del perfil.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivo relacionado: `src/exex/pages/UserTweetsPage.tsx`.
+
+---
+
+### [2026-11-09] - Separar las rutas de las imágenes
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Editar perfil con updateDoc](chatgpt-conversation://6af10c17-3554-83e9-b4d2-e6a5ba7ed689)
+- **Mensaje enviado (Prompt):**
+  > y utilizo el kind para saber que voy a pasar la foto
+- **Resumen de la respuesta:** Se explicó que `kind` indica el tipo de imagen al armar la ruta de Storage. En EXEX se usa `photo` para la foto de perfil y `cover` para la portada.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/firebase/providers.ts` y `storage.rules`.
+
+---
+
 ## Consultas sobre Firestore - Brahian Montoya - 2026-11-10
 
 Se incorporan las cuatro entradas del archivo suministrado por Brahian. Las horas y los estados de las consultas se conservan tal como aparecen en el documento.

@@ -1,8 +1,13 @@
 import { FirebaseError } from 'firebase/app';
 import { createUserWithEmailAndPassword, deleteUser, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import type { User as FirebaseUser } from 'firebase/auth';
-import { doc, getDoc, runTransaction } from 'firebase/firestore';
-import { FirebaseAuth, FirebaseDB } from './config';
+import { doc, getDoc, runTransaction, updateDoc } from 'firebase/firestore';
+import { FirebaseAuth, FirebaseDB, FirebaseStorage } from './config';
+import { deleteObject, getDownloadURL, ref, uploadBytes, type StorageReference } from 'firebase/storage';
+import {
+  PROFILE_BIO_MAX_LENGTH, PROFILE_IMAGE_MAX_SIZE, PROFILE_IMAGE_TYPES,
+  PROFILE_NAME_MAX_LENGTH, PROFILE_NAME_MIN_LENGTH, type ProfileEdit, type SavedProfile,
+} from '../auth/profile';
 import type { RegisterData } from '../auth/types/registerInterfaces';
 import type { User } from '../auth/types/authReducerInterfaces';
 
@@ -143,7 +148,77 @@ export const getUserProfile = async (uid: string): Promise<User | null> => {
     username: data.username,
     email: typeof data.email === 'string' ? data.email : '',
     photoURL: typeof data.photoURL === 'string' ? data.photoURL : null,
+    coverURL: typeof data.coverURL === 'string' ? data.coverURL : undefined,
+    bio: typeof data.bio === 'string' ? data.bio : '',
   };
+};
+
+export const updateUserProfile = async (uid: string, details: ProfileEdit): Promise<SavedProfile> => {
+  if (FirebaseAuth.currentUser?.uid !== uid) {
+    throw new Error('Inicia sesión de nuevo para editar tu perfil.');
+  }
+
+  const fullname = details.fullname.trim();
+  const bio = details.bio.trim();
+  if (fullname.length < PROFILE_NAME_MIN_LENGTH || fullname.length > PROFILE_NAME_MAX_LENGTH) {
+    throw new Error('El nombre debe tener entre 2 y 80 caracteres.');
+  }
+  if (bio.length > PROFILE_BIO_MAX_LENGTH) {
+    throw new Error('La biografía debe tener máximo 160 caracteres.');
+  }
+
+  const images = [
+    { kind: 'photo', file: details.photo, urlField: 'photoURL', pathField: 'photoPath' },
+    { kind: 'cover', file: details.cover, urlField: 'coverURL', pathField: 'coverPath' },
+  ] as const;
+  for (const { file } of images) {
+    if (file && (!PROFILE_IMAGE_TYPES.includes(file.type) || file.size === 0 || file.size > PROFILE_IMAGE_MAX_SIZE)) {
+      throw new Error('Selecciona imágenes JPG, PNG o WebP de hasta 5 MB.');
+    }
+  }
+
+  const profileRef = doc(FirebaseDB, 'users', uid);
+  const saved: SavedProfile = { fullname, bio };
+  const uploads: StorageReference[] = [];
+  const paths: Record<string, string> = {};
+  let replacedPaths: string[] = [];
+
+  try {
+    for (const { kind, file, urlField, pathField } of images) {
+      if (!file) continue;
+      const imageRef = ref(FirebaseStorage, `profiles/${uid}/${kind}/${crypto.randomUUID()}`);
+      uploads.push(imageRef);
+      await uploadBytes(imageRef, file, { contentType: file.type });
+      saved[urlField] = await getDownloadURL(imageRef);
+      paths[pathField] = imageRef.fullPath;
+    }
+
+    if (uploads.length === 0) {
+      await updateDoc(profileRef, { fullname, bio });
+    } else {
+      replacedPaths = await runTransaction(FirebaseDB, async (transaction) => {
+        const current = (await transaction.get(profileRef)).data();
+        transaction.update(profileRef, { ...saved, ...paths });
+        return images.flatMap(({ kind, pathField }) => {
+          const oldPath = current?.[pathField];
+          return paths[pathField] && typeof oldPath === 'string' && oldPath.startsWith(`profiles/${uid}/${kind}/`)
+            ? [oldPath]
+            : [];
+        });
+      });
+    }
+  } catch (error) {
+    if (FirebaseAuth.currentUser?.uid === uid) {
+      await Promise.allSettled(uploads.map((imageRef) => deleteObject(imageRef)));
+    }
+    if (error instanceof FirebaseError && error.code === 'storage/unauthorized') {
+      throw new Error('Storage no permitió subir la imagen. Revisa los permisos del perfil.');
+    }
+    throw new Error('No se pudo guardar el perfil. Inténtalo de nuevo.');
+  }
+
+  await Promise.allSettled(replacedPaths.map((path) => deleteObject(ref(FirebaseStorage, path))));
+  return saved;
 };
 
 export const registerUser = async (data: RegisterData): Promise<AuthResult | AuthErrorResult> => {
