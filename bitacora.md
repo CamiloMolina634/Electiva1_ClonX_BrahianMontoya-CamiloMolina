@@ -1041,3 +1041,53 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
   - Sin cambios en esa conversación. Archivos relacionados: `src/firebase/providers.ts` y `storage.rules`.
 
 ---
+
+## Consultas sobre Firestore - Brahian Montoya - 2026-11-10
+
+Se incorporan las cuatro entradas del archivo suministrado por Brahian. Las horas y los estados de las consultas se conservan tal como aparecen en el documento.
+
+Nota de revisión del repositorio. las consultas describen explicaciones y propuestas. El RF04 implementado guarda authorId, body y createdAt en tweets. El campo content mencionado en la consulta 2 corresponde al modelo propuesto, y su equivalente en el código es body. La consulta 3 trata del RF07 y queda registrada como propuesta. El RF04 usa serverTimestamp() y omite temporalmente de la lista los documentos cuya fecha todavía no sea un Timestamp confirmado.
+
+### CONSULTA 1 — 10:51 a. m.
+
+- Pregunta realizada: ¿Qué diferencia hay entre guardar la fecha con serverTimestamp() y usar la hora del navegador?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af39fa750d08191b8648cd6f32958ae>
+- Resumen breve de la respuesta: Se explicó que new Date() utiliza el reloj del dispositivo y serverTimestamp() permite que Firestore asigne la fecha al recibir la escritura. La zona horaria usada para mostrar la fecha es una decisión independiente. Mientras la escritura está pendiente, una marca de tiempo del servidor puede leerse como null.
+- Archivos o conceptos involucrados: createdAt, serverTimestamp(), Date, reloj del dispositivo, UTC y zona horaria.
+- Estado: Documentación oficial consultada y explicación realizada. No se ejecutó código ni se modificaron archivos.
+- Fuentes: <https://firebase.google.com/docs/firestore/manage-data/add-data#server_timestamp>
+  <https://firebase.google.com/docs/reference/js/firestore.snapshotoptions>
+
+---
+
+### CONSULTA 2 — 10:52 a. m.
+
+- Pregunta realizada: ¿Qué campos debería tener cada tweet en Firestore para mostrarlo en el perfil y en el feed?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af39fa750d08191b8648cd6f32958ae>
+- Resumen breve de la respuesta: Se propuso una colección tweets con un documento por publicación y los campos authorId (UID del autor), content (texto) y createdAt (Timestamp). El ID del documento se utiliza como identificador del tweet. El perfil filtra por el autor visitado y el feed por el usuario conectado y las personas que sigue.
+- Archivos o conceptos involucrados: Firestore, Firebase Auth, tweets, doc.id, authorId, content, Timestamp, perfil y feed.
+- Estado: Modelo y ejemplo propuestos. No se migraron datos, no se modificaron archivos ni se comprobó la integración.
+- Fuentes: <https://firebase.google.com/docs/firestore/manage-data/add-data#server_timestamp>
+  <https://firebase.google.com/docs/firestore/query-data/order-limit-data>
+
+---
+
+### CONSULTA 3 — 10:53 a. m.
+
+- Pregunta realizada: ¿Cómo usar el UID del perfil que viene en la URL para mostrar solo sus publicaciones, de diez en diez?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af39fa750d08191b8648cd6f32958ae>
+- Resumen breve de la respuesta: Se propuso leer userId con useParams, filtrar con where por authorId, ordenar por createdAt descendente y paginar con startAfter. El ejemplo pide once documentos, muestra diez y usa el décimo como cursor cuando existe otra página. Se propuso key={userId} para reiniciar la paginación del componente al cambiar de perfil y se explicó que Firestore puede solicitar un índice compuesto.
+- Archivos o conceptos involucrados: UserTweetsPage, UserTweetList, useParams, where, orderBy, limit, startAfter, getDocs, QueryDocumentSnapshot e índices de Firestore.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó la consulta contra Firestore ni se modificaron archivos. El enlace que había quedado pendiente se sustituye por la copia actualizada.
+- Fuentes: <https://firebase.google.com/docs/firestore/query-data/query-cursors>
+  <https://firebase.google.com/docs/firestore/query-data/index-overview>
+
+---
+
+### CONSULTA 4 — 5:50 p. m.
+
+- Pregunta realizada: Solicitar las últimas bitácoras para descargar.
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af39fa750d08191b8648cd6f32958ae>
+- Resumen breve de la respuesta: Se recopilaron las tres consultas técnicas del 10 de noviembre y esta solicitud en un archivo TXT, con las horas de Colombia, preguntas, enlaces, resúmenes, conceptos y estados.
+- Archivos o conceptos involucrados: bitacoras_2026-11-10.txt y enlaces compartidos de la conversación.
+- Estado: Archivo TXT generado y verificado mediante el conteo de registros y enlaces. No se modificó el código de EXEX ni se ejecutaron pruebas del proyecto.

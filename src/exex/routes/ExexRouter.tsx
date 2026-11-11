@@ -16,7 +16,7 @@ export const ExexRouter = () => {
 
   return (
     <FollowsProvider key={uid} uid={uid}>
-      <TweetsProvider>
+      <TweetsProvider uid={uid}>
         <div className="exex-shell">
           <ExexSidebar />
           <div className="exex-content">
