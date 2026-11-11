@@ -2,7 +2,10 @@ import { createContext } from 'react'
 import type { Follow } from '../types/Follow'
 import type { User } from '../types/User'
 
-export type SocialProfile = Pick<User, 'uid' | 'fullname' | 'username'>
+export type SocialProfile = Pick<User, 'uid' | 'fullname' | 'username' | 'photoURL'> & {
+  bio?: string
+  coverURL?: string
+}
 
 export interface FollowsState {
   users: SocialProfile[]

@@ -1,7 +1,8 @@
 import { useEffect, useReducer, useRef, useState, type ReactNode } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { FirebaseAuth } from '../../firebase/config';
-import { getUserProfile, loginUserByCredentials, loginUserByGoogleProvider, logoutUser, registerUser } from '../../firebase/providers';
+import { getUserProfile, loginUserByCredentials, loginUserByGoogleProvider, logoutUser, registerUser, updateUserProfile } from '../../firebase/providers';
+import type { ProfileEdit } from '../profile';
 import { AuthContext } from './AuthContext';
 import { authReducer } from '../reducers/authReducer';
 import type { AuthState } from '../types/authReducerInterfaces';
@@ -113,8 +114,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  const saveProfile = async (details: ProfileEdit): Promise<void> => {
+    const uid = authState.user?.uid;
+    if (!uid) throw new Error('Inicia sesión de nuevo para editar tu perfil.');
+    const profile = await updateUserProfile(uid, details);
+    dispatch({ type: 'profile-updated', payload: { uid, ...profile } });
+  };
+
   return (
-    <AuthContext.Provider value={{ authState, checking, login, loginWithGoogle, register, logout }}>
+    <AuthContext.Provider value={{ authState, checking, login, loginWithGoogle, register, logout, saveProfile }}>
       {children}
     </AuthContext.Provider>
   );

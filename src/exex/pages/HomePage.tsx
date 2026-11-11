@@ -8,40 +8,12 @@ import './HomePage.css'
 
 export const HomePage = () => {
   const { authState } = useContext(AuthContext)
-  const { users, follows, currentUserId, ready } = useFollows()
+  const { users, currentUserId } = useFollows()
   const fullname = authState.user?.fullname || authState.user?.username || 'Usuario'
-  const username = authState.user?.username
-  const followersCount = new Set(follows.filter((relation) => relation.followingId === currentUserId).map((relation) => relation.followerId)).size
-  const followingCount = new Set(follows.filter((relation) => relation.followerId === currentUserId).map((relation) => relation.followingId)).size
 
   return (
     <main className="home-page">
       <div className="home-layout">
-        <aside className="home-sidebar" aria-label="Perfil y accesos">
-          <section className="border rounded-4 p-3" aria-labelledby="profile-heading">
-            <span className="d-inline-flex rounded-circle bg-primary-subtle text-primary fw-bold px-3 py-2 mb-3" aria-hidden="true">
-              {fullname.charAt(0)}
-            </span>
-            <h2 id="profile-heading" className="h5 text-break mb-1">{fullname}</h2>
-            {username && <p className="text-body-secondary text-break mb-3">@{username}</p>}
-            <div className="d-flex flex-wrap gap-3 small">
-              <Link to="/followers" className="link-body-emphasis text-decoration-none">
-                <strong>{ready ? followersCount : '—'}</strong> seguidores
-              </Link>
-              <Link to="/following" className="link-body-emphasis text-decoration-none">
-                <strong>{ready ? followingCount : '—'}</strong> seguidos
-              </Link>
-            </div>
-          </section>
-          <nav className="nav nav-pills flex-column gap-1 my-3" aria-label="Accesos de inicio">
-            <Link to="/" className="nav-link active" aria-current="page">Inicio</Link>
-            <Link to="/following" className="nav-link link-body-emphasis">Seguidos</Link>
-            <Link to="/followers" className="nav-link link-body-emphasis">Seguidores</Link>
-          </nav>
-          <Link to="/tweets/new" className="btn btn-primary rounded-pill w-100">Publicar</Link>
-
-        </aside>
-
         <div className="home-feed">
           <div className="home-feed-content">
             {authState.errorMessage && <p className="text-danger p-3" role="alert">{authState.errorMessage}</p>}
