@@ -1133,3 +1133,72 @@ Nota de revisión del repositorio. las consultas describen explicaciones y propu
 - Estado: Archivo TXT actualizado y verificado mediante conteo de entradas y enlaces. No se modificó el código de EXEX ni se ejecutaron pruebas del proyecto.
 
 La propuesta de consultas con cursores queda registrada como referencia. En la implementación actual del RF07, el contexto carga las publicaciones de Firestore y la pantalla filtra por authorId, ordena por fecha descendente y pagina con slice(), con un máximo de diez publicaciones por página. El estado de la página se reinicia mediante key={userId}.
+
+---
+
+## Consultas sobre el feed (RF08) - Brahian Montoya - 2026-11-11
+
+Horas de Colombia (UTC-5).
+
+Las consultas registran las propuestas exploradas. La implementación del RF08 obtiene las publicaciones y los seguimientos de sus contextos, filtra por los autores permitidos y pagina localmente con slice(), con diez publicaciones por página. Las consultas con where y los cursores se documentan como propuestas.
+
+### CONSULTA 1 — 3:48 p. m.
+
+- Pregunta realizada: ¿Cómo filtro el feed para mostrar mis publicaciones y las de las personas que sigo?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Resumen breve de la respuesta: Se propuso reunir el UID propio y los de las cuentas seguidas, eliminar duplicados con Set y usar where con in para consultar los diez tweets más recientes. Se aclaró que los UID deben coincidir con authorId y que esta consulta admite hasta 30 UID, incluido el propio.
+- Archivos o conceptos involucrados: Firebase Auth, Firestore, followerId, followingId, authorId, Set, where, orderBy y limit.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó la consulta ni se modificaron archivos del proyecto.
+- Fuente: <https://firebase.google.com/docs/firestore/query-data/queries#in_not-in_and_array-contains-any>
+
+---
+
+### CONSULTA 2 — 3:51 p. m.
+
+- Pregunta realizada: ¿Por qué debo incluir mi propio UID entre los autores permitidos?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Resumen breve de la respuesta: Firestore solo devuelve tweets cuyos autores están en la lista. Agregar el UID propio permite que aparezcan las publicaciones del usuario conectado, aunque no siga a nadie. No es necesario crear una relación consigo mismo.
+- Archivos o conceptos involucrados: currentUserId, followingIds, authorId, Set y filtro in.
+- Estado: Explicación y ejemplo propuestos. No se modificaron archivos del proyecto ni se ejecutó código.
+
+---
+
+### CONSULTA 3 — 3:52 p. m.
+
+- Pregunta realizada: ¿En qué orden debería filtrar, ordenar y paginar las publicaciones?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Resumen breve de la respuesta: Primero se filtra por autor, luego se ordena por createdAt descendente y por último se pagina de diez en diez. Para avanzar se usa el último documento visible como cursor. Si cambia la lista de autores, se vuelve a la primera página.
+- Archivos o conceptos involucrados: Firestore, authorIds, where, orderBy, limit, startAfter y getDocs.
+- Estado: Ejemplo propuesto. No se ejecutó la consulta ni se modificaron archivos del proyecto. Se añadió el enlace actualizado a esta recopilación.
+- Fuente: <https://firebase.google.com/docs/firestore/query-data/query-cursors>
+
+---
+
+### CONSULTA 4 — 3:58 p. m.
+
+- Pregunta realizada: ¿Cómo se entera el feed de que cambió la lista de seguidos?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Resumen breve de la respuesta: Se propuso escuchar las relaciones con onSnapshot, actualizar followingIds y volver a consultar la primera página con los autores actualizados. getDocs no vuelve a ejecutarse automáticamente. Para seguimientos en memoria, se recomendó un estado compartido.
+- Archivos o conceptos involucrados: follows, followingIds, authorIds, onSnapshot, getDocs, useEffect y cursores.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó código contra Firestore ni se modificaron archivos del proyecto.
+- Fuente: <https://firebase.google.com/docs/firestore/query-data/listen>
+
+---
+
+### CONSULTA 5 — 4:05 p. m.
+
+- Pregunta realizada: ¿Qué debería mostrar mientras cargan las publicaciones o las relaciones de seguimiento?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Resumen breve de la respuesta: Se propuso distinguir la carga de seguidos, la carga de publicaciones, el error y el feed vacío. Una lista de seguidos vacía después de cargar aún permite buscar publicaciones propias. Al cargar más, se conservan los tweets visibles.
+- Archivos o conceptos involucrados: followingIds, estados de carga, estado vacío, errores y paginación.
+- Estado: Comportamiento de interfaz propuesto. No se modificaron archivos del proyecto ni se ejecutaron pruebas.
+
+---
+
+### CONSULTA 6 — 4:14 p. m.
+
+- Pregunta realizada: Solicitar la bitácora para descargar.
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Resumen breve de la respuesta: Se recopilaron las cinco consultas sobre el feed y esta solicitud en un archivo TXT con las horas de Colombia y el enlace actualizado.
+- Archivos o conceptos involucrados: bitacoras_2026-11-11.txt y enlace compartido del chat.
+- Estado: Archivo TXT generado y verificado por conteo de registros y enlaces. No se modificó el código de EXEX.
