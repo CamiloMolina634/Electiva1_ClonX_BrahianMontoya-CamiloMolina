@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { mockUsers } from '../../data/users'
-import { mockFollows } from '../../data/follows'
 import { Pagination } from '../../ui/components/Pagination'
 import { TweetCard } from '../components/TweetCard'
 import { useFollows } from '../hooks/useFollows'
@@ -14,12 +12,10 @@ interface UserTweetsContentProps {
 }
 
 const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
-  const { tweets } = useTweets()
+  const { tweets, loading, loadError } = useTweets()
   const [page, setPage] = useState(1)
   const { users, follows, currentUserId, ready, saving, setFollowing } = useFollows()
-  const demoUser = mockUsers.find((item) => item.uid === userId)
-  const user = users.find((item) => item.uid === userId) ?? demoUser
-  const profileFollows = demoUser ? mockFollows : follows
+  const user = users.find((item) => item.uid === userId)
 
   const isFollowing = follows.some(
     (follow) =>
@@ -28,13 +24,13 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
   )
 
   const followersCount = new Set(
-    profileFollows
+    follows
       .filter((follow) => follow.followingId === userId)
       .map((follow) => follow.followerId),
   ).size
 
   const followingCount = new Set(
-    profileFollows
+    follows
       .filter((follow) => follow.followerId === userId)
       .map((follow) => follow.followingId),
   ).size
@@ -52,7 +48,8 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
     Math.ceil(userTweets.length / PAGE_SIZE),
   )
 
-  const startIndex = (page - 1) * PAGE_SIZE
+  const currentPage = Math.min(page, totalPages)
+  const startIndex = (currentPage - 1) * PAGE_SIZE
   const visibleTweets = userTweets.slice(
     startIndex,
     startIndex + PAGE_SIZE,
@@ -83,14 +80,14 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
 
           <div className="d-flex flex-wrap gap-3 mb-3">
             <span>
-              <strong>{ready || demoUser ? followersCount : '—'}</strong> seguidores
+              <strong>{ready ? followersCount : '—'}</strong> seguidores
             </span>
             <span>
-              <strong>{ready || demoUser ? followingCount : '—'}</strong> seguidos
+              <strong>{ready ? followingCount : '—'}</strong> seguidos
             </span>
           </div>
 
-          {!demoUser && userId !== currentUserId && (
+          {userId !== currentUserId && (
             <button
               type="button"
               className={
@@ -111,7 +108,11 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
 
       <h2 className="h4 mb-3">Tweets</h2>
 
-      {userTweets.length === 0 ? (
+      {loadError ? (
+        <p className="alert alert-danger" role="alert">{loadError}</p>
+      ) : loading ? (
+        <p role="status">Cargando tweets…</p>
+      ) : userTweets.length === 0 ? (
         <p className="alert alert-info">
           Este usuario todavía no ha publicado tweets.
         </p>
@@ -128,7 +129,7 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
           </div>
 
           <Pagination
-            page={page}
+            page={currentPage}
             totalPages={totalPages}
             onPageChange={setPage}
           />
