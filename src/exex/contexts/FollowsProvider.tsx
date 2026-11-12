@@ -18,9 +18,16 @@ export const FollowsProvider = ({ uid, children }: { uid: string; children: Reac
     const fail = () => setLoadError('No se pudieron cargar los seguimientos. Revisa la conexión y los permisos de Firestore.')
     const stopUsers = onSnapshot(collection(FirebaseDB, 'users'), (snapshot) => {
       setUsers(snapshot.docs.flatMap((profile) => {
-        const { fullname, username } = profile.data()
+        const { fullname, username, photoURL, bio, coverURL } = profile.data()
         if (typeof fullname !== 'string' || typeof username !== 'string') return []
-        return [{ uid: profile.id, fullname, username }]
+        return [{
+          uid: profile.id,
+          fullname,
+          username,
+          photoURL: typeof photoURL === 'string' ? photoURL : null,
+          bio: typeof bio === 'string' ? bio : undefined,
+          coverURL: typeof coverURL === 'string' ? coverURL : undefined,
+        }]
       }))
     }, fail)
     const stopFollows = onSnapshot(collection(FirebaseDB, 'follows'), (snapshot) => {
