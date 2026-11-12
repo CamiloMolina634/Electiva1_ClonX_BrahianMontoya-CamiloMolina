@@ -26,7 +26,7 @@ export const PublishTweetPage = () => {
             <strong>{user.fullname || user.username || 'Usuario'}</strong>
             {user.username && <span className="text-body-secondary d-block">@{user.username}</span>}
           </p>
-          <TweetComposer onPublish={publishTweet} />
+          <TweetComposer allowMedia onPublish={publishTweet} />
         </div>
       </section>
       {loading && <p role="status">Cargando tu última publicación…</p>}

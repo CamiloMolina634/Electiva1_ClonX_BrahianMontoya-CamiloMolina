@@ -23,7 +23,7 @@ export const TweetsProvider = ({ uid, children }: { uid: string; children: React
     return watchReposts(setReposts, () => setRepostsError('No se pudieron cargar las republicaciones.'))
   }, [uid])
 
-  const publishTweet = (body: string) => createTweet(uid, body)
+  const publishTweet = (body: string, attachment?: File) => createTweet(uid, body, attachment)
 
   return (
     <TweetsContext.Provider value={{

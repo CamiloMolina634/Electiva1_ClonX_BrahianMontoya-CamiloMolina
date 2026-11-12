@@ -1,6 +1,7 @@
-import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp, Timestamp } from 'firebase/firestore'
+import { collection, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, Timestamp } from 'firebase/firestore'
 import type { Tweet } from '../exex/types/social'
 import { FirebaseDB } from './config'
+import { removeTweetMedia, uploadTweetMedia } from './tweetMedia'
 
 export const MAX_TWEET_LENGTH = 280
 
@@ -11,7 +12,7 @@ export const watchTweets = (
   onError: () => void,
 ) => onSnapshot(query(tweetsCollection, orderBy('createdAt', 'desc')), (snapshot) => {
   onTweets(snapshot.docs.flatMap((tweet) => {
-    const { authorId, body, createdAt } = tweet.data()
+    const { authorId, body, createdAt, mediaUrl } = tweet.data()
     if (typeof authorId !== 'string' || typeof body !== 'string' || !(createdAt instanceof Timestamp)) {
       return []
     }
@@ -21,19 +22,30 @@ export const watchTweets = (
       authorId,
       body,
       createdAt: createdAt.toDate().toISOString(),
+      mediaUrl: typeof mediaUrl === 'string' && mediaUrl.startsWith('https://firebasestorage.googleapis.com/')
+        ? mediaUrl
+        : undefined,
     }]
   }))
 }, onError)
 
-export const createTweet = async (authorId: string, body: string): Promise<void> => {
+export const createTweet = async (authorId: string, body: string, attachment?: File): Promise<void> => {
   const text = body.trim()
   if (!authorId || !text || text.length > MAX_TWEET_LENGTH) {
     throw new Error('El tweet debe tener entre 1 y 280 caracteres.')
   }
 
-  await addDoc(tweetsCollection, {
-    authorId,
-    body: text,
-    createdAt: serverTimestamp(),
-  })
+  const tweet = doc(tweetsCollection)
+  const mediaUrl = attachment ? await uploadTweetMedia(authorId, tweet.id, attachment) : undefined
+  try {
+    await setDoc(tweet, {
+      authorId,
+      body: text,
+      createdAt: serverTimestamp(),
+      ...(mediaUrl ? { mediaUrl } : {}),
+    })
+  } catch (error) {
+    if (mediaUrl) await removeTweetMedia(authorId, tweet.id).catch(() => undefined)
+    throw error
+  }
 }

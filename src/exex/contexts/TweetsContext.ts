@@ -12,7 +12,7 @@ interface TweetsContextValue {
   changeRepost: (tweetId: string, shouldRepost: boolean) => Promise<void>
   loading: boolean
   loadError: string
-  publishTweet: (body: string) => Promise<void>
+  publishTweet: (body: string, attachment?: File) => Promise<void>
 }
 
 export const TweetsContext = createContext<TweetsContextValue | null>(null)
