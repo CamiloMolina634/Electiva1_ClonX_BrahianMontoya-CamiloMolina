@@ -1,7 +1,7 @@
 import { FirebaseError } from 'firebase/app';
 import { createUserWithEmailAndPassword, deleteUser, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import type { User as FirebaseUser } from 'firebase/auth';
-import { doc, getDoc, runTransaction, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, runTransaction } from 'firebase/firestore';
 import { FirebaseAuth, FirebaseDB, FirebaseStorage } from './config';
 import { deleteObject, getDownloadURL, ref, uploadBytes, type StorageReference } from 'firebase/storage';
 import {
@@ -102,6 +102,7 @@ export const loginUserByGoogleProvider = async (): Promise<AuthResult | AuthErro
         if (!reservation.exists()) transaction.set(usernameRef, { uid });
         const profile: User = { uid, fullname: displayName?.trim().slice(0, 80) || base, username, email, photoURL };
         transaction.set(profileRef, profile);
+        transaction.set(doc(FirebaseDB, 'publicProfiles', uid), { fullname: profile.fullname, username });
         return;
       }
 
@@ -193,20 +194,18 @@ export const updateUserProfile = async (uid: string, details: ProfileEdit): Prom
       paths[pathField] = imageRef.fullPath;
     }
 
-    if (uploads.length === 0) {
-      await updateDoc(profileRef, { fullname, bio });
-    } else {
-      replacedPaths = await runTransaction(FirebaseDB, async (transaction) => {
-        const current = (await transaction.get(profileRef)).data();
-        transaction.update(profileRef, { ...saved, ...paths });
-        return images.flatMap(({ kind, pathField }) => {
-          const oldPath = current?.[pathField];
-          return paths[pathField] && typeof oldPath === 'string' && oldPath.startsWith(`profiles/${uid}/${kind}/`)
-            ? [oldPath]
-            : [];
-        });
+    replacedPaths = await runTransaction(FirebaseDB, async (transaction) => {
+      const current = (await transaction.get(profileRef)).data();
+      if (typeof current?.username !== 'string') throw new Error('profile-missing');
+      transaction.update(profileRef, { ...saved, ...paths });
+      transaction.set(doc(FirebaseDB, 'publicProfiles', uid), { fullname, username: current.username });
+      return images.flatMap(({ kind, pathField }) => {
+        const oldPath = current?.[pathField];
+        return paths[pathField] && typeof oldPath === 'string' && oldPath.startsWith(`profiles/${uid}/${kind}/`)
+          ? [oldPath]
+          : [];
       });
-    }
+    });
   } catch (error) {
     if (FirebaseAuth.currentUser?.uid === uid) {
       await Promise.allSettled(uploads.map((imageRef) => deleteObject(imageRef)));
@@ -243,6 +242,7 @@ export const registerUser = async (data: RegisterData): Promise<AuthResult | Aut
       if (usernameSnapshot.exists()) throw new Error('username-taken');
       transaction.set(usernameRef, { uid: profile.uid });
       transaction.set(profileRef, profile);
+      transaction.set(doc(FirebaseDB, 'publicProfiles', profile.uid), { fullname, username });
     });
 
     return { ok: true, uid: profile.uid, email: profile.email, displayName: fullname, photoURL: profile.photoURL };

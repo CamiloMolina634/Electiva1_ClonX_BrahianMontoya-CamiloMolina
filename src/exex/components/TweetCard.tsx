@@ -30,8 +30,7 @@ export const TweetCard = ({ tweet, author, onAuthorClick, children }: TweetCardP
         )}
 
         <p className="text-body-secondary small mt-1 mb-3">
-          @{author.username}
-          {' · '}
+          {author.username && <>{'@' + author.username}{' · '}</>}
           <time dateTime={tweet.createdAt}>
             {dateFormatter.format(new Date(tweet.createdAt))}
           </time>

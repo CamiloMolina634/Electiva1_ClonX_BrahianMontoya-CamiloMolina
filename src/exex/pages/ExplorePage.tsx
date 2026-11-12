@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getFeaturedTweets } from '../../data/featuredTweets'
+import { getFeaturedTweets } from '../../firebase/featuredTweets'
 import { TweetCard } from '../components/TweetCard'
 import './HomePage.css'
 import './ExplorePage.css'
