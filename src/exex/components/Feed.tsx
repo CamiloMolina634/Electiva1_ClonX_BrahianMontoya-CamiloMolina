@@ -11,16 +11,39 @@ const PAGE_SIZE = 10
 export const Feed = () => {
   const { authState } = useContext(AuthContext)
   const { users, follows, currentUserId, ready } = useFollows()
-  const { tweets, loading, loadError } = useTweets()
+  const { tweets, loading, loadError, reposts, repostsError } = useTweets()
   const [page, setPage] = useState(1)
 
   const authors = new Map(users.map((user) => [user.uid, user]))
   if (authState.user) authors.set(authState.user.uid, authState.user)
 
-  const feedTweets = getFeedTweets(tweets, follows, currentUserId).flatMap((tweet) => {
+  const originalEntries = getFeedTweets(tweets, follows, currentUserId).flatMap((tweet) => {
     const author = authors.get(tweet.authorId)
-    return author ? [{ tweet, author }] : []
+    return author ? [{ id: tweet.id, tweet, author, createdAt: tweet.createdAt, reposter: '' }] : []
   })
+
+  const followedIds = new Set(follows
+    .filter((follow) => follow.followerId === currentUserId)
+    .map((follow) => follow.followingId))
+  const tweetsById = new Map(tweets.map((tweet) => [tweet.id, tweet]))
+  const repostEntries = reposts.flatMap((repost) => {
+    if (repost.userId !== currentUserId && !followedIds.has(repost.userId)) return []
+    const tweet = tweetsById.get(repost.tweetId)
+    const reposter = authors.get(repost.userId)
+    if (!tweet || !reposter) return []
+    const author = authors.get(tweet.authorId)
+    if (!author) return []
+
+    return [{
+      id: 'repost:' + repost.id,
+      tweet,
+      author,
+      createdAt: repost.createdAt,
+      reposter: reposter.fullname || reposter.username || 'Usuario de EXEX',
+    }]
+  })
+  const feedTweets = [...originalEntries, ...repostEntries]
+    .sort((first, second) => second.createdAt.localeCompare(first.createdAt))
 
   const totalPages = Math.max(1, Math.ceil(feedTweets.length / PAGE_SIZE))
   const currentPage = Math.min(page, totalPages)
@@ -29,6 +52,7 @@ export const Feed = () => {
 
   return (
     <section className="home-timeline" aria-label="Publicaciones">
+      {repostsError && <p className="alert alert-warning m-3" role="alert">{repostsError}</p>}
       {loadError ? (
         <p className="alert alert-danger m-3" role="alert">{loadError}</p>
       ) : loading || !ready ? (
@@ -40,8 +64,11 @@ export const Feed = () => {
       ) : (
         <>
           <div className="home-tweet-list">
-            {visibleTweets.map(({ tweet, author }) => (
-              <TweetCard showDetailLink key={tweet.id} tweet={tweet} author={author} />
+            {visibleTweets.map(({ id, tweet, author, reposter }) => (
+              <div key={id}>
+                {reposter && <p className="text-body-secondary small mb-1">Republicado por {reposter}</p>}
+                <TweetCard showDetailLink tweet={tweet} author={author} />
+              </div>
             ))}
           </div>
           <div className="px-3 pb-4">

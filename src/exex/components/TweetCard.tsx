@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom'
 import type { Tweet } from '../types/social'
 import type { User } from '../types/User'
 
+import { RepostButton } from './RepostButton'
+
 interface TweetCardProps {
   tweet: Tweet
   showDetailLink?: boolean
+  canRepost?: boolean
   author: Pick<User, 'uid' | 'fullname' | 'username'>
   onAuthorClick?: () => void
   children?: ReactNode
@@ -16,7 +19,14 @@ const dateFormatter = new Intl.DateTimeFormat('es-CO', {
   timeStyle: 'short',
 })
 
-export const TweetCard = ({ tweet, author, showDetailLink = false, onAuthorClick, children }: TweetCardProps) => {
+export const TweetCard = ({
+  tweet,
+  author,
+  showDetailLink = false,
+  canRepost = showDetailLink,
+  onAuthorClick,
+  children,
+}: TweetCardProps) => {
   return (
     <article className="card">
       <div className="card-body">
@@ -46,6 +56,7 @@ export const TweetCard = ({ tweet, author, showDetailLink = false, onAuthorClick
         >
           {tweet.body}
         </p>
+        {canRepost && <RepostButton tweetId={tweet.id} />}
         {showDetailLink && (
           <Link className="d-inline-block mt-3" to={'/tweets/' + tweet.id}>
             Ver publicación y respuestas
