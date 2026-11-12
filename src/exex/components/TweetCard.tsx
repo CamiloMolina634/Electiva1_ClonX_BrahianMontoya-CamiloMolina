@@ -1,4 +1,7 @@
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { LikesContext } from '../contexts/LikesContext'
+import { LikeButton } from './LikeButton'
 import type { Tweet } from '../types/social'
 import type { User } from '../types/User'
 
@@ -13,6 +16,7 @@ const dateFormatter = new Intl.DateTimeFormat('es-CO', {
 })
 
 export const TweetCard = ({ tweet, author }: TweetCardProps) => {
+  const likes = useContext(LikesContext)
   return (
     <article className="card">
       <div className="card-body">
@@ -40,6 +44,7 @@ export const TweetCard = ({ tweet, author }: TweetCardProps) => {
         >
           {tweet.body}
         </p>
+        {likes && <LikeButton tweetId={tweet.id} />}
       </div>
     </article>
   )

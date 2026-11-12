@@ -1202,3 +1202,47 @@ Las consultas registran las propuestas exploradas. La implementación del RF08 o
 - Resumen breve de la respuesta: Se recopilaron las cinco consultas sobre el feed y esta solicitud en un archivo TXT con las horas de Colombia y el enlace actualizado.
 - Archivos o conceptos involucrados: bitacoras_2026-11-11.txt y enlace compartido del chat.
 - Estado: Archivo TXT generado y verificado por conteo de registros y enlaces. No se modificó el código de EXEX.
+
+---
+
+## Me gusta — Camilo Molina
+
+### [2026-11-11] - Compartir los Me gusta entre pantallas
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Compartir Me gusta contextos](chatgpt-conversation://6af50e33-30a4-83e9-9e42-86ec2a0b3b16)
+- **Mensaje enviado (Prompt):**
+  > Quiero poner Me gusta en los tweets. Ya tengo un contexto para seguir usuarios, ¿puedo usar esa misma lógica para que el corazón y el contador se compartan entre Inicio y los perfiles?
+  >
+  > porque por separado y envolverlo en el exex router
+- **Resumen de la respuesta:** Se explicó que LikesProvider escucha los Me gusta de Firestore y comparte el estado entre las pantallas que envuelve en ExexRouter. LikeButton calcula el contador y si la cuenta activa marcó la publicación.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/contexts/LikesProvider.tsx`, `src/exex/components/LikeButton.tsx`, `src/exex/components/TweetCard.tsx` y `src/exex/routes/ExexRouter.tsx`.
+
+---
+
+### [2026-11-11] - Guardar y quitar el Me gusta en Firebase
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Compartir Me gusta contextos](chatgpt-conversation://6af50e33-30a4-83e9-9e42-86ec2a0b3b16)
+- **Mensaje enviado (Prompt):**
+  > y en firebase que cambia esto?
+  >
+  > donde se crea el documento, dame un ejemplo
+- **Resumen de la respuesta:** Se ubicó transaction.set dentro de setTweetLike. Al dar Me gusta se guarda un documento en likes con tweetId y userId. Al quitarlo se elimina ese documento. También se revisó que las reglas de Firestore deben controlar quién puede modificar cada relación.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivo relacionado: `src/firebase/likes.ts`.
+
+---
+
+### [2026-11-11] - Identificar la cuenta y la publicación
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Compartir Me gusta contextos](chatgpt-conversation://6af50e33-30a4-83e9-9e42-86ec2a0b3b16)
+- **Mensaje enviado (Prompt):**
+  > los dos id los coje del firebase, muestrame en el codigo como se ve
+- **Resumen de la respuesta:** Se siguió el UID desde la sesión hasta LikesProvider y el ID del tweet desde TweetCard hasta LikeButton. La función de Firebase combina ambos para usar el mismo documento al dar o quitar Me gusta y comprueba que la publicación exista.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/contexts/LikesProvider.tsx`, `src/exex/components/LikeButton.tsx`, `src/exex/components/TweetCard.tsx` y `src/firebase/likes.ts`.
+
+---
