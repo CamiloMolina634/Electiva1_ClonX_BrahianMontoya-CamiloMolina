@@ -1238,3 +1238,47 @@ En la implementación del RF13, las respuestas se guardan en tweets/{tweetId}/re
 - Resumen breve de la respuesta: Se agregaron las dos consultas más recientes y esta solicitud al TXT del 11 de noviembre. Se renovó el enlace compartido en los registros.
 - Archivos o conceptos involucrados: bitacoras_2026-11-11.txt y enlace compartido del chat.
 - Estado: Archivo TXT actualizado y verificado mediante conteo de registros y enlaces. No se modificó el código de EXEX.
+
+---
+
+## Modo invitado — Camilo Molina
+
+### [2026-11-11] - Datos públicos del autor
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Mostrar tweets públicos](chatgpt-conversation://6af4f91f-4bac-83e9-9901-3c1872a405b6)
+- **Mensaje enviado (Prompt):**
+  > pero ahi los dos mandan la misma informacion
+  >
+  > es poner en el transaction.set el full name y usename para que solo me muestre eso
+- **Resumen de la respuesta:** Se explicó por qué el nombre y el usuario se guardan también en publicProfiles. Esa colección contiene los dos campos que necesita Explorar para mostrar al autor.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/firebase/providers.ts`, `src/firebase/publicProfiles.ts` y `src/firebase/featuredTweets.ts`.
+
+---
+
+### [2026-11-11] - Datos del perfil completo
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Mostrar tweets públicos](chatgpt-conversation://6af4f91f-4bac-83e9-9901-3c1872a405b6)
+- **Mensaje enviado (Prompt):**
+  > y el otro que es lo que guarda
+- **Resumen de la respuesta:** Se revisó que users guarda el perfil completo, con el UID, nombre, usuario, correo y foto. Al editar también puede incluir la bio, la portada y las rutas de las imágenes. Explorar consulta los nombres en publicProfiles.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/firebase/providers.ts` y `src/firebase/featuredTweets.ts`.
+
+---
+
+### [2026-11-11] - Actualizar el nombre público al editar
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Mostrar tweets públicos](chatgpt-conversation://6af4f91f-4bac-83e9-9901-3c1872a405b6)
+- **Mensaje enviado (Prompt):**
+  > y cuando yo edite mi perfil eso se refleja en el publico
+  >
+  > eso esta en donde
+- **Resumen de la respuesta:** Se ubicó la función updateUserProfile en providers.ts. La misma transacción actualiza el perfil y escribe el nombre y el usuario en publicProfiles. Al volver a cargar Explorar, se muestra el nombre actualizado.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivo relacionado: `src/firebase/providers.ts`.
+
+---

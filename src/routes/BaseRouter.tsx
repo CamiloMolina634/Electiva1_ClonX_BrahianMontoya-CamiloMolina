@@ -4,6 +4,7 @@ import { ExexRouter } from '../exex/routes/ExexRouter'
 import { AuthContext } from '../auth/contexts/AuthContext'
 import { LoginPage } from '../auth/pages/LoginPage'
 import { RegisterPage } from '../auth/pages/RegisterPage'
+import { ExplorePage } from '../exex/pages/ExplorePage'
 
 export const BaseRouter = () => {
   const { authState, checking } = useContext(AuthContext)
@@ -22,6 +23,7 @@ export const BaseRouter = () => {
         <>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/explorar" element={<ExplorePage />} />
           <Route path="/*" element={<Navigate to="/login" replace />} />
         </>
       )}
