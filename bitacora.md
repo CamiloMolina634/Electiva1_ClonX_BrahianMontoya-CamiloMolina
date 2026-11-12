@@ -1051,7 +1051,7 @@ Nota de revisión del repositorio. las consultas describen explicaciones y propu
 ### CONSULTA 1 — 10:51 a. m.
 
 - Pregunta realizada: ¿Qué diferencia hay entre guardar la fecha con serverTimestamp() y usar la hora del navegador?
-- Enlace para este chat: <https://chatgpt.com/s/cx_6af39fa750d08191b8648cd6f32958ae>
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
 - Resumen breve de la respuesta: Se explicó que new Date() utiliza el reloj del dispositivo y serverTimestamp() permite que Firestore asigne la fecha al recibir la escritura. La zona horaria usada para mostrar la fecha es una decisión independiente. Mientras la escritura está pendiente, una marca de tiempo del servidor puede leerse como null.
 - Archivos o conceptos involucrados: createdAt, serverTimestamp(), Date, reloj del dispositivo, UTC y zona horaria.
 - Estado: Documentación oficial consultada y explicación realizada. No se ejecutó código ni se modificaron archivos.
@@ -1063,7 +1063,7 @@ Nota de revisión del repositorio. las consultas describen explicaciones y propu
 ### CONSULTA 2 — 10:52 a. m.
 
 - Pregunta realizada: ¿Qué campos debería tener cada tweet en Firestore para mostrarlo en el perfil y en el feed?
-- Enlace para este chat: <https://chatgpt.com/s/cx_6af39fa750d08191b8648cd6f32958ae>
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
 - Resumen breve de la respuesta: Se propuso una colección tweets con un documento por publicación y los campos authorId (UID del autor), content (texto) y createdAt (Timestamp). El ID del documento se utiliza como identificador del tweet. El perfil filtra por el autor visitado y el feed por el usuario conectado y las personas que sigue.
 - Archivos o conceptos involucrados: Firestore, Firebase Auth, tweets, doc.id, authorId, content, Timestamp, perfil y feed.
 - Estado: Modelo y ejemplo propuestos. No se migraron datos, no se modificaron archivos ni se comprobó la integración.
@@ -1075,7 +1075,7 @@ Nota de revisión del repositorio. las consultas describen explicaciones y propu
 ### CONSULTA 3 — 10:53 a. m.
 
 - Pregunta realizada: ¿Cómo usar el UID del perfil que viene en la URL para mostrar solo sus publicaciones, de diez en diez?
-- Enlace para este chat: <https://chatgpt.com/s/cx_6af39fa750d08191b8648cd6f32958ae>
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
 - Resumen breve de la respuesta: Se propuso leer userId con useParams, filtrar con where por authorId, ordenar por createdAt descendente y paginar con startAfter. El ejemplo pide once documentos, muestra diez y usa el décimo como cursor cuando existe otra página. Se propuso key={userId} para reiniciar la paginación del componente al cambiar de perfil y se explicó que Firestore puede solicitar un índice compuesto.
 - Archivos o conceptos involucrados: UserTweetsPage, UserTweetList, useParams, where, orderBy, limit, startAfter, getDocs, QueryDocumentSnapshot e índices de Firestore.
 - Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó la consulta contra Firestore ni se modificaron archivos. El enlace que había quedado pendiente se sustituye por la copia actualizada.
@@ -1087,10 +1087,121 @@ Nota de revisión del repositorio. las consultas describen explicaciones y propu
 ### CONSULTA 4 — 5:50 p. m.
 
 - Pregunta realizada: Solicitar las últimas bitácoras para descargar.
-- Enlace para este chat: <https://chatgpt.com/s/cx_6af39fa750d08191b8648cd6f32958ae>
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
 - Resumen breve de la respuesta: Se recopilaron las tres consultas técnicas del 10 de noviembre y esta solicitud en un archivo TXT, con las horas de Colombia, preguntas, enlaces, resúmenes, conceptos y estados.
 - Archivos o conceptos involucrados: bitacoras_2026-11-10.txt y enlaces compartidos de la conversación.
 - Estado: Archivo TXT generado y verificado mediante el conteo de registros y enlaces. No se modificó el código de EXEX ni se ejecutaron pruebas del proyecto.
+
+---
+
+### CONSULTA 5 — 7:27 p. m.
+
+- Pregunta realizada: ¿Cómo mostrar únicamente los tweets del usuario cuyo UID aparece en la URL?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
+- Resumen breve de la respuesta: Se explicó cómo obtener userId con useParams y filtrar Firestore por authorId, distinguiendo el perfil visitado del usuario conectado. Se propuso ordenar por createdAt descendente y limitar a diez resultados.
+- Archivos o conceptos involucrados: UserTweetsPage, useParams, authorId, where, orderBy, limit y getDocs.
+- Estado: Explicación y fragmentos propuestos con rutas y campos supuestos. No se modificaron archivos ni se ejecutó la consulta contra Firestore.
+
+---
+
+### CONSULTA 6 — 7:28 p. m. (19:28:17)
+
+- Pregunta realizada: ¿Cómo obtener el UID con useParams?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
+- Resumen breve de la respuesta: Se mostró cómo definir :userId en la ruta y leerlo con useParams. Se aclaró que el nombre debe coincidir y que el hook extrae el texto, pero no valida la existencia del usuario en Firebase.
+- Archivos o conceptos involucrados: React Router v6, Route, useParams, UserTweetsPage y parámetros de URL.
+- Estado: Explicación y ejemplo propuestos. No se modificaron archivos ni se ejecutó código.
+
+---
+
+### CONSULTA 7 — 7:28 p. m. (19:28:38)
+
+- Pregunta realizada: ¿Cómo reiniciar la paginación al cambiar de perfil?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
+- Resumen breve de la respuesta: Se propuso usar key={userId} en el componente que guarda la paginación para reiniciar su estado local, incluida la página y el cursor. La primera carga debe realizarse sin startAfter. Se aclaró que esto no reinicia el estado de un contexto superior.
+- Archivos o conceptos involucrados: UserTweetsPage, UserTweetList, key, useState, QueryDocumentSnapshot, cursores y startAfter.
+- Estado: Solución propuesta suponiendo que el estado de paginación pertenece a la lista. No se modificaron archivos ni se ejecutó código.
+
+---
+
+### CONSULTA 8 — 7:29 p. m.
+
+- Pregunta realizada: Solicitar la bitácora actualizada para descargar.
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
+- Resumen breve de la respuesta: Se añadieron las tres consultas más recientes y esta solicitud al archivo del 10 de noviembre, y se actualizó el enlace compartido en todos sus registros.
+- Archivos o conceptos involucrados: bitacoras_2026-11-10.txt y enlaces compartidos de la conversación.
+- Estado: Archivo TXT actualizado y verificado mediante conteo de entradas y enlaces. No se modificó el código de EXEX ni se ejecutaron pruebas del proyecto.
+
+La propuesta de consultas con cursores queda registrada como referencia. En la implementación actual del RF07, el contexto carga las publicaciones de Firestore y la pantalla filtra por authorId, ordena por fecha descendente y pagina con slice(), con un máximo de diez publicaciones por página. El estado de la página se reinicia mediante key={userId}.
+
+---
+
+## Consultas sobre el feed (RF08) - Brahian Montoya - 2026-11-11
+
+Horas de Colombia (UTC-5).
+
+Las consultas registran las propuestas exploradas. La implementación del RF08 obtiene las publicaciones y los seguimientos de sus contextos, filtra por los autores permitidos y pagina localmente con slice(), con diez publicaciones por página. Las consultas con where y los cursores se documentan como propuestas.
+
+### CONSULTA 1 — 3:48 p. m.
+
+- Pregunta realizada: ¿Cómo filtro el feed para mostrar mis publicaciones y las de las personas que sigo?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Resumen breve de la respuesta: Se propuso reunir el UID propio y los de las cuentas seguidas, eliminar duplicados con Set y usar where con in para consultar los diez tweets más recientes. Se aclaró que los UID deben coincidir con authorId y que esta consulta admite hasta 30 UID, incluido el propio.
+- Archivos o conceptos involucrados: Firebase Auth, Firestore, followerId, followingId, authorId, Set, where, orderBy y limit.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó la consulta ni se modificaron archivos del proyecto.
+- Fuente: <https://firebase.google.com/docs/firestore/query-data/queries#in_not-in_and_array-contains-any>
+
+---
+
+### CONSULTA 2 — 3:51 p. m.
+
+- Pregunta realizada: ¿Por qué debo incluir mi propio UID entre los autores permitidos?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Resumen breve de la respuesta: Firestore solo devuelve tweets cuyos autores están en la lista. Agregar el UID propio permite que aparezcan las publicaciones del usuario conectado, aunque no siga a nadie. No es necesario crear una relación consigo mismo.
+- Archivos o conceptos involucrados: currentUserId, followingIds, authorId, Set y filtro in.
+- Estado: Explicación y ejemplo propuestos. No se modificaron archivos del proyecto ni se ejecutó código.
+
+---
+
+### CONSULTA 3 — 3:52 p. m.
+
+- Pregunta realizada: ¿En qué orden debería filtrar, ordenar y paginar las publicaciones?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Resumen breve de la respuesta: Primero se filtra por autor, luego se ordena por createdAt descendente y por último se pagina de diez en diez. Para avanzar se usa el último documento visible como cursor. Si cambia la lista de autores, se vuelve a la primera página.
+- Archivos o conceptos involucrados: Firestore, authorIds, where, orderBy, limit, startAfter y getDocs.
+- Estado: Ejemplo propuesto. No se ejecutó la consulta ni se modificaron archivos del proyecto. Se añadió el enlace actualizado a esta recopilación.
+- Fuente: <https://firebase.google.com/docs/firestore/query-data/query-cursors>
+
+---
+
+### CONSULTA 4 — 3:58 p. m.
+
+- Pregunta realizada: ¿Cómo se entera el feed de que cambió la lista de seguidos?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Resumen breve de la respuesta: Se propuso escuchar las relaciones con onSnapshot, actualizar followingIds y volver a consultar la primera página con los autores actualizados. getDocs no vuelve a ejecutarse automáticamente. Para seguimientos en memoria, se recomendó un estado compartido.
+- Archivos o conceptos involucrados: follows, followingIds, authorIds, onSnapshot, getDocs, useEffect y cursores.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó código contra Firestore ni se modificaron archivos del proyecto.
+- Fuente: <https://firebase.google.com/docs/firestore/query-data/listen>
+
+---
+
+### CONSULTA 5 — 4:05 p. m.
+
+- Pregunta realizada: ¿Qué debería mostrar mientras cargan las publicaciones o las relaciones de seguimiento?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Resumen breve de la respuesta: Se propuso distinguir la carga de seguidos, la carga de publicaciones, el error y el feed vacío. Una lista de seguidos vacía después de cargar aún permite buscar publicaciones propias. Al cargar más, se conservan los tweets visibles.
+- Archivos o conceptos involucrados: followingIds, estados de carga, estado vacío, errores y paginación.
+- Estado: Comportamiento de interfaz propuesto. No se modificaron archivos del proyecto ni se ejecutaron pruebas.
+
+---
+
+### CONSULTA 6 — 4:14 p. m.
+
+- Pregunta realizada: Solicitar la bitácora para descargar.
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Resumen breve de la respuesta: Se recopilaron las cinco consultas sobre el feed y esta solicitud en un archivo TXT con las horas de Colombia y el enlace actualizado.
+- Archivos o conceptos involucrados: bitacoras_2026-11-11.txt y enlace compartido del chat.
+- Estado: Archivo TXT generado y verificado por conteo de registros y enlaces. No se modificó el código de EXEX.
 
 ---
 

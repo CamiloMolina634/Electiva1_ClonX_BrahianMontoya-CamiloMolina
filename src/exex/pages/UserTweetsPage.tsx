@@ -51,7 +51,7 @@ const ProfileImageShortcut = ({ label, className, onSelect, children, disabled }
 }
 
 const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
-  const { tweets } = useTweets()
+  const { tweets, loading, loadError } = useTweets()
   const { authState } = useContext(AuthContext)
   const [page, setPage] = useState(1)
   const [editing, setEditing] = useState(false)
@@ -118,7 +118,8 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
     Math.ceil(userTweets.length / PAGE_SIZE),
   )
 
-  const startIndex = (page - 1) * PAGE_SIZE
+  const currentPage = Math.min(page, totalPages)
+  const startIndex = (currentPage - 1) * PAGE_SIZE
   const visibleTweets = userTweets.slice(
     startIndex,
     startIndex + PAGE_SIZE,
@@ -250,7 +251,11 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
       <section className="profile-posts" aria-labelledby="profile-posts-title">
         <h2 id="profile-posts-title" className="h5 fw-bold mb-3">Publicaciones</h2>
 
-        {userTweets.length === 0 ? (
+        {loadError ? (
+          <p className="alert alert-danger" role="alert">{loadError}</p>
+        ) : loading ? (
+          <p role="status">Cargando tweets…</p>
+        ) : userTweets.length === 0 ? (
           <p className="text-body-secondary mb-0">Este usuario todavía no ha publicado tweets.</p>
         ) : (
           <>
@@ -265,7 +270,7 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
             </div>
 
             <Pagination
-              page={page}
+              page={currentPage}
               totalPages={totalPages}
               onPageChange={setPage}
             />
