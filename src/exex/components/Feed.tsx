@@ -41,7 +41,7 @@ export const Feed = () => {
         <>
           <div className="home-tweet-list">
             {visibleTweets.map(({ tweet, author }) => (
-              <TweetCard key={tweet.id} tweet={tweet} author={author} />
+              <TweetCard showDetailLink key={tweet.id} tweet={tweet} author={author} />
             ))}
           </div>
           <div className="px-3 pb-4">

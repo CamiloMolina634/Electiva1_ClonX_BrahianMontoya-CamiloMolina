@@ -10,6 +10,8 @@ import { TweetsProvider } from '../contexts/TweetsProvider'
 import { FollowersPage } from '../pages/FollowersPage'
 import { UserTweetsPage } from '../pages/UserTweetsPage'
 
+import { TweetDetailPage } from '../pages/TweetDetailPage'
+
 export const ExexRouter = () => {
   const { authState } = useContext(AuthContext)
   const uid = authState.user?.uid ?? ''
@@ -20,6 +22,7 @@ export const ExexRouter = () => {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="tweets/new" element={<PublishTweetPage />} />
+          <Route path="tweets/:tweetId" element={<TweetDetailPage />} />
           <Route path="following" element={<FollowingPage />} />
           <Route path="followers" element={<FollowersPage />} />
           <Route path="users/:userId" element={<UserTweetsPage />} />

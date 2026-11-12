@@ -4,6 +4,7 @@ import type { User } from '../types/User'
 
 interface TweetCardProps {
   tweet: Tweet
+  showDetailLink?: boolean
   author: Pick<User, 'uid' | 'fullname' | 'username'>
 }
 
@@ -12,7 +13,7 @@ const dateFormatter = new Intl.DateTimeFormat('es-CO', {
   timeStyle: 'short',
 })
 
-export const TweetCard = ({ tweet, author }: TweetCardProps) => {
+export const TweetCard = ({ tweet, author, showDetailLink = false }: TweetCardProps) => {
   return (
     <article className="card">
       <div className="card-body">
@@ -24,8 +25,8 @@ export const TweetCard = ({ tweet, author }: TweetCardProps) => {
         </Link>
 
         <p className="text-body-secondary small mt-1 mb-3">
-          @{author.username}
-          {' · '}
+          {author.username && '@' + author.username}
+          {author.username && ' · '}
           <time dateTime={tweet.createdAt}>
             {dateFormatter.format(new Date(tweet.createdAt))}
           </time>
@@ -40,6 +41,11 @@ export const TweetCard = ({ tweet, author }: TweetCardProps) => {
         >
           {tweet.body}
         </p>
+        {showDetailLink && (
+          <Link className="d-inline-block mt-3" to={'/tweets/' + tweet.id}>
+            Ver publicación y respuestas
+          </Link>
+        )}
       </div>
     </article>
   )

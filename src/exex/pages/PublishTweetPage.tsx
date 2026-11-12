@@ -34,7 +34,7 @@ export const PublishTweetPage = () => {
       {latestTweet && (
         <section aria-labelledby="latest-tweet-heading">
           <h2 id="latest-tweet-heading" className="h5 mb-3">Tu última publicación</h2>
-          <TweetCard tweet={latestTweet} author={user} />
+          <TweetCard showDetailLink tweet={latestTweet} author={user} />
         </section>
       )}
     </main>
