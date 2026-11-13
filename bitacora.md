@@ -1282,3 +1282,59 @@ En la implementación del RF13, las respuestas se guardan en tweets/{tweetId}/re
   - Sin cambios en esa conversación. Archivo relacionado: `src/firebase/providers.ts`.
 
 ---
+
+---
+
+## Consultas sobre republicaciones (RF14) - Brahian Montoya - 2026-11-12
+
+Horas de Colombia (UTC-5). El enlace corresponde a una copia anterior. El archivo adjunto registra las consultas del 12 de noviembre.
+
+En el RF14, las republicaciones se guardan en la colección reposts con userId, tweetId y createdAt. El ID combina el usuario y el tweet. La tarjeta conserva la autoría y la fecha del original, y el feed ordena la entrada por la fecha de la republicación.
+
+### CONSULTA 1 — 3:35 p. m.
+
+- Pregunta realizada: ¿Cómo guardo una republicación en Firestore?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso crear un documento en tweets con type: repost, el UID de quien republica, el ID del original y su propia fecha. Un ID fijo por pareja usuario–tweet permite evitar documentos duplicados.
+- Archivos o conceptos involucrados: Firestore, tweets, type, authorId, originalTweetId, createdAt, addDoc y serverTimestamp.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se guardaron datos ni se modificó el proyecto.
+
+---
+
+### CONSULTA 2 — 3:38 p. m.
+
+- Pregunta realizada: ¿Qué datos necesito para saber quién republicó y cuál es la publicación original?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: authorId identifica a quien republicó. originalTweetId apunta al documento original, donde está el UID del autor original. type y createdAt permiten distinguir y ordenar la republicación.
+- Archivos o conceptos involucrados: Firestore, authorId, originalTweetId, type y createdAt.
+- Estado: Modelo explicado con un ejemplo. No se guardaron datos ni se modificó el proyecto.
+
+---
+
+### CONSULTA 3 — 3:45 p. m.
+
+- Pregunta realizada: ¿Cómo muestro una republicación en el feed?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso leer el tweet original y reutilizar TweetCard, mostrando encima quién republicó. La tarjeta conserva el autor y la fecha originales. Se distinguió la carga del caso en que el original no existe.
+- Archivos o conceptos involucrados: TweetCard, authorId, originalTweetId, createdAt, getDoc y estados de carga.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó código ni se modificó el proyecto.
+
+---
+
+### CONSULTA 4 — 3:46 p. m.
+
+- Pregunta realizada: ¿Uso la fecha del tweet original o la de la republicación para ordenar el feed?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se recomendó ordenar por la fecha de la republicación y mostrar la fecha del tweet original dentro de TweetCard.
+- Archivos o conceptos involucrados: createdAt, orderBy, TweetCard, feed y republicaciones.
+- Estado: Explicación propuesta. No se ejecutaron consultas ni se modificó el proyecto.
+
+---
+
+### CONSULTA 5 — 3:52 p. m.
+
+- Pregunta realizada: Solicitar la bitácora para descargar.
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se recopilaron las cuatro consultas sobre republicaciones y esta solicitud en un archivo TXT.
+- Archivos o conceptos involucrados: bitacoras_2026-11-12.txt y enlace compartido del chat.
+- Estado: Archivo TXT generado y verificado por conteo de registros. No se modificó el código de EXEX.

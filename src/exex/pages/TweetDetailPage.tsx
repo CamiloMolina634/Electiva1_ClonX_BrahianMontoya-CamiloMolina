@@ -73,6 +73,7 @@ export const TweetDetailPage = () => {
       ) : tweet ? (
         <>
           <TweetCard
+            canRepost
             tweet={tweet}
             author={author ?? { uid: tweet.authorId, fullname: 'Usuario de EXEX', username: '' }}
           />
