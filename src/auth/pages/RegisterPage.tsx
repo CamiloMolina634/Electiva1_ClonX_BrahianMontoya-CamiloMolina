@@ -1,10 +1,13 @@
 import { useContext, useState, type SubmitEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import { getAuthRedirect } from '../utils/getAuthRedirect';
 
 export const RegisterPage = () => {
   const { authState, register } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectTo = getAuthRedirect(location.state);
   const [fullname, setFullname] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -23,7 +26,7 @@ export const RegisterPage = () => {
     setSubmitting(true);
     try {
       if (await register({ fullname, username, email, password })) {
-        navigate('/', { replace: true });
+        navigate(redirectTo, { replace: true });
       }
     } catch {
       setError('No se pudo completar el registro. Inténtalo de nuevo.');
@@ -68,7 +71,7 @@ export const RegisterPage = () => {
               <button type="submit" className="btn btn-primary w-100">{submitting ? 'Creando cuenta…' : 'Registrarse'}</button>
             </fieldset>
           </form>
-          <p className="mt-3 exex-auth-footer">¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link></p>
+          <p className="mt-3 exex-auth-footer">¿Ya tienes una cuenta? <Link to="/login" state={{ from: redirectTo }}>Inicia sesión</Link></p>
         </div>
       </div>
     </main>

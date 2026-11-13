@@ -1,10 +1,13 @@
 import { useContext, useState, type SubmitEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import { getAuthRedirect } from '../utils/getAuthRedirect';
 
 export const LoginPage = () => {
   const { authState, login, loginWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectTo = getAuthRedirect(location.state);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [method, setMethod] = useState<'password' | 'google' | null>(null);
@@ -17,7 +20,7 @@ export const LoginPage = () => {
     try {
       const result = await login(username.trim(), password);
       if (result) {
-        navigate('/', { replace: true });
+        navigate(redirectTo, { replace: true });
       }
     } finally {
       setMethod(null);
@@ -28,7 +31,7 @@ export const LoginPage = () => {
     if (submitting) return;
     setMethod('google');
     try {
-      if (await loginWithGoogle()) navigate('/', { replace: true });
+      if (await loginWithGoogle()) navigate(redirectTo, { replace: true });
     } finally {
       setMethod(null);
     }
@@ -63,7 +66,7 @@ export const LoginPage = () => {
               {method === 'google' ? 'Abriendo Google…' : 'Continuar con Google'}
             </button>
           </form>
-          <p className="mt-3 exex-auth-footer">¿No tienes cuenta? <Link to="/register">Regístrate</Link></p>
+          <p className="mt-3 exex-auth-footer">¿No tienes cuenta? <Link to="/register" state={{ from: redirectTo }}>Regístrate</Link></p>
           <p className="exex-auth-footer mb-0"><Link to="/explorar">Explorar como invitado</Link></p>
         </div>
       </div>
