@@ -43,12 +43,18 @@ const FollowListContent = ({ list, userId, fromProfile }: FollowListContentProps
   const missingProfile = ready && !ownList && !profile && !demoProfile
 
   return (
-    <main className="container py-4">
-      <Link to={fromProfile && !missingProfile ? `/users/${userId}` : '/'} className="btn btn-primary mb-3">
-        {fromProfile && !missingProfile ? '← Volver al perfil' : '← Volver al inicio'}
-      </Link>
-
-      <h1>{showFollowers ? 'Seguidores' : 'Usuarios seguidos'}</h1>
+    <main className="container pt-0 pb-4">
+      <div className="page-heading">
+        <Link
+          to={fromProfile && !missingProfile ? `/users/${userId}` : '/'}
+          className="profile-back link-body-emphasis"
+          aria-label={fromProfile && !missingProfile ? 'Volver al perfil' : 'Volver al inicio'}
+          title={fromProfile && !missingProfile ? 'Volver al perfil' : 'Volver al inicio'}
+        >
+          ←
+        </Link>
+        <h1 className="h2 mb-0">{showFollowers ? 'Seguidores' : 'Usuarios seguidos'}</h1>
+      </div>
       {fromProfile && profileName && <p className="text-body-secondary">{profileName}</p>}
       {!fromProfile && ready && (
         <p className="text-body-secondary">

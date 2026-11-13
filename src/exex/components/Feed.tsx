@@ -8,7 +8,7 @@ import { TweetCard } from './TweetCard'
 
 const PAGE_SIZE = 10
 
-export const Feed = () => {
+export const Feed = ({ mode = 'following' }: { mode?: 'all' | 'following' }) => {
   const { authState } = useContext(AuthContext)
   const { users, follows, currentUserId, ready } = useFollows()
   const { tweets, loading, loadError, reposts, repostsError } = useTweets()
@@ -17,7 +17,8 @@ export const Feed = () => {
   const authors = new Map(users.map((user) => [user.uid, user]))
   if (authState.user) authors.set(authState.user.uid, authState.user)
 
-  const originalEntries = getFeedTweets(tweets, follows, currentUserId).flatMap((tweet) => {
+  const sourceTweets = mode === 'all' ? tweets : getFeedTweets(tweets, follows, currentUserId)
+  const originalEntries = sourceTweets.flatMap((tweet) => {
     const author = authors.get(tweet.authorId)
     return author ? [{ id: tweet.id, tweet, author, createdAt: tweet.createdAt, reposter: '' }] : []
   })
@@ -27,7 +28,7 @@ export const Feed = () => {
     .map((follow) => follow.followingId))
   const tweetsById = new Map(tweets.map((tweet) => [tweet.id, tweet]))
   const repostEntries = reposts.flatMap((repost) => {
-    if (repost.userId !== currentUserId && !followedIds.has(repost.userId)) return []
+    if (mode === 'following' && repost.userId !== currentUserId && !followedIds.has(repost.userId)) return []
     const tweet = tweetsById.get(repost.tweetId)
     const reposter = authors.get(repost.userId)
     if (!tweet || !reposter) return []
@@ -59,7 +60,7 @@ export const Feed = () => {
         <p className="m-3" role="status">Cargando publicaciones…</p>
       ) : feedTweets.length === 0 ? (
         <p className="alert alert-light m-3" role="status">
-          Todavía no hay publicaciones tuyas ni de las personas que sigues.
+          {mode === 'all' ? 'Todavía no hay publicaciones en EXEX.' : 'Todavía no hay publicaciones tuyas ni de las personas que sigues.'}
         </p>
       ) : (
         <>

@@ -16,9 +16,11 @@ export const PublishTweetPage = () => {
   const latestTweet = tweets.find((tweet) => tweet.authorId === user.uid)
 
   return (
-    <main className="container py-4 py-sm-5 publish-tweet-page">
-      <Link to="/" className="btn btn-primary mb-4">← Volver al inicio</Link>
-      <h1 className="h2 mb-2">Publicar un tweet</h1>
+    <main className="container pt-0 pb-4 publish-tweet-page">
+      <div className="page-heading">
+        <Link to="/" className="profile-back link-body-emphasis" aria-label="Volver al inicio" title="Volver al inicio">←</Link>
+        <h1 className="h2 mb-0">Publicar un tweet</h1>
+      </div>
       <p className="text-body-secondary mb-4">Comparte lo que estás pensando.</p>
       <section className="card mb-4" aria-label="Nueva publicación">
         <div className="card-body p-3 p-sm-4">

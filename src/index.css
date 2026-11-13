@@ -2,7 +2,8 @@
   --exex-green: #16a34a;
   --exex-green-dark: #15803d;
   --exex-surface: #f8fafc;
-  --exex-border: #e5e7eb;
+  --exex-border: #c3cbd1;
+  --exex-header-height: 60px;
   --bs-primary: #15803d;
   --bs-primary-rgb: 21, 128, 61;
   --bs-primary-bg-subtle: #eaf7ee;
@@ -26,13 +27,67 @@ body { min-width: 320px; }
 
 a.exex-brand:hover { color: var(--exex-green-dark); }
 
-.exex-header { background: #fff; }
+.exex-header {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: #fff;
+}
 .exex-header-content { max-width: 1200px; padding-block: 0.5rem; }
+.exex-header .navbar { padding-block: 0; }
+.exex-header .exex-header-grid {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 600px) minmax(0, 1fr);
+  justify-content: start;
+  align-items: center;
+  min-height: 60px;
+  padding: 0;
+}
+.exex-header-grid .exex-brand {
+  margin-left: 0;
+  justify-self: center;
+  grid-column: 1;
+  grid-row: 1;
+  transform: translateX(-24px);
+}
+.exex-header-tabs {
+  display: flex;
+  align-self: stretch;
+  border-inline: 1px solid var(--exex-border);
+  border-bottom: 1px solid var(--exex-border);
+  background: #fff;
+}
+.exex-header-grid .exex-account {
+  grid-column: 3;
+  grid-row: 1;
+  margin-left: 0;
+  padding-inline: 24px 12px;
+}
+.exex-header-grid .exex-account-avatar { width: 32px; height: 32px; }
+.exex-header-grid .exex-account-info { flex: 1; }
+.exex-header-grid .exex-account .btn { padding-inline: 12px; }
+@media (max-width: 1100px) {
+  :root { --exex-header-height: 68px; }
+  :root:has(.exex-header-tabs) { --exex-header-height: 124px; }
+  .exex-header-grid {
+    max-width: 830px;
+    grid-template-columns: 230px minmax(0, 600px);
+  }
+  .exex-header-grid .exex-brand { grid-column: 1; grid-row: 1; transform: none; }
+  .exex-header-grid .exex-account { grid-column: 2; grid-row: 1; padding-block: 12px; }
+  .exex-header-tabs { grid-column: 2; grid-row: 2; }
+}
+@media (max-width: 650px) {
+  .exex-header-grid { grid-template-columns: 80px minmax(0, 1fr); }
+  .exex-header-tabs { grid-column: 1 / -1; border-inline: 0; }
+  .exex-header-grid .exex-account { width: auto; padding: 12px; border-top: 0; }
+  .exex-header-grid .exex-account-avatar { display: none; }
+}
 .exex-header .exex-brand {
   --bs-navbar-brand-color: var(--exex-green);
   --bs-navbar-brand-hover-color: var(--exex-green);
   color: var(--exex-green);
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   line-height: 1.3;
 }
 .exex-header .exex-brand:hover,
@@ -42,7 +97,7 @@ a.exex-brand:hover { color: var(--exex-green-dark); }
 .exex-header-link { padding: 0.55rem 1rem; border-radius: 999px; font-weight: 600; }
 .exex-header-link.active { color: var(--exex-green-dark); background: var(--bs-primary-bg-subtle); }
 .exex-header-link:hover { color: var(--exex-green-dark); background: var(--exex-surface); }
-.exex-account { min-width: 0; }
+.exex-account { min-width: 0; margin-left: auto; }
 .exex-account-avatar {
   display: grid;
   place-items: center;
@@ -58,6 +113,34 @@ a.exex-brand:hover { color: var(--exex-green-dark); }
 .exex-account-caption { display: block; font-size: 0.7rem; color: var(--bs-secondary-color); }
 .exex-account-name { display: block; max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.85rem; font-weight: 600; }
 .exex-account .btn { flex-shrink: 0; font-size: 0.8rem; }
+.page-heading {
+  position: sticky;
+  top: var(--exex-header-height);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 48px;
+  margin-block: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background: var(--bs-primary-bg-subtle);
+  color: var(--exex-green-dark);
+}
+.page-heading .profile-back { color: var(--exex-green-dark); }
+.exex-content .card,
+.exex-content .list-group { border-top: 3px solid var(--exex-green); }
+.exex-content .home-tweet-list .card { border-top: 0; }
+.profile-back {
+  display: grid;
+  place-items: center;
+  flex: 0 0 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+.profile-back:hover { background: var(--exex-surface); }
 @media (max-width: 575px) {
   .exex-account { width: 100%; padding-top: 0.75rem; border-top: 1px solid var(--exex-border); }
   .exex-account-info { flex: 1; }

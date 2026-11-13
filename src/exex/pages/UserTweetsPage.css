@@ -9,23 +9,16 @@
 }
 
 .profile-header {
+  position: sticky;
+  top: var(--exex-header-height);
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.5rem var(--profile-padding);
+  background: var(--bs-primary-bg-subtle);
+  color: var(--exex-green-dark);
 }
-
-.profile-back {
-  display: grid;
-  place-items: center;
-  flex: 0 0 44px;
-  min-height: 44px;
-  border-radius: 50%;
-  font-size: 1.4rem;
-  text-decoration: none;
-}
-
-.profile-back:hover { background: var(--exex-surface); }
 
 .profile-cover {
   position: relative;
