@@ -11,4 +11,5 @@ export interface Tweet {
   authorId: User['id']
   body: string
   createdAt: string
+  mediaUrl?: string
 }

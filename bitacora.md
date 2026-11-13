@@ -1338,3 +1338,59 @@ En el RF14, las republicaciones se guardan en la colección reposts con userId, 
 - Resumen breve de la respuesta: Se recopilaron las cuatro consultas sobre republicaciones y esta solicitud en un archivo TXT.
 - Archivos o conceptos involucrados: bitacoras_2026-11-12.txt y enlace compartido del chat.
 - Estado: Archivo TXT generado y verificado por conteo de registros. No se modificó el código de EXEX.
+
+---
+
+## Consultas sobre imágenes y GIF (RF11) - Brahian Montoya - 2026-11-12
+
+Horas de Colombia (UTC-5). El enlace corresponde a una copia anterior a estas consultas.
+
+El RF11 acepta JPG, PNG, WebP y GIF de hasta 5 MiB. Guarda la URL opcional en mediaUrl y conserva el texto obligatorio. Si falla el guardado después de subir el adjunto, la aplicación intenta eliminar el archivo. La consulta 7 registra el enfoque alternativo que se exploró.
+
+### CONSULTA 6 — 4:28 p. m. (16:28:03)
+
+- Pregunta realizada: ¿Cómo valido el tipo y tamaño del archivo antes de subirlo?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso validar File.type y File.size antes de subir una imagen. JPEG, PNG, WebP y el límite de 5 MiB son ejemplos. El atributo accept solo orienta la selección; se recomendó aplicar los límites también en Firebase Storage.
+- Archivos o conceptos involucrados: File, tipos MIME, accept, uploadBytes y reglas de Firebase Storage.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se subieron archivos ni se modificó el proyecto.
+
+---
+
+### CONSULTA 7 — 4:28 p. m. (16:28:41)
+
+- Pregunta realizada: ¿Qué hago si el archivo se sube pero falla el guardado del tweet?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso conservar el archivo y reutilizar el ID reservado al reintentar el guardado con setDoc. Si el resultado es incierto, se consulta al servidor antes de reintentar o eliminar el archivo. Si se cancela, se elimina solo si el tweet no existe y no hay escritura pendiente.
+- Archivos o conceptos involucrados: Firebase Storage, Firestore, setDoc, getDocFromServer, deleteObject y escrituras pendientes.
+- Estado: Documentación oficial consultada y flujo propuesto. No se subieron ni eliminaron archivos ni se ejecutaron escrituras.
+
+---
+
+### CONSULTA 8 — 4:30 p. m.
+
+- Pregunta realizada: ¿Cómo hago que los tweets que solo tienen texto sigan funcionando?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso hacer imageUrl opcional, validar y subir la imagen solo si se eligió un archivo y mostrarla en la tarjeta solo si existe. Se mantuvo el texto obligatorio en el ejemplo.
+- Archivos o conceptos involucrados: Tweet, TweetCard, imageUrl, File, validateImage, setDoc y renderizado condicional.
+- Estado: Flujo y ejemplos propuestos. No se modificaron archivos del proyecto ni se ejecutaron pruebas.
+
+---
+
+### CONSULTA 9 — 4:31 p. m.
+
+- Pregunta realizada: ¿Cómo evito que una imagen grande se salga de la tarjeta en celular?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso limitar el ancho con max-width: 100% y mantener la proporción con height: auto. Si la tarjeta es hija de un contenedor flex, se sugirió comprobar si necesita min-width: 0.
+- Archivos o conceptos involucrados: TweetCard, imageUrl, CSS adaptable, max-width, height y Flexbox.
+- Estado: Ejemplo propuesto. No se modificaron archivos del proyecto ni se comprobó el diseño en celular.
+
+---
+
+### CONSULTA 10 — 4:32 p. m.
+
+- Pregunta realizada: Solicitar la bitácora actualizada para descargar.
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se añadieron las cuatro consultas sobre imágenes y esta solicitud al TXT del 12 de noviembre.
+- Archivos o conceptos involucrados: bitacoras_2026-11-12.txt y enlaces compartidos del chat.
+- Estado: Archivo TXT actualizado y verificado por conteo de registros. No se obtuvo un enlace nuevo. No se modificó el código de EXEX.

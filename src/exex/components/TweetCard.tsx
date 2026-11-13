@@ -56,6 +56,14 @@ export const TweetCard = ({
         >
           {tweet.body}
         </p>
+        {tweet.mediaUrl && (
+          <img
+            src={tweet.mediaUrl}
+            alt="Imagen adjunta a la publicación"
+            className="img-fluid rounded mt-3"
+            loading="lazy"
+          />
+        )}
         {canRepost && <RepostButton tweetId={tweet.id} />}
         {showDetailLink && (
           <Link className="d-inline-block mt-3" to={'/tweets/' + tweet.id}>
