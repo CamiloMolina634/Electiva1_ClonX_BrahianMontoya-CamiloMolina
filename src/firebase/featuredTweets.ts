@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, limit, orderBy, query, Timestamp } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, limit, orderBy, query, Timestamp, type DocumentSnapshot } from 'firebase/firestore'
 import type { Tweet } from '../exex/types/social'
 import type { User } from '../exex/types/User'
 import { FirebaseDB } from './config'
@@ -8,13 +8,27 @@ interface FeaturedTweet {
   author: Pick<User, 'uid' | 'fullname' | 'username'>
 }
 
-export const getFeaturedTweets = async (): Promise<FeaturedTweet[]> => {
-  const snapshot = await getDocs(query(collection(FirebaseDB, 'tweets'), orderBy('createdAt', 'desc'), limit(10)))
-  const tweets = snapshot.docs.flatMap((document): Tweet[] => {
-    const { authorId, body, createdAt } = document.data()
+export const getFeaturedTweets = async (tweetId?: string): Promise<FeaturedTweet[]> => {
+  let documents: DocumentSnapshot[]
+  if (tweetId !== undefined) {
+    if (!tweetId || tweetId.includes('/')) return []
+    documents = [await getDoc(doc(FirebaseDB, 'tweets', tweetId))]
+  } else {
+    documents = (await getDocs(query(collection(FirebaseDB, 'tweets'), orderBy('createdAt', 'desc'), limit(10)))).docs
+  }
+  const tweets = documents.flatMap((document): Tweet[] => {
+    const { authorId, body, createdAt, mediaUrl } = document.data() ?? {}
     if (typeof authorId !== 'string' || !authorId || authorId.includes('/') ||
       typeof body !== 'string' || !(createdAt instanceof Timestamp)) return []
-    return [{ id: document.id, authorId, body, createdAt: createdAt.toDate().toISOString() }]
+    return [{
+      id: document.id,
+      authorId,
+      body,
+      createdAt: createdAt.toDate().toISOString(),
+      mediaUrl: typeof mediaUrl === 'string' && mediaUrl.startsWith('https://firebasestorage.googleapis.com/')
+        ? mediaUrl
+        : undefined,
+    }]
   })
   const authorIds = [...new Set(tweets.map((tweet) => tweet.authorId))]
   const authors = await Promise.all(authorIds.map(async (uid) => {

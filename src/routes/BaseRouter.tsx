@@ -1,5 +1,6 @@
 import { useContext } from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation, useMatch } from 'react-router-dom'
+import { getAuthRedirect } from '../auth/utils/getAuthRedirect'
 import { ExexRouter } from '../exex/routes/ExexRouter'
 import { AuthContext } from '../auth/contexts/AuthContext'
 import { LoginPage } from '../auth/pages/LoginPage'
@@ -8,6 +9,12 @@ import { ExplorePage } from '../exex/pages/ExplorePage'
 
 export const BaseRouter = () => {
   const { authState, checking } = useContext(AuthContext)
+  const location = useLocation()
+  const redirectTo = getAuthRedirect(location.state)
+  const sharedTweetId = useMatch('/tweets/:tweetId')?.params.tweetId
+  const guestDestination = sharedTweetId && sharedTweetId !== 'new'
+    ? '/explorar?' + new URLSearchParams({ tweet: sharedTweetId })
+    : '/login'
 
   if (checking) return <p className="container py-4" role="status">Comprobando sesión…</p>
 
@@ -15,8 +22,8 @@ export const BaseRouter = () => {
     <Routes>
       {authState.logged ? (
         <>
-          <Route path="/login" element={<Navigate to="/" replace />} />
-          <Route path="/register" element={<Navigate to="/" replace />} />
+          <Route path="/login" element={<Navigate to={redirectTo} replace />} />
+          <Route path="/register" element={<Navigate to={redirectTo} replace />} />
           <Route path="/*" element={<ExexRouter />} />
         </>
       ) : (
@@ -24,7 +31,7 @@ export const BaseRouter = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/explorar" element={<ExplorePage />} />
-          <Route path="/*" element={<Navigate to="/login" replace />} />
+          <Route path="/*" element={<Navigate to={guestDestination} state={{ from: location.pathname }} replace />} />
         </>
       )}
     </Routes>

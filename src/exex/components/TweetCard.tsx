@@ -6,6 +6,7 @@ import type { Tweet } from '../types/social'
 import type { User } from '../types/User'
 
 import { RepostButton } from './RepostButton'
+import { ShareButton } from './ShareButton'
 
 interface TweetCardProps {
   tweet: Tweet
@@ -70,6 +71,7 @@ export const TweetCard = ({
         )}
         {likes && (showDetailLink || canRepost) && <LikeButton tweetId={tweet.id} />}
         {canRepost && <RepostButton tweetId={tweet.id} />}
+        {(showDetailLink || canRepost) && <ShareButton tweetId={tweet.id} />}
         {showDetailLink && (
           <Link className="d-inline-block mt-3" to={'/tweets/' + tweet.id}>
             Ver publicación y respuestas
