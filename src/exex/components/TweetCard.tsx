@@ -5,6 +5,7 @@ import type { User } from '../types/User'
 
 interface TweetCardProps {
   tweet: Tweet
+  showDetailLink?: boolean
   author: Pick<User, 'uid' | 'fullname' | 'username'>
   onAuthorClick?: () => void
   children?: ReactNode
@@ -15,7 +16,7 @@ const dateFormatter = new Intl.DateTimeFormat('es-CO', {
   timeStyle: 'short',
 })
 
-export const TweetCard = ({ tweet, author, onAuthorClick, children }: TweetCardProps) => {
+export const TweetCard = ({ tweet, author, showDetailLink = false, onAuthorClick, children }: TweetCardProps) => {
   return (
     <article className="card">
       <div className="card-body">
@@ -45,6 +46,11 @@ export const TweetCard = ({ tweet, author, onAuthorClick, children }: TweetCardP
         >
           {tweet.body}
         </p>
+        {showDetailLink && (
+          <Link className="d-inline-block mt-3" to={'/tweets/' + tweet.id}>
+            Ver publicación y respuestas
+          </Link>
+        )}
         {children}
       </div>
     </article>

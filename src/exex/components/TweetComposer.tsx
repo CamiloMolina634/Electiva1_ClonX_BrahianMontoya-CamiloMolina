@@ -3,12 +3,14 @@ import { MAX_TWEET_LENGTH } from '../../firebase/tweets'
 
 interface TweetComposerProps {
   onPublish: (body: string) => Promise<void>
+  label?: string
   submitLabel?: string
   successMessage?: string
 }
 
 export const TweetComposer = ({
   onPublish,
+  label = '¿Qué está pasando?',
   submitLabel = 'Publicar',
   successMessage = 'Tu tweet se guardó correctamente.',
 }: TweetComposerProps) => {
@@ -50,7 +52,7 @@ export const TweetComposer = ({
 
   return (
     <form onSubmit={handleSubmit} noValidate aria-busy={saving}>
-      <label className="form-label fw-semibold" htmlFor="tweet-body">¿Qué está pasando?</label>
+      <label className="form-label fw-semibold" htmlFor="tweet-body">{label}</label>
       <textarea
         ref={textAreaRef}
         id="tweet-body"
