@@ -8,6 +8,7 @@ import { FollowListPage } from '../pages/FollowListPage'
 
 import { PublishTweetPage } from '../pages/PublishTweetPage'
 import { TweetsProvider } from '../contexts/TweetsProvider'
+import { LikesProvider } from '../contexts/LikesProvider'
 import { TweetDetailPage } from '../pages/TweetDetailPage'
 import { UserTweetsPage } from '../pages/UserTweetsPage'
 
@@ -18,22 +19,24 @@ export const ExexRouter = () => {
   return (
     <FollowsProvider key={uid} uid={uid}>
       <TweetsProvider uid={uid}>
-        <div className="exex-shell">
-          <ExexSidebar />
-          <div className="exex-content">
-            <Routes>
-              <Route index element={<HomePage />} />
-              <Route path="tweets/new" element={<PublishTweetPage />} />
-              <Route path="tweets/:tweetId" element={<TweetDetailPage />} />
-              <Route path="following" element={<FollowListPage list="following" />} />
-              <Route path="followers" element={<FollowListPage list="followers" />} />
-              <Route path="users/:userId" element={<UserTweetsPage />} />
-              <Route path="users/:userId/following" element={<FollowListPage list="following" />} />
-              <Route path="users/:userId/followers" element={<FollowListPage list="followers" />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
+        <LikesProvider uid={uid}>
+          <div className="exex-shell">
+            <ExexSidebar />
+            <div className="exex-content">
+              <Routes>
+                <Route index element={<HomePage />} />
+                <Route path="tweets/new" element={<PublishTweetPage />} />
+                <Route path="tweets/:tweetId" element={<TweetDetailPage />} />
+                <Route path="following" element={<FollowListPage list="following" />} />
+                <Route path="followers" element={<FollowListPage list="followers" />} />
+                <Route path="users/:userId" element={<UserTweetsPage />} />
+                <Route path="users/:userId/following" element={<FollowListPage list="following" />} />
+                <Route path="users/:userId/followers" element={<FollowListPage list="followers" />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </div>
           </div>
-        </div>
+        </LikesProvider>
       </TweetsProvider>
     </FollowsProvider>
   )

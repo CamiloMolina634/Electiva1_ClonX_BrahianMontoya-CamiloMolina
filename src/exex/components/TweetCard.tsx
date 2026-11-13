@@ -1,4 +1,6 @@
-import type { ReactNode } from 'react'
+import { useContext, type ReactNode } from 'react'
+import { LikesContext } from '../contexts/LikesContext'
+import { LikeButton } from './LikeButton'
 import { Link } from 'react-router-dom'
 import type { Tweet } from '../types/social'
 import type { User } from '../types/User'
@@ -27,6 +29,8 @@ export const TweetCard = ({
   onAuthorClick,
   children,
 }: TweetCardProps) => {
+  const likes = useContext(LikesContext)
+
   return (
     <article className="card">
       <div className="card-body">
@@ -64,6 +68,7 @@ export const TweetCard = ({
             loading="lazy"
           />
         )}
+        {likes && (showDetailLink || canRepost) && <LikeButton tweetId={tweet.id} />}
         {canRepost && <RepostButton tweetId={tweet.id} />}
         {showDetailLink && (
           <Link className="d-inline-block mt-3" to={'/tweets/' + tweet.id}>
