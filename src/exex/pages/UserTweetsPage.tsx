@@ -141,18 +141,19 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
 
   return (
     <main className="profile-page">
+      <header className="profile-header">
+        <Link to="/" className="profile-back link-body-emphasis" aria-label="Volver al inicio">
+          <span aria-hidden="true">←</span>
+        </Link>
+        <div className="text-break">
+          <h1 id="profile-title" className="h5 fw-bold mb-0">{displayName}</h1>
+          <p className="text-body-secondary small mb-0">
+            {userTweets.length} {userTweets.length === 1 ? 'publicación' : 'publicaciones'}
+          </p>
+        </div>
+      </header>
       <section aria-labelledby="profile-title">
-        <header className="profile-header">
-          <Link to="/" className="profile-back link-body-emphasis" aria-label="Volver al inicio">
-            <span aria-hidden="true">←</span>
-          </Link>
-          <div className="text-break">
-            <h1 id="profile-title" className="h5 fw-bold mb-0">{displayName}</h1>
-            <p className="text-body-secondary small mb-0">
-              {userTweets.length} {userTweets.length === 1 ? 'publicación' : 'publicaciones'}
-            </p>
-          </div>
-        </header>
+
 
         <div className="profile-cover">
           {account?.coverURL && <img src={account.coverURL} alt="" referrerPolicy="no-referrer" />}

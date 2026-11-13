@@ -3,6 +3,7 @@ import { AuthContext } from '../../auth/contexts/AuthContext'
 import { FollowsProvider } from '../contexts/FollowsProvider'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { ExexSidebar } from '../components/ExexSidebar'
+import { DiscoverSidebar } from '../components/DiscoverSidebar'
 import { HomePage } from '../pages/HomePage'
 import { FollowListPage } from '../pages/FollowListPage'
 
@@ -35,6 +36,7 @@ export const ExexRouter = () => {
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </div>
+            <DiscoverSidebar />
           </div>
         </LikesProvider>
       </TweetsProvider>

@@ -63,9 +63,11 @@ export const TweetDetailPage = () => {
     : users.find((user) => user.uid === tweet?.authorId)
 
   return (
-    <main className="container py-4">
-      <Link to="/" className="btn btn-primary mb-3">← Volver al inicio</Link>
-      <h1 className="h3 mb-3">Publicación</h1>
+    <main className="container pt-0 pb-4">
+      <div className="page-heading">
+        <Link to="/" className="profile-back link-body-emphasis" aria-label="Volver al inicio" title="Volver al inicio">←</Link>
+        <h1 className="h2 mb-0">Publicación</h1>
+      </div>
       {loadError ? (
         <p className="alert alert-danger" role="alert">{loadError}</p>
       ) : loading ? (

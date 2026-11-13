@@ -1,11 +1,21 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { AuthContext } from '../../auth/contexts/AuthContext';
 
 export const NavBar = () => {
   const { authState, checking, logout } = useContext(AuthContext);
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const showFeedTabs = location.pathname === '/';
+  const following = searchParams.get('feed') === 'following';
   const [closing, setClosing] = useState(false);
   const [error, setError] = useState('');
+
+  const changeFeed = (feed: 'all' | 'following') => {
+    const next = new URLSearchParams(searchParams);
+    next.set('feed', feed);
+    setSearchParams(next, { replace: true });
+  };
 
   const onLogout = async () => {
     if (closing) return;
@@ -26,11 +36,23 @@ export const NavBar = () => {
   const userLabel = user?.username ? `@${user.username}` : user?.fullname || user?.email || 'Usuario';
 
   return (
-    <header className="exex-header border-bottom">
+    <header className="exex-header">
       <nav className="navbar" aria-label="Navegación principal">
-        <div className="container exex-header-content d-flex flex-wrap gap-3">
+        <div className="container exex-header-content exex-header-grid">
           <Link to="/" className="navbar-brand exex-brand me-0" aria-label="EXEX, inicio">∃ꊼ∃ꊼ</Link>
-          <div className="exex-account d-flex align-items-center gap-3 ms-sm-auto">
+          {showFeedTabs && (
+            <div className="exex-header-tabs" role="group" aria-label="Filtrar publicaciones">
+              <button type="button" className="home-feed-tab" aria-pressed={!following}
+                onClick={() => changeFeed('all')}>
+                Para ti
+              </button>
+              <button type="button" className="home-feed-tab" aria-pressed={following}
+                onClick={() => changeFeed('following')}>
+                Siguiendo
+              </button>
+            </div>
+          )}
+          <div className="exex-account d-flex align-items-center gap-3">
             <span className="exex-account-avatar" aria-hidden="true">{(user?.fullname || userLabel).charAt(0).toUpperCase()}</span>
             <div className="exex-account-info">
               <span className="exex-account-caption">Tu cuenta</span>
