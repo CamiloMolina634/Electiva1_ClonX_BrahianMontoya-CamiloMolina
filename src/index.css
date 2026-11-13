@@ -2,7 +2,7 @@
   --exex-green: #16a34a;
   --exex-green-dark: #15803d;
   --exex-surface: #f8fafc;
-  --exex-border: #e5e7eb;
+  --exex-border: #b8c5bd;
   --bs-primary: #15803d;
   --bs-primary-rgb: 21, 128, 61;
   --bs-primary-bg-subtle: #eaf7ee;
@@ -28,6 +28,43 @@ a.exex-brand:hover { color: var(--exex-green-dark); }
 
 .exex-header { background: #fff; }
 .exex-header-content { max-width: 1200px; padding-block: 0.5rem; }
+.exex-header-homepage .navbar { padding-block: 0; }
+.exex-header .exex-header-home {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 600px) minmax(0, 1fr);
+  justify-content: start;
+  align-items: center;
+  min-height: 78px;
+  padding: 0;
+}
+.exex-header-home .exex-brand { margin-left: 12px; }
+.exex-header-tabs {
+  display: flex;
+  align-self: stretch;
+  border-inline: 1px solid var(--exex-border);
+}
+.exex-header-home .exex-account {
+  margin-left: 0;
+  padding-inline: 24px 12px;
+}
+.exex-header-home .exex-account-avatar { width: 32px; height: 32px; }
+.exex-header-home .exex-account-info { flex: 1; }
+.exex-header-home .exex-account .btn { padding-inline: 12px; }
+@media (max-width: 1100px) {
+  .exex-header-home {
+    max-width: 830px;
+    grid-template-columns: 230px minmax(0, 600px);
+  }
+  .exex-header-home .exex-brand { grid-column: 1; grid-row: 1; }
+  .exex-header-home .exex-account { grid-column: 2; grid-row: 1; padding-block: 12px; }
+  .exex-header-tabs { grid-column: 2; grid-row: 2; }
+}
+@media (max-width: 650px) {
+  .exex-header-home { grid-template-columns: 80px minmax(0, 1fr); }
+  .exex-header-tabs { grid-column: 1 / -1; border-inline: 0; }
+  .exex-header-home .exex-account { width: auto; padding: 12px; border-top: 0; }
+  .exex-header-home .exex-account-avatar { display: none; }
+}
 .exex-header .exex-brand {
   --bs-navbar-brand-color: var(--exex-green);
   --bs-navbar-brand-hover-color: var(--exex-green);
@@ -42,7 +79,7 @@ a.exex-brand:hover { color: var(--exex-green-dark); }
 .exex-header-link { padding: 0.55rem 1rem; border-radius: 999px; font-weight: 600; }
 .exex-header-link.active { color: var(--exex-green-dark); background: var(--bs-primary-bg-subtle); }
 .exex-header-link:hover { color: var(--exex-green-dark); background: var(--exex-surface); }
-.exex-account { min-width: 0; }
+.exex-account { min-width: 0; margin-left: auto; }
 .exex-account-avatar {
   display: grid;
   place-items: center;

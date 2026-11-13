@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { AuthContext } from '../../auth/contexts/AuthContext'
 import { useFollows } from '../hooks/useFollows'
 import { Feed } from '../components/Feed'
@@ -9,6 +9,8 @@ import './HomePage.css'
 export const HomePage = () => {
   const { authState } = useContext(AuthContext)
   const { users, currentUserId } = useFollows()
+  const [searchParams] = useSearchParams()
+  const feedMode = searchParams.get('feed') === 'following' ? 'following' : 'all'
   const fullname = authState.user?.fullname || authState.user?.username || 'Usuario'
 
   return (
@@ -17,9 +19,7 @@ export const HomePage = () => {
         <div className="home-feed">
           <div className="home-feed-content">
             {authState.errorMessage && <p className="text-danger p-3" role="alert">{authState.errorMessage}</p>}
-            <div className="home-feed-header">
-              <h1 className="h4 mb-0">Inicio</h1>
-            </div>
+            <h1 className="visually-hidden">Inicio</h1>
             <section className="p-3 border-bottom" aria-label="Nueva publicación">
               <div className="d-flex align-items-center gap-3 mb-3">
                 <span className="rounded-circle bg-primary-subtle text-primary fw-bold px-3 py-2" aria-hidden="true">
@@ -31,7 +31,7 @@ export const HomePage = () => {
                 <Link to="/tweets/new" className="btn btn-primary rounded-pill px-4">Publicar</Link>
               </div>
             </section>
-            <Feed />
+            <Feed key={feedMode} mode={feedMode} />
           </div>
         </div>
 

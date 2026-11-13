@@ -7,6 +7,30 @@
 .home-feed { min-width: 0; border-inline: 1px solid var(--home-border); }
 .home-feed-header { padding: 22px 20px; border-bottom: 1px solid var(--home-border); }
 .home-feed-header h1 { font-weight: 800; }
+.home-feed-tab {
+  position: relative;
+  flex: 1;
+  min-height: 56px;
+  padding: 16px;
+  border: 0;
+  background: transparent;
+  color: var(--bs-secondary-color);
+  font-weight: 600;
+}
+.home-feed-tab:hover { background: var(--exex-surface); }
+.home-feed-tab:focus-visible { outline: 2px solid var(--exex-green-dark); outline-offset: -4px; }
+.home-feed-tab[aria-pressed="true"] { color: var(--bs-body-color); font-weight: 800; }
+.home-feed-tab[aria-pressed="true"]::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 56px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--exex-green);
+  transform: translateX(-50%);
+  content: '';
+}
 .home-tweet-list { display: grid; gap: 14px; padding: 16px; background: var(--exex-surface); }
 .home-tweet-list .card-body { padding: 20px; }
 .home-tweet-list .card { box-shadow: 0 2px 6px rgb(17 24 39 / 3%); }
