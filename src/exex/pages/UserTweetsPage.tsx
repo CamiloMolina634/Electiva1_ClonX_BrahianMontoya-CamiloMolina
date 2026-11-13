@@ -262,6 +262,7 @@ const UserTweetsContent = ({ userId }: UserTweetsContentProps) => {
             <div className="d-grid gap-3">
               {visibleTweets.map((tweet) => (
                 <TweetCard
+                  showDetailLink
                   key={tweet.id}
                   tweet={tweet}
                   author={user}

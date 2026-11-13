@@ -1145,7 +1145,7 @@ Las consultas registran las propuestas exploradas. La implementación del RF08 o
 ### CONSULTA 1 — 3:48 p. m.
 
 - Pregunta realizada: ¿Cómo filtro el feed para mostrar mis publicaciones y las de las personas que sigo?
-- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
 - Resumen breve de la respuesta: Se propuso reunir el UID propio y los de las cuentas seguidas, eliminar duplicados con Set y usar where con in para consultar los diez tweets más recientes. Se aclaró que los UID deben coincidir con authorId y que esta consulta admite hasta 30 UID, incluido el propio.
 - Archivos o conceptos involucrados: Firebase Auth, Firestore, followerId, followingId, authorId, Set, where, orderBy y limit.
 - Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó la consulta ni se modificaron archivos del proyecto.
@@ -1156,7 +1156,7 @@ Las consultas registran las propuestas exploradas. La implementación del RF08 o
 ### CONSULTA 2 — 3:51 p. m.
 
 - Pregunta realizada: ¿Por qué debo incluir mi propio UID entre los autores permitidos?
-- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
 - Resumen breve de la respuesta: Firestore solo devuelve tweets cuyos autores están en la lista. Agregar el UID propio permite que aparezcan las publicaciones del usuario conectado, aunque no siga a nadie. No es necesario crear una relación consigo mismo.
 - Archivos o conceptos involucrados: currentUserId, followingIds, authorId, Set y filtro in.
 - Estado: Explicación y ejemplo propuestos. No se modificaron archivos del proyecto ni se ejecutó código.
@@ -1166,7 +1166,7 @@ Las consultas registran las propuestas exploradas. La implementación del RF08 o
 ### CONSULTA 3 — 3:52 p. m.
 
 - Pregunta realizada: ¿En qué orden debería filtrar, ordenar y paginar las publicaciones?
-- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
 - Resumen breve de la respuesta: Primero se filtra por autor, luego se ordena por createdAt descendente y por último se pagina de diez en diez. Para avanzar se usa el último documento visible como cursor. Si cambia la lista de autores, se vuelve a la primera página.
 - Archivos o conceptos involucrados: Firestore, authorIds, where, orderBy, limit, startAfter y getDocs.
 - Estado: Ejemplo propuesto. No se ejecutó la consulta ni se modificaron archivos del proyecto. Se añadió el enlace actualizado a esta recopilación.
@@ -1177,7 +1177,7 @@ Las consultas registran las propuestas exploradas. La implementación del RF08 o
 ### CONSULTA 4 — 3:58 p. m.
 
 - Pregunta realizada: ¿Cómo se entera el feed de que cambió la lista de seguidos?
-- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
 - Resumen breve de la respuesta: Se propuso escuchar las relaciones con onSnapshot, actualizar followingIds y volver a consultar la primera página con los autores actualizados. getDocs no vuelve a ejecutarse automáticamente. Para seguimientos en memoria, se recomendó un estado compartido.
 - Archivos o conceptos involucrados: follows, followingIds, authorIds, onSnapshot, getDocs, useEffect y cursores.
 - Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó código contra Firestore ni se modificaron archivos del proyecto.
@@ -1188,7 +1188,7 @@ Las consultas registran las propuestas exploradas. La implementación del RF08 o
 ### CONSULTA 5 — 4:05 p. m.
 
 - Pregunta realizada: ¿Qué debería mostrar mientras cargan las publicaciones o las relaciones de seguimiento?
-- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
 - Resumen breve de la respuesta: Se propuso distinguir la carga de seguidos, la carga de publicaciones, el error y el feed vacío. Una lista de seguidos vacía después de cargar aún permite buscar publicaciones propias. Al cargar más, se conservan los tweets visibles.
 - Archivos o conceptos involucrados: followingIds, estados de carga, estado vacío, errores y paginación.
 - Estado: Comportamiento de interfaz propuesto. No se modificaron archivos del proyecto ni se ejecutaron pruebas.
@@ -1198,10 +1198,202 @@ Las consultas registran las propuestas exploradas. La implementación del RF08 o
 ### CONSULTA 6 — 4:14 p. m.
 
 - Pregunta realizada: Solicitar la bitácora para descargar.
-- Enlace para este chat: <https://chatgpt.com/s/cx_6af4dad27b8481918a10a9c262dd2e52>
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
 - Resumen breve de la respuesta: Se recopilaron las cinco consultas sobre el feed y esta solicitud en un archivo TXT con las horas de Colombia y el enlace actualizado.
 - Archivos o conceptos involucrados: bitacoras_2026-11-11.txt y enlace compartido del chat.
 - Estado: Archivo TXT generado y verificado por conteo de registros y enlaces. No se modificó el código de EXEX.
+
+---
+
+## Consultas sobre detalle y respuestas (RF13) - Brahian Montoya - 2026-11-11
+
+En la implementación del RF13, las respuestas se guardan en tweets/{tweetId}/replies con authorId, body y createdAt. La consulta 7 usa content como nombre propuesto para el texto de la respuesta. La consulta 8 describe un plan de pruebas manuales.
+
+### CONSULTA 7 — 5:41 p. m.
+
+- Pregunta realizada: ¿Cómo guardar y mostrar las respuestas de cada tweet?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso guardar cada respuesta en tweets/{tweetId}/replies con authorId, content y createdAt. La pantalla de detalle escucha las respuestas con onSnapshot para mostrarlas sin recargar y cancela la escucha al salir o cambiar de tweet.
+- Archivos o conceptos involucrados: Firestore, subcolecciones, addDoc, serverTimestamp, onSnapshot y useEffect.
+- Estado: Documentación oficial consultada y ejemplos propuestos. No se ejecutó código contra Firestore ni se modificó la aplicación.
+- Fuentes: <https://firebase.google.com/docs/firestore/data-model#subcollections>
+  <https://firebase.google.com/docs/firestore/query-data/listen>
+
+---
+
+### CONSULTA 8 — 5:49 p. m.
+
+- Pregunta realizada: ¿Cómo probar un enlace directo a un tweet existente y otro con un ID inválido?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso abrir y recargar dos URLs de detalle: una con un ID real de Firestore y otra con un ID inexistente. Se distinguió el mensaje de tweet no encontrado de un error de permisos o de alojamiento.
+- Archivos o conceptos involucrados: Ruta /tweets/:tweetId, ID de documento, Firestore, React Router y enlaces directos.
+- Estado: Pruebas manuales propuestas. No se abrió la aplicación, no se ejecutaron pruebas ni se modificó el código.
+
+---
+
+### CONSULTA 9 — 7:22 p. m.
+
+- Pregunta realizada: Solicitar la bitácora actualizada para descargar.
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se agregaron las dos consultas más recientes y esta solicitud al TXT del 11 de noviembre. Se renovó el enlace compartido en los registros.
+- Archivos o conceptos involucrados: bitacoras_2026-11-11.txt y enlace compartido del chat.
+- Estado: Archivo TXT actualizado y verificado mediante conteo de registros y enlaces. No se modificó el código de EXEX.
+
+---
+
+## Modo invitado — Camilo Molina
+
+### [2026-11-11] - Datos públicos del autor
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Mostrar tweets públicos](chatgpt-conversation://6af4f91f-4bac-83e9-9901-3c1872a405b6)
+- **Mensaje enviado (Prompt):**
+  > pero ahi los dos mandan la misma informacion
+  >
+  > es poner en el transaction.set el full name y usename para que solo me muestre eso
+- **Resumen de la respuesta:** Se explicó por qué el nombre y el usuario se guardan también en publicProfiles. Esa colección contiene los dos campos que necesita Explorar para mostrar al autor.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/firebase/providers.ts`, `src/firebase/publicProfiles.ts` y `src/firebase/featuredTweets.ts`.
+
+---
+
+### [2026-11-11] - Datos del perfil completo
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Mostrar tweets públicos](chatgpt-conversation://6af4f91f-4bac-83e9-9901-3c1872a405b6)
+- **Mensaje enviado (Prompt):**
+  > y el otro que es lo que guarda
+- **Resumen de la respuesta:** Se revisó que users guarda el perfil completo, con el UID, nombre, usuario, correo y foto. Al editar también puede incluir la bio, la portada y las rutas de las imágenes. Explorar consulta los nombres en publicProfiles.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/firebase/providers.ts` y `src/firebase/featuredTweets.ts`.
+
+---
+
+### [2026-11-11] - Actualizar el nombre público al editar
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Mostrar tweets públicos](chatgpt-conversation://6af4f91f-4bac-83e9-9901-3c1872a405b6)
+- **Mensaje enviado (Prompt):**
+  > y cuando yo edite mi perfil eso se refleja en el publico
+  >
+  > eso esta en donde
+- **Resumen de la respuesta:** Se ubicó la función updateUserProfile en providers.ts. La misma transacción actualiza el perfil y escribe el nombre y el usuario en publicProfiles. Al volver a cargar Explorar, se muestra el nombre actualizado.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+---
+
+## Consultas sobre republicaciones (RF14) - Brahian Montoya - 2026-11-12
+
+Horas de Colombia (UTC-5). El enlace corresponde a una copia anterior. El archivo adjunto registra las consultas del 12 de noviembre.
+
+En el RF14, las republicaciones se guardan en la colección reposts con userId, tweetId y createdAt. El ID combina el usuario y el tweet. La tarjeta conserva la autoría y la fecha del original, y el feed ordena la entrada por la fecha de la republicación.
+
+### CONSULTA 1 — 3:35 p. m.
+
+- Pregunta realizada: ¿Cómo guardo una republicación en Firestore?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso crear un documento en tweets con type: repost, el UID de quien republica, el ID del original y su propia fecha. Un ID fijo por pareja usuario–tweet permite evitar documentos duplicados.
+- Archivos o conceptos involucrados: Firestore, tweets, type, authorId, originalTweetId, createdAt, addDoc y serverTimestamp.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se guardaron datos ni se modificó el proyecto.
+
+---
+
+### CONSULTA 2 — 3:38 p. m.
+
+- Pregunta realizada: ¿Qué datos necesito para saber quién republicó y cuál es la publicación original?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: authorId identifica a quien republicó. originalTweetId apunta al documento original, donde está el UID del autor original. type y createdAt permiten distinguir y ordenar la republicación.
+- Archivos o conceptos involucrados: Firestore, authorId, originalTweetId, type y createdAt.
+- Estado: Modelo explicado con un ejemplo. No se guardaron datos ni se modificó el proyecto.
+
+---
+
+### CONSULTA 3 — 3:45 p. m.
+
+- Pregunta realizada: ¿Cómo muestro una republicación en el feed?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso leer el tweet original y reutilizar TweetCard, mostrando encima quién republicó. La tarjeta conserva el autor y la fecha originales. Se distinguió la carga del caso en que el original no existe.
+- Archivos o conceptos involucrados: TweetCard, authorId, originalTweetId, createdAt, getDoc y estados de carga.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó código ni se modificó el proyecto.
+
+---
+
+### CONSULTA 4 — 3:46 p. m.
+
+- Pregunta realizada: ¿Uso la fecha del tweet original o la de la republicación para ordenar el feed?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se recomendó ordenar por la fecha de la republicación y mostrar la fecha del tweet original dentro de TweetCard.
+- Archivos o conceptos involucrados: createdAt, orderBy, TweetCard, feed y republicaciones.
+- Estado: Explicación propuesta. No se ejecutaron consultas ni se modificó el proyecto.
+
+---
+
+### CONSULTA 5 — 3:52 p. m.
+
+- Pregunta realizada: Solicitar la bitácora para descargar.
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se recopilaron las cuatro consultas sobre republicaciones y esta solicitud en un archivo TXT.
+- Archivos o conceptos involucrados: bitacoras_2026-11-12.txt y enlace compartido del chat.
+- Estado: Archivo TXT generado y verificado por conteo de registros. No se modificó el código de EXEX.
+
+---
+
+## Consultas sobre imágenes y GIF (RF11) - Brahian Montoya - 2026-11-12
+
+Horas de Colombia (UTC-5). El enlace corresponde a una copia anterior a estas consultas.
+
+El RF11 acepta JPG, PNG, WebP y GIF de hasta 5 MiB. Guarda la URL opcional en mediaUrl y conserva el texto obligatorio. Si falla el guardado después de subir el adjunto, la aplicación intenta eliminar el archivo. La consulta 7 registra el enfoque alternativo que se exploró.
+
+### CONSULTA 6 — 4:28 p. m. (16:28:03)
+
+- Pregunta realizada: ¿Cómo valido el tipo y tamaño del archivo antes de subirlo?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso validar File.type y File.size antes de subir una imagen. JPEG, PNG, WebP y el límite de 5 MiB son ejemplos. El atributo accept solo orienta la selección; se recomendó aplicar los límites también en Firebase Storage.
+- Archivos o conceptos involucrados: File, tipos MIME, accept, uploadBytes y reglas de Firebase Storage.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se subieron archivos ni se modificó el proyecto.
+
+---
+
+### CONSULTA 7 — 4:28 p. m. (16:28:41)
+
+- Pregunta realizada: ¿Qué hago si el archivo se sube pero falla el guardado del tweet?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso conservar el archivo y reutilizar el ID reservado al reintentar el guardado con setDoc. Si el resultado es incierto, se consulta al servidor antes de reintentar o eliminar el archivo. Si se cancela, se elimina solo si el tweet no existe y no hay escritura pendiente.
+- Archivos o conceptos involucrados: Firebase Storage, Firestore, setDoc, getDocFromServer, deleteObject y escrituras pendientes.
+- Estado: Documentación oficial consultada y flujo propuesto. No se subieron ni eliminaron archivos ni se ejecutaron escrituras.
+
+---
+
+### CONSULTA 8 — 4:30 p. m.
+
+- Pregunta realizada: ¿Cómo hago que los tweets que solo tienen texto sigan funcionando?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso hacer imageUrl opcional, validar y subir la imagen solo si se eligió un archivo y mostrarla en la tarjeta solo si existe. Se mantuvo el texto obligatorio en el ejemplo.
+- Archivos o conceptos involucrados: Tweet, TweetCard, imageUrl, File, validateImage, setDoc y renderizado condicional.
+- Estado: Flujo y ejemplos propuestos. No se modificaron archivos del proyecto ni se ejecutaron pruebas.
+
+---
+
+### CONSULTA 9 — 4:31 p. m.
+
+- Pregunta realizada: ¿Cómo evito que una imagen grande se salga de la tarjeta en celular?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso limitar el ancho con max-width: 100% y mantener la proporción con height: auto. Si la tarjeta es hija de un contenedor flex, se sugirió comprobar si necesita min-width: 0.
+- Archivos o conceptos involucrados: TweetCard, imageUrl, CSS adaptable, max-width, height y Flexbox.
+- Estado: Ejemplo propuesto. No se modificaron archivos del proyecto ni se comprobó el diseño en celular.
+
+---
+
+### CONSULTA 10 — 4:32 p. m.
+
+- Pregunta realizada: Solicitar la bitácora actualizada para descargar.
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se añadieron las cuatro consultas sobre imágenes y esta solicitud al TXT del 12 de noviembre.
+- Archivos o conceptos involucrados: bitacoras_2026-11-12.txt y enlaces compartidos del chat.
+- Estado: Archivo TXT actualizado y verificado por conteo de registros. No se obtuvo un enlace nuevo. No se modificó el código de EXEX.
 
 ---
 

@@ -26,7 +26,7 @@ export const PublishTweetPage = () => {
             <strong>{user.fullname || user.username || 'Usuario'}</strong>
             {user.username && <span className="text-body-secondary d-block">@{user.username}</span>}
           </p>
-          <TweetComposer onPublish={publishTweet} />
+          <TweetComposer allowMedia onPublish={publishTweet} />
         </div>
       </section>
       {loading && <p role="status">Cargando tu última publicación…</p>}
@@ -34,7 +34,7 @@ export const PublishTweetPage = () => {
       {latestTweet && (
         <section aria-labelledby="latest-tweet-heading">
           <h2 id="latest-tweet-heading" className="h5 mb-3">Tu última publicación</h2>
-          <TweetCard tweet={latestTweet} author={user} />
+          <TweetCard showDetailLink tweet={latestTweet} author={user} />
         </section>
       )}
     </main>

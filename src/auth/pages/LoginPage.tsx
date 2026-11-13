@@ -64,6 +64,7 @@ export const LoginPage = () => {
             </button>
           </form>
           <p className="mt-3 exex-auth-footer">¿No tienes cuenta? <Link to="/register">Regístrate</Link></p>
+          <p className="exex-auth-footer mb-0"><Link to="/explorar">Explorar como invitado</Link></p>
         </div>
       </div>
     </main>

@@ -9,6 +9,7 @@ import { FollowListPage } from '../pages/FollowListPage'
 import { PublishTweetPage } from '../pages/PublishTweetPage'
 import { TweetsProvider } from '../contexts/TweetsProvider'
 import { LikesProvider } from '../contexts/LikesProvider'
+import { TweetDetailPage } from '../pages/TweetDetailPage'
 import { UserTweetsPage } from '../pages/UserTweetsPage'
 
 export const ExexRouter = () => {
@@ -25,6 +26,7 @@ export const ExexRouter = () => {
               <Routes>
                 <Route index element={<HomePage />} />
                 <Route path="tweets/new" element={<PublishTweetPage />} />
+                <Route path="tweets/:tweetId" element={<TweetDetailPage />} />
                 <Route path="following" element={<FollowListPage list="following" />} />
                 <Route path="followers" element={<FollowListPage list="followers" />} />
                 <Route path="users/:userId" element={<UserTweetsPage />} />

@@ -1,6 +1,7 @@
 import { useEffect, useReducer, useRef, useState, type ReactNode } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { FirebaseAuth } from '../../firebase/config';
+import { syncPublicProfile } from '../../firebase/publicProfiles';
 import { getUserProfile, loginUserByCredentials, loginUserByGoogleProvider, logoutUser, registerUser, updateUserProfile } from '../../firebase/providers';
 import type { ProfileEdit } from '../profile';
 import { AuthContext } from './AuthContext';
@@ -39,6 +40,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         profile = await getUserProfile(user.uid);
       } catch {
         errorMessage = 'La sesión está abierta, pero no se pudo cargar el perfil. Revisa la conexión y las reglas de Firestore.';
+      }
+      if (!active || currentRequest !== request || registering.current) return;
+      if (profile) {
+        try {
+          await syncPublicProfile(user.uid);
+        } catch {
+          errorMessage = 'La sesión está abierta, pero no se pudo actualizar tu perfil público.';
+        }
       }
       if (!active || currentRequest !== request || registering.current) return;
       dispatch({
