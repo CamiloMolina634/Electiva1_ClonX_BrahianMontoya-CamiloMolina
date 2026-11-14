@@ -5,6 +5,7 @@ import { ExexRouter } from '../exex/routes/ExexRouter'
 import { AuthContext } from '../auth/contexts/AuthContext'
 import { LoginPage } from '../auth/pages/LoginPage'
 import { RegisterPage } from '../auth/pages/RegisterPage'
+import { ChooseUsernamePage } from '../auth/pages/ChooseUsernamePage'
 import { ExplorePage } from '../exex/pages/ExplorePage'
 
 export const BaseRouter = () => {
@@ -17,6 +18,8 @@ export const BaseRouter = () => {
     : '/login'
 
   if (checking) return <p className="container py-4" role="status">Comprobando sesión…</p>
+
+  if (authState.logged && !authState.user?.username) return <ChooseUsernamePage />
 
   return (
     <Routes>

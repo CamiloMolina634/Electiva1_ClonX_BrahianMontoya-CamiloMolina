@@ -86,29 +86,6 @@ export const loginUserByGoogleProvider = async (): Promise<AuthResult | AuthErro
     const { uid, email, displayName, photoURL } = user;
     if (!email) throw new Error('google-email-missing');
 
-    const base = email.split('@')[0].toLowerCase().replace(/[^a-z0-9_]/g, '_').slice(0, 12).padEnd(3, '_');
-    const suffix = uid.toLowerCase().replace(/[^a-z0-9]/g, '').slice(-6);
-    const candidates = [base, `${base}_${suffix}`, ...[1, 2, 3].map((number) => `${base}_${suffix}${number}`)];
-    const profileRef = doc(FirebaseDB, 'users', uid);
-
-    await runTransaction(FirebaseDB, async (transaction) => {
-      if ((await transaction.get(profileRef)).exists()) return;
-
-      for (const username of candidates) {
-        const usernameRef = doc(FirebaseDB, 'usernames', username);
-        const reservation = await transaction.get(usernameRef);
-        if (reservation.exists() && reservation.data().uid !== uid) continue;
-
-        if (!reservation.exists()) transaction.set(usernameRef, { uid });
-        const profile: User = { uid, fullname: displayName?.trim().slice(0, 80) || base, username, email, photoURL };
-        transaction.set(profileRef, profile);
-        transaction.set(doc(FirebaseDB, 'publicProfiles', uid), { fullname: profile.fullname, username });
-        return;
-      }
-
-      throw new Error('google-username-unavailable');
-    });
-
     return { ok: true, uid, email, displayName, photoURL };
   } catch (error: unknown) {
     if (signedIn) {
@@ -132,6 +109,35 @@ export const loginUserByGoogleProvider = async (): Promise<AuthResult | AuthErro
     }
     return { ok: false, errorMessage: 'No se pudo iniciar sesión con Google. Inténtalo de nuevo.' };
   }
+};
+
+export const completeGoogleProfile = async (value: string): Promise<void> => {
+  const user = FirebaseAuth.currentUser;
+  if (!user || !user.email || !user.providerData.some((provider) => provider.providerId === 'google.com')) {
+    throw new Error('Inicia sesión con Google para continuar.');
+  }
+  const username = value.trim().replace(/^@/, '').toLowerCase();
+  if (!/^[a-z0-9_]{3,20}$/.test(username)) {
+    throw new Error('Usa entre 3 y 20 letras, números o guiones bajos.');
+  }
+  const profileRef = doc(FirebaseDB, 'users', user.uid);
+  const usernameRef = doc(FirebaseDB, 'usernames', username);
+  await runTransaction(FirebaseDB, async (transaction) => {
+    const profileSnapshot = await transaction.get(profileRef);
+    const reservation = await transaction.get(usernameRef);
+    if (profileSnapshot.exists()) return;
+    if (reservation.exists() && reservation.data().uid !== user.uid) {
+      throw new Error('Ese usuario ya está ocupado. Elige otro.');
+    }
+    const profile: User = {
+      uid: user.uid, email: user.email!, username,
+      fullname: user.displayName?.trim().slice(0, 80) || username,
+      photoURL: user.photoURL,
+    };
+    transaction.set(usernameRef, { uid: user.uid });
+    transaction.set(profileRef, profile);
+    transaction.set(doc(FirebaseDB, 'publicProfiles', user.uid), { fullname: profile.fullname, username });
+  });
 };
 
 export const logoutUser = () => signOut(FirebaseAuth);
