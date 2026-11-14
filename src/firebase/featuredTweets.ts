@@ -1,4 +1,6 @@
-import { collection, doc, getDoc, getDocs, limit, orderBy, query, Timestamp, type DocumentSnapshot } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, Timestamp, type DocumentSnapshot } from 'firebase/firestore'
+import { compareFeaturedTweets, getLikeCounts } from '../exex/utils/rankTweets'
+import type { Like } from '../exex/types/Like'
 import type { Tweet } from '../exex/types/social'
 import type { User } from '../exex/types/User'
 import { FirebaseDB } from './config'
@@ -10,11 +12,20 @@ interface FeaturedTweet {
 
 export const getFeaturedTweets = async (tweetId?: string): Promise<FeaturedTweet[]> => {
   let documents: DocumentSnapshot[]
+  let likes: Like[] = []
   if (tweetId !== undefined) {
     if (!tweetId || tweetId.includes('/')) return []
     documents = [await getDoc(doc(FirebaseDB, 'tweets', tweetId))]
   } else {
-    documents = (await getDocs(query(collection(FirebaseDB, 'tweets'), orderBy('createdAt', 'desc'), limit(10)))).docs
+    const [tweetsSnapshot, likesSnapshot] = await Promise.all([
+      getDocs(collection(FirebaseDB, 'tweets')),
+      getDocs(collection(FirebaseDB, 'likes')),
+    ])
+    documents = tweetsSnapshot.docs
+    likes = likesSnapshot.docs.flatMap((document): Like[] => {
+      const { tweetId, userId } = document.data()
+      return typeof tweetId === 'string' && typeof userId === 'string' ? [{ tweetId, userId }] : []
+    })
   }
   const tweets = documents.flatMap((document): Tweet[] => {
     const { authorId, body, createdAt, mediaUrl } = document.data() ?? {}
@@ -30,7 +41,9 @@ export const getFeaturedTweets = async (tweetId?: string): Promise<FeaturedTweet
         : undefined,
     }]
   })
-  const authorIds = [...new Set(tweets.map((tweet) => tweet.authorId))]
+  const counts = getLikeCounts(likes)
+  const selectedTweets = tweets.sort((first, second) => compareFeaturedTweets(first, second, counts)).slice(0, 10)
+  const authorIds = [...new Set(selectedTweets.map((tweet) => tweet.authorId))]
   const authors = await Promise.all(authorIds.map(async (uid) => {
     const profile = (await getDoc(doc(FirebaseDB, 'publicProfiles', uid))).data()
     return {
@@ -41,5 +54,5 @@ export const getFeaturedTweets = async (tweetId?: string): Promise<FeaturedTweet
   }))
   const authorsById = new Map(authors.map((author) => [author.uid, author]))
 
-  return tweets.map((tweet) => ({ tweet, author: authorsById.get(tweet.authorId)! }))
+  return selectedTweets.map((tweet) => ({ tweet, author: authorsById.get(tweet.authorId)! }))
 }
