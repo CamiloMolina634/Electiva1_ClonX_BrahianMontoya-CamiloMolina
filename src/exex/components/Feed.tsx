@@ -3,6 +3,8 @@ import { AuthContext } from '../../auth/contexts/AuthContext'
 import { Pagination } from '../../ui/components/Pagination'
 import { useFollows } from '../hooks/useFollows'
 import { useTweets } from '../hooks/useTweets'
+import { useLikes } from '../hooks/useLikes'
+import { compareFeaturedTweets, getLikeCounts } from '../utils/rankTweets'
 import { getFeedTweets } from '../utils/getFeedTweets'
 import { TweetCard } from './TweetCard'
 
@@ -13,6 +15,8 @@ export const Feed = ({ mode = 'following' }: { mode?: 'all' | 'following' }) => 
   const { users, follows, currentUserId, ready } = useFollows()
   const { tweets, loading, loadError, reposts, repostsError } = useTweets()
   const [page, setPage] = useState(1)
+  const { likes } = useLikes()
+  const likeCounts = getLikeCounts(likes)
 
   const authors = new Map(users.map((user) => [user.uid, user]))
   if (authState.user) authors.set(authState.user.uid, authState.user)
@@ -44,7 +48,10 @@ export const Feed = ({ mode = 'following' }: { mode?: 'all' | 'following' }) => 
     }]
   })
   const feedTweets = [...originalEntries, ...repostEntries]
-    .sort((first, second) => second.createdAt.localeCompare(first.createdAt))
+    .sort((first, second) => mode === 'all'
+      ? compareFeaturedTweets(first.tweet, second.tweet, likeCounts)
+        || second.createdAt.localeCompare(first.createdAt)
+      : second.createdAt.localeCompare(first.createdAt))
 
   const totalPages = Math.max(1, Math.ceil(feedTweets.length / PAGE_SIZE))
   const currentPage = Math.min(page, totalPages)
