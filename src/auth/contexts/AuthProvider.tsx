@@ -1,7 +1,9 @@
 import { useEffect, useReducer, useRef, useState, type ReactNode } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { FirebaseAuth } from '../../firebase/config';
-import { getUserProfile, loginUserByCredentials, logoutUser, registerUser } from '../../firebase/providers';
+import { syncPublicProfile } from '../../firebase/publicProfiles';
+import { completeGoogleProfile, getUserProfile, loginUserByCredentials, loginUserByGoogleProvider, logoutUser, registerUser, updateUserProfile } from '../../firebase/providers';
+import type { ProfileEdit } from '../profile';
 import { AuthContext } from './AuthContext';
 import { authReducer } from '../reducers/authReducer';
 import type { AuthState } from '../types/authReducerInterfaces';
@@ -40,6 +42,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         errorMessage = 'La sesión está abierta, pero no se pudo cargar el perfil. Revisa la conexión y las reglas de Firestore.';
       }
       if (!active || currentRequest !== request || registering.current) return;
+      if (profile) {
+        try {
+          await syncPublicProfile(user.uid);
+        } catch {
+          errorMessage = 'La sesión está abierta, pero no se pudo actualizar tu perfil público.';
+        }
+      }
+      if (!active || currentRequest !== request || registering.current) return;
       dispatch({
         type: 'login',
         payload: {
@@ -72,8 +82,34 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return result.ok;
   };
 
+  const loginWithGoogle = async (): Promise<boolean> => {
+    if (registering.current) return false;
+    registering.current = true;
+    try {
+      const result = await loginUserByGoogleProvider();
+      if (!result.ok) {
+        dispatch({ type: 'error', payload: { ...initialState, errorMessage: result.errorMessage } });
+        return false;
+      }
+      setChecking(true);
+      setSessionVersion((version) => version + 1);
+      return true;
+    } catch {
+      dispatch({ type: 'error', payload: { ...initialState, errorMessage: 'No se pudo finalizar el acceso con Google. Inténtalo de nuevo.' } });
+      return false;
+    } finally {
+      registering.current = false;
+    }
+  };
+
   const logout = async (): Promise<void> => {
     await logoutUser();
+  };
+
+  const chooseGoogleUsername = async (username: string): Promise<void> => {
+    await completeGoogleProfile(username);
+    setChecking(true);
+    setSessionVersion((version) => version + 1);
   };
 
   const register = async (data: RegisterData): Promise<boolean> => {
@@ -93,8 +129,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  const saveProfile = async (details: ProfileEdit): Promise<void> => {
+    const uid = authState.user?.uid;
+    if (!uid) throw new Error('Inicia sesión de nuevo para editar tu perfil.');
+    const profile = await updateUserProfile(uid, details);
+    dispatch({ type: 'profile-updated', payload: { uid, ...profile } });
+  };
+
   return (
-    <AuthContext.Provider value={{ authState, checking, login, register, logout }}>
+    <AuthContext.Provider value={{ authState, checking, login, loginWithGoogle, chooseGoogleUsername, register, logout, saveProfile }}>
       {children}
     </AuthContext.Provider>
   );

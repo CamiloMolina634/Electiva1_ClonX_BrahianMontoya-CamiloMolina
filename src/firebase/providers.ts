@@ -1,8 +1,13 @@
 import { FirebaseError } from 'firebase/app';
-import { createUserWithEmailAndPassword, deleteUser, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, deleteUser, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import type { User as FirebaseUser } from 'firebase/auth';
 import { doc, getDoc, runTransaction } from 'firebase/firestore';
-import { FirebaseAuth, FirebaseDB } from './config';
+import { FirebaseAuth, FirebaseDB, FirebaseStorage } from './config';
+import { deleteObject, getDownloadURL, ref, uploadBytes, type StorageReference } from 'firebase/storage';
+import {
+  PROFILE_BIO_MAX_LENGTH, PROFILE_IMAGE_MAX_SIZE, PROFILE_IMAGE_TYPES,
+  PROFILE_NAME_MAX_LENGTH, PROFILE_NAME_MIN_LENGTH, type ProfileEdit, type SavedProfile,
+} from '../auth/profile';
 import type { RegisterData } from '../auth/types/registerInterfaces';
 import type { User } from '../auth/types/authReducerInterfaces';
 
@@ -71,6 +76,70 @@ export const loginUserByCredentials = async (username: string, password: string)
   }
 };
 
+const googleProvider = new GoogleAuthProvider();
+
+export const loginUserByGoogleProvider = async (): Promise<AuthResult | AuthErrorResult> => {
+  let signedIn = false;
+  try {
+    const { user } = await signInWithPopup(FirebaseAuth, googleProvider);
+    signedIn = true;
+    const { uid, email, displayName, photoURL } = user;
+    if (!email) throw new Error('google-email-missing');
+
+    return { ok: true, uid, email, displayName, photoURL };
+  } catch (error: unknown) {
+    if (signedIn) {
+      await signOut(FirebaseAuth);
+      return { ok: false, errorMessage: 'No se pudo preparar tu perfil de Google. Inténtalo de nuevo.' };
+    }
+
+    if (error instanceof FirebaseError) {
+      switch (error.code) {
+        case 'auth/popup-closed-by-user':
+          return { ok: false, errorMessage: 'Cerraste la ventana de Google antes de iniciar sesión.' };
+        case 'auth/popup-blocked':
+          return { ok: false, errorMessage: 'Permite las ventanas emergentes para iniciar sesión con Google.' };
+        case 'auth/operation-not-allowed':
+          return { ok: false, errorMessage: 'El acceso con Google aún no está habilitado en Firebase.' };
+        case 'auth/unauthorized-domain':
+          return { ok: false, errorMessage: 'Este dominio no está autorizado para iniciar sesión con Google.' };
+        case 'auth/account-exists-with-different-credential':
+          return { ok: false, errorMessage: 'Esta cuenta ya existe. Entra con el método que usaste al registrarte.' };
+      }
+    }
+    return { ok: false, errorMessage: 'No se pudo iniciar sesión con Google. Inténtalo de nuevo.' };
+  }
+};
+
+export const completeGoogleProfile = async (value: string): Promise<void> => {
+  const user = FirebaseAuth.currentUser;
+  if (!user || !user.email || !user.providerData.some((provider) => provider.providerId === 'google.com')) {
+    throw new Error('Inicia sesión con Google para continuar.');
+  }
+  const username = value.trim().replace(/^@/, '').toLowerCase();
+  if (!/^[a-z0-9_]{3,20}$/.test(username)) {
+    throw new Error('Usa entre 3 y 20 letras, números o guiones bajos.');
+  }
+  const profileRef = doc(FirebaseDB, 'users', user.uid);
+  const usernameRef = doc(FirebaseDB, 'usernames', username);
+  await runTransaction(FirebaseDB, async (transaction) => {
+    const profileSnapshot = await transaction.get(profileRef);
+    const reservation = await transaction.get(usernameRef);
+    if (profileSnapshot.exists()) return;
+    if (reservation.exists() && reservation.data().uid !== user.uid) {
+      throw new Error('Ese usuario ya está ocupado. Elige otro.');
+    }
+    const profile: User = {
+      uid: user.uid, email: user.email!, username,
+      fullname: user.displayName?.trim().slice(0, 80) || username,
+      photoURL: user.photoURL,
+    };
+    transaction.set(usernameRef, { uid: user.uid });
+    transaction.set(profileRef, profile);
+    transaction.set(doc(FirebaseDB, 'publicProfiles', user.uid), { fullname: profile.fullname, username });
+  });
+};
+
 export const logoutUser = () => signOut(FirebaseAuth);
 
 export const getUserProfile = async (uid: string): Promise<User | null> => {
@@ -86,7 +155,75 @@ export const getUserProfile = async (uid: string): Promise<User | null> => {
     username: data.username,
     email: typeof data.email === 'string' ? data.email : '',
     photoURL: typeof data.photoURL === 'string' ? data.photoURL : null,
+    coverURL: typeof data.coverURL === 'string' ? data.coverURL : undefined,
+    bio: typeof data.bio === 'string' ? data.bio : '',
   };
+};
+
+export const updateUserProfile = async (uid: string, details: ProfileEdit): Promise<SavedProfile> => {
+  if (FirebaseAuth.currentUser?.uid !== uid) {
+    throw new Error('Inicia sesión de nuevo para editar tu perfil.');
+  }
+
+  const fullname = details.fullname.trim();
+  const bio = details.bio.trim();
+  if (fullname.length < PROFILE_NAME_MIN_LENGTH || fullname.length > PROFILE_NAME_MAX_LENGTH) {
+    throw new Error('El nombre debe tener entre 2 y 80 caracteres.');
+  }
+  if (bio.length > PROFILE_BIO_MAX_LENGTH) {
+    throw new Error('La biografía debe tener máximo 160 caracteres.');
+  }
+
+  const images = [
+    { kind: 'photo', file: details.photo, urlField: 'photoURL', pathField: 'photoPath' },
+    { kind: 'cover', file: details.cover, urlField: 'coverURL', pathField: 'coverPath' },
+  ] as const;
+  for (const { file } of images) {
+    if (file && (!PROFILE_IMAGE_TYPES.includes(file.type) || file.size === 0 || file.size > PROFILE_IMAGE_MAX_SIZE)) {
+      throw new Error('Selecciona imágenes JPG, PNG o WebP de hasta 5 MB.');
+    }
+  }
+
+  const profileRef = doc(FirebaseDB, 'users', uid);
+  const saved: SavedProfile = { fullname, bio };
+  const uploads: StorageReference[] = [];
+  const paths: Record<string, string> = {};
+  let replacedPaths: string[] = [];
+
+  try {
+    for (const { kind, file, urlField, pathField } of images) {
+      if (!file) continue;
+      const imageRef = ref(FirebaseStorage, `profiles/${uid}/${kind}/${crypto.randomUUID()}`);
+      uploads.push(imageRef);
+      await uploadBytes(imageRef, file, { contentType: file.type });
+      saved[urlField] = await getDownloadURL(imageRef);
+      paths[pathField] = imageRef.fullPath;
+    }
+
+    replacedPaths = await runTransaction(FirebaseDB, async (transaction) => {
+      const current = (await transaction.get(profileRef)).data();
+      if (typeof current?.username !== 'string') throw new Error('profile-missing');
+      transaction.update(profileRef, { ...saved, ...paths });
+      transaction.set(doc(FirebaseDB, 'publicProfiles', uid), { fullname, username: current.username });
+      return images.flatMap(({ kind, pathField }) => {
+        const oldPath = current?.[pathField];
+        return paths[pathField] && typeof oldPath === 'string' && oldPath.startsWith(`profiles/${uid}/${kind}/`)
+          ? [oldPath]
+          : [];
+      });
+    });
+  } catch (error) {
+    if (FirebaseAuth.currentUser?.uid === uid) {
+      await Promise.allSettled(uploads.map((imageRef) => deleteObject(imageRef)));
+    }
+    if (error instanceof FirebaseError && error.code === 'storage/unauthorized') {
+      throw new Error('Storage no permitió subir la imagen. Revisa los permisos del perfil.');
+    }
+    throw new Error('No se pudo guardar el perfil. Inténtalo de nuevo.');
+  }
+
+  await Promise.allSettled(replacedPaths.map((path) => deleteObject(ref(FirebaseStorage, path))));
+  return saved;
 };
 
 export const registerUser = async (data: RegisterData): Promise<AuthResult | AuthErrorResult> => {
@@ -111,6 +248,7 @@ export const registerUser = async (data: RegisterData): Promise<AuthResult | Aut
       if (usernameSnapshot.exists()) throw new Error('username-taken');
       transaction.set(usernameRef, { uid: profile.uid });
       transaction.set(profileRef, profile);
+      transaction.set(doc(FirebaseDB, 'publicProfiles', profile.uid), { fullname, username });
     });
 
     return { ok: true, uid: profile.uid, email: profile.email, displayName: fullname, photoURL: profile.photoURL };

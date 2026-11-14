@@ -859,3 +859,582 @@ Las pruebas y aprobaciones reportadas por el usuario no equivalen a comprobacion
   - Sin cambios. Archivo relacionado: `src/exex/pages/HomePage.tsx`.
 
 ---
+
+
+## Seguimientos con Firebase — Camilo Molina
+
+### [2026-11-04] - Contexto compartido de seguimientos
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Crear contexto global para follows](https://chatgpt.com/s/cx_6aebd0c53bb88191b3102ce378c4db82)
+- **Mensaje enviado (Prompt):**
+  > Quiero crear un contexto para el foloow y que se utilice en todos y obviamente hacer el provider, para los seguidos y seguidores, eso como se hace paso a paso
+- **Resumen de la respuesta:** Se explicó cómo el proveedor carga perfiles y relaciones de Firestore y cómo las pantallas internas acceden al mismo estado con `useFollows()`.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/contexts/FollowsContext.ts`, `src/exex/contexts/FollowsProvider.tsx`, `src/exex/hooks/useFollows.ts` y `src/exex/routes/ExexRouter.tsx`.
+
+---
+
+### [2026-11-04] - Del botón a la lista de Seguidos
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Crear contexto global para follows](https://chatgpt.com/s/cx_6aebd0c53bb88191b3102ce378c4db82)
+- **Mensaje enviado (Prompt):**
+  > Ya tengo el botón de seguir y dejar de seguir. Muéstrame qué pasa en el código desde que pulso Seguir hasta que la persona aparece en Seguidos. Dime en qué archivo pasa cada cosa.
+- **Resumen de la respuesta:** Se siguió el clic hasta `setFollowing`. La transacción crea o elimina la relación y Seguidos cruza los UID de las relaciones con los perfiles para mostrar la lista.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/UserListItem.tsx`, `src/exex/contexts/FollowsProvider.tsx`, `src/exex/pages/FollowersPage.tsx` y `src/exex/pages/FollowingPage.tsx`.
+
+---
+
+### [2026-11-04] - Actualización de los contadores
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Crear contexto global para follows](https://chatgpt.com/s/cx_6aebd0c53bb88191b3102ce378c4db82)
+- **Mensaje enviado (Prompt):**
+  > ¿Qué hace `onSnapshot` y cómo se enteran Inicio y Seguidos de que cambió el contador
+- **Resumen de la respuesta:** Se explicó cómo `onSnapshot` actualiza el contexto cuando cambia Firestore. Inicio recalcula los contadores y Seguidos vuelve a filtrar los perfiles.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/contexts/FollowsProvider.tsx`, `src/exex/pages/HomePage.tsx` y `src/exex/pages/FollowingPage.tsx`.
+
+---
+
+### [2026-11-04] - Comprobar cambios en Firestore
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Crear contexto global para follows](https://chatgpt.com/s/cx_6aebd0c53bb88191b3102ce378c4db82)
+- **Mensaje enviado (Prompt):**
+  > Cómo compruebo en Firebase que el seguimiento se guardó y que después sí se borró
+- **Resumen de la respuesta:** Se indicó cómo verificar en la pestaña Datos que el documento con los dos UID aparece al seguir y desaparece al dejar de seguir.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/contexts/FollowsProvider.tsx`.
+
+---
+
+### [2026-11-04] - Comparación con la versión anterior
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Crear contexto global para follows](https://chatgpt.com/s/cx_6aebd0c53bb88191b3102ce378c4db82)
+- **Mensaje enviado (Prompt):**
+  > Me puedes dar el paso a paso de si lo que cambie con lo que estaba antes y si esta bien hecho
+- **Resumen de la respuesta:** Se comparó el estado local anterior con el contexto compartido y la persistencia en Firestore. Se comprobó la compilación y se identificó que el feed todavía usa relaciones de ejemplo.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/routes/ExexRouter.tsx`, `src/exex/pages/HomePage.tsx`, `src/exex/pages/FollowersPage.tsx`, `src/exex/pages/FollowingPage.tsx`, `src/exex/pages/UserTweetsPage.tsx` y `src/exex/components/Feed.tsx`.
+
+---
+
+### [2026-11-04] - Datos de ejemplo pendientes
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Crear contexto global para follows](https://chatgpt.com/s/cx_6aebd0c53bb88191b3102ce378c4db82)
+- **Mensaje enviado (Prompt):**
+  > los datos mokiados los quito o los dejo?
+- **Resumen de la respuesta:** Se recomendó conservar los datos de ejemplo mientras el feed y los perfiles de demostración todavía los usen.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/Feed.tsx`, `src/exex/pages/UserTweetsPage.tsx`, `src/data/users.ts` y `src/data/follows.ts`.
+
+---
+
+
+## Búsqueda de usuarios — Camilo Molina
+
+### [2026-11-04] - Diseño y conexión de la barra
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Diseñar barra de búsqueda](https://chatgpt.com/s/cx_6aebd6575b248191a421e351c4ad0469)
+- **Mensaje enviado (Prompt):**
+  > Para crear la barra de busqueda necesito del follow provider cierto?y tambien me muestras como hacer el diseño para eso
+- **Resumen de la respuesta:** Se explicó cómo `useFollows()` obtiene los usuarios del proveedor existente. Se revisaron el campo de búsqueda, la lupa, los estilos y el enlace al perfil por UID.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/UserSearch.tsx`, `src/exex/pages/HomePage.css` y `src/exex/routes/ExexRouter.tsx`.
+
+---
+
+### [2026-11-04] - Coincidencias por nombre de usuario
+
+- **Herramienta / Modelo:** Codex
+- **Enlace a la conversación:** [Diseñar barra de búsqueda](https://chatgpt.com/s/cx_6aebd6575b248191a421e351c4ad0469)
+- **Mensaje enviado (Prompt):**
+  > y con el starwith puedo asemejar las busquedas cierto, porque el followprovider me trae lo de firestore
+- **Resumen de la respuesta:** Se explicó que `startsWith()` encuentra usuarios cuyo nombre empieza por lo escrito. La búsqueda quita el `@`, ignora mayúsculas y usa los usuarios ya cargados de Firestore.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/UserSearch.tsx` y `src/exex/contexts/FollowsProvider.tsx`.
+
+---
+
+## Perfil y menú lateral — Camilo Molina
+
+### [2026-11-07] - Reutilizar la pantalla de tweets de un usuario
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Reutilizar pantalla de perfil](https://chatgpt.com/share/6aef58dd-b66c-83e9-9131-c1262308c0f4)
+- **Mensaje enviado (Prompt):**
+  > no es crear una pagina si no que desde ver los tweets de lo usuario cojerlo y añadirle lo que le falta
+- **Resumen de la respuesta:** Se explicó cómo aprovechar la pantalla de tweets del usuario para mostrar el perfil. La ruta indica qué usuario se está viendo. El enlace de Mi perfil usa el UID de la sesión y la búsqueda usa el UID de la persona seleccionada. También se explicó dónde mostrar la foto redonda o la inicial.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/pages/UserTweetsPage.tsx` y `src/exex/pages/UserTweetsPage.css`.
+
+---
+
+### [2026-11-07] - Mantener el menú lateral al cambiar de pantalla
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Reutilizar pantalla de perfil](https://chatgpt.com/share/6aef58dd-b66c-83e9-9131-c1262308c0f4)
+- **Mensaje enviado (Prompt):**
+  > ah ya te entendi, y para que se vea simpre la barra lateral si crear un archivo, y para que se vea en todas como la conecto?
+  >
+  > en exex router la conecto para que se vean en todas
+- **Resumen de la respuesta:** Se revisó que `ExexSidebar` está una sola vez en `ExexRouter`, por fuera de `Routes`. Así el menú sigue visible cuando cambia la pantalla dentro de las rutas con sesión iniciada.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/components/ExexSidebar.tsx` y `src/exex/routes/ExexRouter.tsx`.
+
+---
+
+## Editar perfil — Camilo Molina
+
+### [2026-11-08] - Actualizar el perfil en la sesión
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Editar perfil con updateDoc](chatgpt-conversation://6af10c17-3554-83e9-b4d2-e6a5ba7ed689)
+- **Mensaje enviado (Prompt):**
+  > en el reducer que tengo que poner?
+- **Resumen de la respuesta:** Se revisó el caso `profile-updated`. Después de guardar en Firestore, el reducer comprueba el UID y actualiza el nombre y la bio de la cuenta activa. Así se ven los cambios en la misma sesión.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/auth/reducers/authReducer.ts`, `src/auth/types/authReducerInterfaces.ts` y `src/auth/contexts/AuthProvider.tsx`.
+
+---
+
+### [2026-11-08] - Conectar la foto y la portada con Firebase
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Editar perfil con updateDoc](chatgpt-conversation://6af10c17-3554-83e9-b4d2-e6a5ba7ed689)
+- **Mensaje enviado (Prompt):**
+  > y como hago para que tambien el edite su foto de perfil y portada, tendria que pagar en firebase?
+  >
+  > muestrame como seria
+- **Resumen de la respuesta:** Se explicó cómo conectar Storage a la app de Firebase, subir los archivos y guardar sus enlaces en Firestore. También se revisó que Storage requiere el plan Blaze y que las reglas pueden limitar la subida al dueño del perfil.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/firebase/config.ts`, `src/firebase/providers.ts`, `src/exex/components/EditProfileForm.tsx` y `storage.rules`.
+
+---
+
+### [2026-11-08] - Diferencia entre la foto y la portada
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Editar perfil con updateDoc](chatgpt-conversation://6af10c17-3554-83e9-b4d2-e6a5ba7ed689)
+- **Mensaje enviado (Prompt):**
+  > el cover lo que hace es actualizar la foto
+- **Resumen de la respuesta:** Se aclaró que `photoURL` corresponde a la foto redonda y `coverURL` a la imagen ancha que se muestra en la parte superior del perfil.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivo relacionado: `src/exex/pages/UserTweetsPage.tsx`.
+
+---
+
+### [2026-11-09] - Separar las rutas de las imágenes
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Editar perfil con updateDoc](chatgpt-conversation://6af10c17-3554-83e9-b4d2-e6a5ba7ed689)
+- **Mensaje enviado (Prompt):**
+  > y utilizo el kind para saber que voy a pasar la foto
+- **Resumen de la respuesta:** Se explicó que `kind` indica el tipo de imagen al armar la ruta de Storage. En EXEX se usa `photo` para la foto de perfil y `cover` para la portada.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/firebase/providers.ts` y `storage.rules`.
+
+---
+
+## Consultas sobre Firestore - Brahian Montoya - 2026-11-10
+
+Se incorporan las cuatro entradas del archivo suministrado por Brahian. Las horas y los estados de las consultas se conservan tal como aparecen en el documento.
+
+Nota de revisión del repositorio. las consultas describen explicaciones y propuestas. El RF04 implementado guarda authorId, body y createdAt en tweets. El campo content mencionado en la consulta 2 corresponde al modelo propuesto, y su equivalente en el código es body. La consulta 3 trata del RF07 y queda registrada como propuesta. El RF04 usa serverTimestamp() y omite temporalmente de la lista los documentos cuya fecha todavía no sea un Timestamp confirmado.
+
+### CONSULTA 1 — 10:51 a. m.
+
+- Pregunta realizada: ¿Qué diferencia hay entre guardar la fecha con serverTimestamp() y usar la hora del navegador?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
+- Resumen breve de la respuesta: Se explicó que new Date() utiliza el reloj del dispositivo y serverTimestamp() permite que Firestore asigne la fecha al recibir la escritura. La zona horaria usada para mostrar la fecha es una decisión independiente. Mientras la escritura está pendiente, una marca de tiempo del servidor puede leerse como null.
+- Archivos o conceptos involucrados: createdAt, serverTimestamp(), Date, reloj del dispositivo, UTC y zona horaria.
+- Estado: Documentación oficial consultada y explicación realizada. No se ejecutó código ni se modificaron archivos.
+- Fuentes: <https://firebase.google.com/docs/firestore/manage-data/add-data#server_timestamp>
+  <https://firebase.google.com/docs/reference/js/firestore.snapshotoptions>
+
+---
+
+### CONSULTA 2 — 10:52 a. m.
+
+- Pregunta realizada: ¿Qué campos debería tener cada tweet en Firestore para mostrarlo en el perfil y en el feed?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
+- Resumen breve de la respuesta: Se propuso una colección tweets con un documento por publicación y los campos authorId (UID del autor), content (texto) y createdAt (Timestamp). El ID del documento se utiliza como identificador del tweet. El perfil filtra por el autor visitado y el feed por el usuario conectado y las personas que sigue.
+- Archivos o conceptos involucrados: Firestore, Firebase Auth, tweets, doc.id, authorId, content, Timestamp, perfil y feed.
+- Estado: Modelo y ejemplo propuestos. No se migraron datos, no se modificaron archivos ni se comprobó la integración.
+- Fuentes: <https://firebase.google.com/docs/firestore/manage-data/add-data#server_timestamp>
+  <https://firebase.google.com/docs/firestore/query-data/order-limit-data>
+
+---
+
+### CONSULTA 3 — 10:53 a. m.
+
+- Pregunta realizada: ¿Cómo usar el UID del perfil que viene en la URL para mostrar solo sus publicaciones, de diez en diez?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
+- Resumen breve de la respuesta: Se propuso leer userId con useParams, filtrar con where por authorId, ordenar por createdAt descendente y paginar con startAfter. El ejemplo pide once documentos, muestra diez y usa el décimo como cursor cuando existe otra página. Se propuso key={userId} para reiniciar la paginación del componente al cambiar de perfil y se explicó que Firestore puede solicitar un índice compuesto.
+- Archivos o conceptos involucrados: UserTweetsPage, UserTweetList, useParams, where, orderBy, limit, startAfter, getDocs, QueryDocumentSnapshot e índices de Firestore.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó la consulta contra Firestore ni se modificaron archivos. El enlace que había quedado pendiente se sustituye por la copia actualizada.
+- Fuentes: <https://firebase.google.com/docs/firestore/query-data/query-cursors>
+  <https://firebase.google.com/docs/firestore/query-data/index-overview>
+
+---
+
+### CONSULTA 4 — 5:50 p. m.
+
+- Pregunta realizada: Solicitar las últimas bitácoras para descargar.
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
+- Resumen breve de la respuesta: Se recopilaron las tres consultas técnicas del 10 de noviembre y esta solicitud en un archivo TXT, con las horas de Colombia, preguntas, enlaces, resúmenes, conceptos y estados.
+- Archivos o conceptos involucrados: bitacoras_2026-11-10.txt y enlaces compartidos de la conversación.
+- Estado: Archivo TXT generado y verificado mediante el conteo de registros y enlaces. No se modificó el código de EXEX ni se ejecutaron pruebas del proyecto.
+
+---
+
+### CONSULTA 5 — 7:27 p. m.
+
+- Pregunta realizada: ¿Cómo mostrar únicamente los tweets del usuario cuyo UID aparece en la URL?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
+- Resumen breve de la respuesta: Se explicó cómo obtener userId con useParams y filtrar Firestore por authorId, distinguiendo el perfil visitado del usuario conectado. Se propuso ordenar por createdAt descendente y limitar a diez resultados.
+- Archivos o conceptos involucrados: UserTweetsPage, useParams, authorId, where, orderBy, limit y getDocs.
+- Estado: Explicación y fragmentos propuestos con rutas y campos supuestos. No se modificaron archivos ni se ejecutó la consulta contra Firestore.
+
+---
+
+### CONSULTA 6 — 7:28 p. m. (19:28:17)
+
+- Pregunta realizada: ¿Cómo obtener el UID con useParams?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
+- Resumen breve de la respuesta: Se mostró cómo definir :userId en la ruta y leerlo con useParams. Se aclaró que el nombre debe coincidir y que el hook extrae el texto, pero no valida la existencia del usuario en Firebase.
+- Archivos o conceptos involucrados: React Router v6, Route, useParams, UserTweetsPage y parámetros de URL.
+- Estado: Explicación y ejemplo propuestos. No se modificaron archivos ni se ejecutó código.
+
+---
+
+### CONSULTA 7 — 7:28 p. m. (19:28:38)
+
+- Pregunta realizada: ¿Cómo reiniciar la paginación al cambiar de perfil?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
+- Resumen breve de la respuesta: Se propuso usar key={userId} en el componente que guarda la paginación para reiniciar su estado local, incluida la página y el cursor. La primera carga debe realizarse sin startAfter. Se aclaró que esto no reinicia el estado de un contexto superior.
+- Archivos o conceptos involucrados: UserTweetsPage, UserTweetList, key, useState, QueryDocumentSnapshot, cursores y startAfter.
+- Estado: Solución propuesta suponiendo que el estado de paginación pertenece a la lista. No se modificaron archivos ni se ejecutó código.
+
+---
+
+### CONSULTA 8 — 7:29 p. m.
+
+- Pregunta realizada: Solicitar la bitácora actualizada para descargar.
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af3b6e066948191954e45427e201888>
+- Resumen breve de la respuesta: Se añadieron las tres consultas más recientes y esta solicitud al archivo del 10 de noviembre, y se actualizó el enlace compartido en todos sus registros.
+- Archivos o conceptos involucrados: bitacoras_2026-11-10.txt y enlaces compartidos de la conversación.
+- Estado: Archivo TXT actualizado y verificado mediante conteo de entradas y enlaces. No se modificó el código de EXEX ni se ejecutaron pruebas del proyecto.
+
+La propuesta de consultas con cursores queda registrada como referencia. En la implementación actual del RF07, el contexto carga las publicaciones de Firestore y la pantalla filtra por authorId, ordena por fecha descendente y pagina con slice(), con un máximo de diez publicaciones por página. El estado de la página se reinicia mediante key={userId}.
+
+---
+
+## Consultas sobre el feed (RF08) - Brahian Montoya - 2026-11-11
+
+Horas de Colombia (UTC-5).
+
+Las consultas registran las propuestas exploradas. La implementación del RF08 obtiene las publicaciones y los seguimientos de sus contextos, filtra por los autores permitidos y pagina localmente con slice(), con diez publicaciones por página. Las consultas con where y los cursores se documentan como propuestas.
+
+### CONSULTA 1 — 3:48 p. m.
+
+- Pregunta realizada: ¿Cómo filtro el feed para mostrar mis publicaciones y las de las personas que sigo?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso reunir el UID propio y los de las cuentas seguidas, eliminar duplicados con Set y usar where con in para consultar los diez tweets más recientes. Se aclaró que los UID deben coincidir con authorId y que esta consulta admite hasta 30 UID, incluido el propio.
+- Archivos o conceptos involucrados: Firebase Auth, Firestore, followerId, followingId, authorId, Set, where, orderBy y limit.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó la consulta ni se modificaron archivos del proyecto.
+- Fuente: <https://firebase.google.com/docs/firestore/query-data/queries#in_not-in_and_array-contains-any>
+
+---
+
+### CONSULTA 2 — 3:51 p. m.
+
+- Pregunta realizada: ¿Por qué debo incluir mi propio UID entre los autores permitidos?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Firestore solo devuelve tweets cuyos autores están en la lista. Agregar el UID propio permite que aparezcan las publicaciones del usuario conectado, aunque no siga a nadie. No es necesario crear una relación consigo mismo.
+- Archivos o conceptos involucrados: currentUserId, followingIds, authorId, Set y filtro in.
+- Estado: Explicación y ejemplo propuestos. No se modificaron archivos del proyecto ni se ejecutó código.
+
+---
+
+### CONSULTA 3 — 3:52 p. m.
+
+- Pregunta realizada: ¿En qué orden debería filtrar, ordenar y paginar las publicaciones?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Primero se filtra por autor, luego se ordena por createdAt descendente y por último se pagina de diez en diez. Para avanzar se usa el último documento visible como cursor. Si cambia la lista de autores, se vuelve a la primera página.
+- Archivos o conceptos involucrados: Firestore, authorIds, where, orderBy, limit, startAfter y getDocs.
+- Estado: Ejemplo propuesto. No se ejecutó la consulta ni se modificaron archivos del proyecto. Se añadió el enlace actualizado a esta recopilación.
+- Fuente: <https://firebase.google.com/docs/firestore/query-data/query-cursors>
+
+---
+
+### CONSULTA 4 — 3:58 p. m.
+
+- Pregunta realizada: ¿Cómo se entera el feed de que cambió la lista de seguidos?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso escuchar las relaciones con onSnapshot, actualizar followingIds y volver a consultar la primera página con los autores actualizados. getDocs no vuelve a ejecutarse automáticamente. Para seguimientos en memoria, se recomendó un estado compartido.
+- Archivos o conceptos involucrados: follows, followingIds, authorIds, onSnapshot, getDocs, useEffect y cursores.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó código contra Firestore ni se modificaron archivos del proyecto.
+- Fuente: <https://firebase.google.com/docs/firestore/query-data/listen>
+
+---
+
+### CONSULTA 5 — 4:05 p. m.
+
+- Pregunta realizada: ¿Qué debería mostrar mientras cargan las publicaciones o las relaciones de seguimiento?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso distinguir la carga de seguidos, la carga de publicaciones, el error y el feed vacío. Una lista de seguidos vacía después de cargar aún permite buscar publicaciones propias. Al cargar más, se conservan los tweets visibles.
+- Archivos o conceptos involucrados: followingIds, estados de carga, estado vacío, errores y paginación.
+- Estado: Comportamiento de interfaz propuesto. No se modificaron archivos del proyecto ni se ejecutaron pruebas.
+
+---
+
+### CONSULTA 6 — 4:14 p. m.
+
+- Pregunta realizada: Solicitar la bitácora para descargar.
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se recopilaron las cinco consultas sobre el feed y esta solicitud en un archivo TXT con las horas de Colombia y el enlace actualizado.
+- Archivos o conceptos involucrados: bitacoras_2026-11-11.txt y enlace compartido del chat.
+- Estado: Archivo TXT generado y verificado por conteo de registros y enlaces. No se modificó el código de EXEX.
+
+---
+
+## Consultas sobre detalle y respuestas (RF13) - Brahian Montoya - 2026-11-11
+
+En la implementación del RF13, las respuestas se guardan en tweets/{tweetId}/replies con authorId, body y createdAt. La consulta 7 usa content como nombre propuesto para el texto de la respuesta. La consulta 8 describe un plan de pruebas manuales.
+
+### CONSULTA 7 — 5:41 p. m.
+
+- Pregunta realizada: ¿Cómo guardar y mostrar las respuestas de cada tweet?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso guardar cada respuesta en tweets/{tweetId}/replies con authorId, content y createdAt. La pantalla de detalle escucha las respuestas con onSnapshot para mostrarlas sin recargar y cancela la escucha al salir o cambiar de tweet.
+- Archivos o conceptos involucrados: Firestore, subcolecciones, addDoc, serverTimestamp, onSnapshot y useEffect.
+- Estado: Documentación oficial consultada y ejemplos propuestos. No se ejecutó código contra Firestore ni se modificó la aplicación.
+- Fuentes: <https://firebase.google.com/docs/firestore/data-model#subcollections>
+  <https://firebase.google.com/docs/firestore/query-data/listen>
+
+---
+
+### CONSULTA 8 — 5:49 p. m.
+
+- Pregunta realizada: ¿Cómo probar un enlace directo a un tweet existente y otro con un ID inválido?
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso abrir y recargar dos URLs de detalle: una con un ID real de Firestore y otra con un ID inexistente. Se distinguió el mensaje de tweet no encontrado de un error de permisos o de alojamiento.
+- Archivos o conceptos involucrados: Ruta /tweets/:tweetId, ID de documento, Firestore, React Router y enlaces directos.
+- Estado: Pruebas manuales propuestas. No se abrió la aplicación, no se ejecutaron pruebas ni se modificó el código.
+
+---
+
+### CONSULTA 9 — 7:22 p. m.
+
+- Pregunta realizada: Solicitar la bitácora actualizada para descargar.
+- Enlace para este chat: <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se agregaron las dos consultas más recientes y esta solicitud al TXT del 11 de noviembre. Se renovó el enlace compartido en los registros.
+- Archivos o conceptos involucrados: bitacoras_2026-11-11.txt y enlace compartido del chat.
+- Estado: Archivo TXT actualizado y verificado mediante conteo de registros y enlaces. No se modificó el código de EXEX.
+
+---
+
+## Modo invitado — Camilo Molina
+
+### [2026-11-11] - Datos públicos del autor
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Mostrar tweets públicos](chatgpt-conversation://6af4f91f-4bac-83e9-9901-3c1872a405b6)
+- **Mensaje enviado (Prompt):**
+  > pero ahi los dos mandan la misma informacion
+  >
+  > es poner en el transaction.set el full name y usename para que solo me muestre eso
+- **Resumen de la respuesta:** Se explicó por qué el nombre y el usuario se guardan también en publicProfiles. Esa colección contiene los dos campos que necesita Explorar para mostrar al autor.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/firebase/providers.ts`, `src/firebase/publicProfiles.ts` y `src/firebase/featuredTweets.ts`.
+
+---
+
+### [2026-11-11] - Datos del perfil completo
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Mostrar tweets públicos](chatgpt-conversation://6af4f91f-4bac-83e9-9901-3c1872a405b6)
+- **Mensaje enviado (Prompt):**
+  > y el otro que es lo que guarda
+- **Resumen de la respuesta:** Se revisó que users guarda el perfil completo, con el UID, nombre, usuario, correo y foto. Al editar también puede incluir la bio, la portada y las rutas de las imágenes. Explorar consulta los nombres en publicProfiles.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/firebase/providers.ts` y `src/firebase/featuredTweets.ts`.
+
+---
+
+### [2026-11-11] - Actualizar el nombre público al editar
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Mostrar tweets públicos](chatgpt-conversation://6af4f91f-4bac-83e9-9901-3c1872a405b6)
+- **Mensaje enviado (Prompt):**
+  > y cuando yo edite mi perfil eso se refleja en el publico
+  >
+  > eso esta en donde
+- **Resumen de la respuesta:** Se ubicó la función updateUserProfile en providers.ts. La misma transacción actualiza el perfil y escribe el nombre y el usuario en publicProfiles. Al volver a cargar Explorar, se muestra el nombre actualizado.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivo relacionado: `src/firebase/providers.ts`.
+
+---
+
+---
+
+## Consultas sobre republicaciones (RF14) - Brahian Montoya - 2026-11-12
+
+Horas de Colombia (UTC-5). El enlace corresponde a una copia anterior. El archivo adjunto registra las consultas del 12 de noviembre.
+
+En el RF14, las republicaciones se guardan en la colección reposts con userId, tweetId y createdAt. El ID combina el usuario y el tweet. La tarjeta conserva la autoría y la fecha del original, y el feed ordena la entrada por la fecha de la republicación.
+
+### CONSULTA 1 — 3:35 p. m.
+
+- Pregunta realizada: ¿Cómo guardo una republicación en Firestore?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso crear un documento en tweets con type: repost, el UID de quien republica, el ID del original y su propia fecha. Un ID fijo por pareja usuario–tweet permite evitar documentos duplicados.
+- Archivos o conceptos involucrados: Firestore, tweets, type, authorId, originalTweetId, createdAt, addDoc y serverTimestamp.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se guardaron datos ni se modificó el proyecto.
+
+---
+
+### CONSULTA 2 — 3:38 p. m.
+
+- Pregunta realizada: ¿Qué datos necesito para saber quién republicó y cuál es la publicación original?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: authorId identifica a quien republicó. originalTweetId apunta al documento original, donde está el UID del autor original. type y createdAt permiten distinguir y ordenar la republicación.
+- Archivos o conceptos involucrados: Firestore, authorId, originalTweetId, type y createdAt.
+- Estado: Modelo explicado con un ejemplo. No se guardaron datos ni se modificó el proyecto.
+
+---
+
+### CONSULTA 3 — 3:45 p. m.
+
+- Pregunta realizada: ¿Cómo muestro una republicación en el feed?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso leer el tweet original y reutilizar TweetCard, mostrando encima quién republicó. La tarjeta conserva el autor y la fecha originales. Se distinguió la carga del caso en que el original no existe.
+- Archivos o conceptos involucrados: TweetCard, authorId, originalTweetId, createdAt, getDoc y estados de carga.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se ejecutó código ni se modificó el proyecto.
+
+---
+
+### CONSULTA 4 — 3:46 p. m.
+
+- Pregunta realizada: ¿Uso la fecha del tweet original o la de la republicación para ordenar el feed?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se recomendó ordenar por la fecha de la republicación y mostrar la fecha del tweet original dentro de TweetCard.
+- Archivos o conceptos involucrados: createdAt, orderBy, TweetCard, feed y republicaciones.
+- Estado: Explicación propuesta. No se ejecutaron consultas ni se modificó el proyecto.
+
+---
+
+### CONSULTA 5 — 3:52 p. m.
+
+- Pregunta realizada: Solicitar la bitácora para descargar.
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se recopilaron las cuatro consultas sobre republicaciones y esta solicitud en un archivo TXT.
+- Archivos o conceptos involucrados: bitacoras_2026-11-12.txt y enlace compartido del chat.
+- Estado: Archivo TXT generado y verificado por conteo de registros. No se modificó el código de EXEX.
+
+---
+
+## Consultas sobre imágenes y GIF (RF11) - Brahian Montoya - 2026-11-12
+
+Horas de Colombia (UTC-5). El enlace corresponde a una copia anterior a estas consultas.
+
+El RF11 acepta JPG, PNG, WebP y GIF de hasta 5 MiB. Guarda la URL opcional en mediaUrl y conserva el texto obligatorio. Si falla el guardado después de subir el adjunto, la aplicación intenta eliminar el archivo. La consulta 7 registra el enfoque alternativo que se exploró.
+
+### CONSULTA 6 — 4:28 p. m. (16:28:03)
+
+- Pregunta realizada: ¿Cómo valido el tipo y tamaño del archivo antes de subirlo?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso validar File.type y File.size antes de subir una imagen. JPEG, PNG, WebP y el límite de 5 MiB son ejemplos. El atributo accept solo orienta la selección; se recomendó aplicar los límites también en Firebase Storage.
+- Archivos o conceptos involucrados: File, tipos MIME, accept, uploadBytes y reglas de Firebase Storage.
+- Estado: Documentación oficial consultada y ejemplo propuesto. No se subieron archivos ni se modificó el proyecto.
+
+---
+
+### CONSULTA 7 — 4:28 p. m. (16:28:41)
+
+- Pregunta realizada: ¿Qué hago si el archivo se sube pero falla el guardado del tweet?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso conservar el archivo y reutilizar el ID reservado al reintentar el guardado con setDoc. Si el resultado es incierto, se consulta al servidor antes de reintentar o eliminar el archivo. Si se cancela, se elimina solo si el tweet no existe y no hay escritura pendiente.
+- Archivos o conceptos involucrados: Firebase Storage, Firestore, setDoc, getDocFromServer, deleteObject y escrituras pendientes.
+- Estado: Documentación oficial consultada y flujo propuesto. No se subieron ni eliminaron archivos ni se ejecutaron escrituras.
+
+---
+
+### CONSULTA 8 — 4:30 p. m.
+
+- Pregunta realizada: ¿Cómo hago que los tweets que solo tienen texto sigan funcionando?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso hacer imageUrl opcional, validar y subir la imagen solo si se eligió un archivo y mostrarla en la tarjeta solo si existe. Se mantuvo el texto obligatorio en el ejemplo.
+- Archivos o conceptos involucrados: Tweet, TweetCard, imageUrl, File, validateImage, setDoc y renderizado condicional.
+- Estado: Flujo y ejemplos propuestos. No se modificaron archivos del proyecto ni se ejecutaron pruebas.
+
+---
+
+### CONSULTA 9 — 4:31 p. m.
+
+- Pregunta realizada: ¿Cómo evito que una imagen grande se salga de la tarjeta en celular?
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se propuso limitar el ancho con max-width: 100% y mantener la proporción con height: auto. Si la tarjeta es hija de un contenedor flex, se sugirió comprobar si necesita min-width: 0.
+- Archivos o conceptos involucrados: TweetCard, imageUrl, CSS adaptable, max-width, height y Flexbox.
+- Estado: Ejemplo propuesto. No se modificaron archivos del proyecto ni se comprobó el diseño en celular.
+
+---
+
+### CONSULTA 10 — 4:32 p. m.
+
+- Pregunta realizada: Solicitar la bitácora actualizada para descargar.
+- Enlace para este chat (copia anterior): <https://chatgpt.com/s/cx_6af506dc6bb88191825f7cc1f584c66b>
+- Resumen breve de la respuesta: Se añadieron las cuatro consultas sobre imágenes y esta solicitud al TXT del 12 de noviembre.
+- Archivos o conceptos involucrados: bitacoras_2026-11-12.txt y enlaces compartidos del chat.
+- Estado: Archivo TXT actualizado y verificado por conteo de registros. No se obtuvo un enlace nuevo. No se modificó el código de EXEX.
+
+---
+
+## Me gusta — Camilo Molina
+
+### [2026-11-11] - Compartir los Me gusta entre pantallas
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Compartir Me gusta contextos](chatgpt-conversation://6af50e33-30a4-83e9-9e42-86ec2a0b3b16)
+- **Mensaje enviado (Prompt):**
+  > Quiero poner Me gusta en los tweets. Ya tengo un contexto para seguir usuarios, ¿puedo usar esa misma lógica para que el corazón y el contador se compartan entre Inicio y los perfiles?
+  >
+  > porque por separado y envolverlo en el exex router
+- **Resumen de la respuesta:** Se explicó que LikesProvider escucha los Me gusta de Firestore y comparte el estado entre las pantallas que envuelve en ExexRouter. LikeButton calcula el contador y si la cuenta activa marcó la publicación.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/contexts/LikesProvider.tsx`, `src/exex/components/LikeButton.tsx`, `src/exex/components/TweetCard.tsx` y `src/exex/routes/ExexRouter.tsx`.
+
+---
+
+### [2026-11-11] - Guardar y quitar el Me gusta en Firebase
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Compartir Me gusta contextos](chatgpt-conversation://6af50e33-30a4-83e9-9e42-86ec2a0b3b16)
+- **Mensaje enviado (Prompt):**
+  > y en firebase que cambia esto?
+  >
+  > donde se crea el documento, dame un ejemplo
+- **Resumen de la respuesta:** Se ubicó transaction.set dentro de setTweetLike. Al dar Me gusta se guarda un documento en likes con tweetId y userId. Al quitarlo se elimina ese documento. También se revisó que las reglas de Firestore deben controlar quién puede modificar cada relación.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivo relacionado: `src/firebase/likes.ts`.
+
+---
+
+### [2026-11-11] - Identificar la cuenta y la publicación
+
+- **Herramienta / Modelo:** ChatGPT
+- **Enlace a la conversación:** [Compartir Me gusta contextos](chatgpt-conversation://6af50e33-30a4-83e9-9e42-86ec2a0b3b16)
+- **Mensaje enviado (Prompt):**
+  > los dos id los coje del firebase, muestrame en el codigo como se ve
+- **Resumen de la respuesta:** Se siguió el UID desde la sesión hasta LikesProvider y el ID del tweet desde TweetCard hasta LikeButton. La función de Firebase combina ambos para usar el mismo documento al dar o quitar Me gusta y comprueba que la publicación exista.
+- **Archivos creados/modificados:**
+  - Sin cambios en esa conversación. Archivos relacionados: `src/exex/contexts/LikesProvider.tsx`, `src/exex/components/LikeButton.tsx`, `src/exex/components/TweetCard.tsx` y `src/firebase/likes.ts`.
+
+---

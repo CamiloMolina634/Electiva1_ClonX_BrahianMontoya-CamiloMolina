@@ -1,25 +1,39 @@
 import { useContext, useState, type SubmitEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import { getAuthRedirect } from '../utils/getAuthRedirect';
 
 export const LoginPage = () => {
-  const { authState, login } = useContext(AuthContext);
+  const { authState, login, loginWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectTo = getAuthRedirect(location.state);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [submitting, setSubmitting] = useState(false);
+  const [method, setMethod] = useState<'password' | 'google' | null>(null);
+  const submitting = method !== null;
 
   const onLogin = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (submitting) return;
-    setSubmitting(true);
+    setMethod('password');
     try {
       const result = await login(username.trim(), password);
       if (result) {
-        navigate('/', { replace: true });
+        navigate(redirectTo, { replace: true });
       }
     } finally {
-      setSubmitting(false);
+      setMethod(null);
+    }
+  };
+
+  const onGoogleSignIn = async () => {
+    if (submitting) return;
+    setMethod('google');
+    try {
+      if (await loginWithGoogle()) navigate(redirectTo, { replace: true });
+    } finally {
+      setMethod(null);
     }
   };
 
@@ -45,10 +59,15 @@ export const LoginPage = () => {
             </div>
             {authState.errorMessage && <p className="text-danger" role="alert">{authState.errorMessage}</p>}
             <button type="submit" className="btn btn-primary w-100" disabled={submitting}>
-              {submitting ? 'Iniciando sesión…' : 'Iniciar sesión'}
+              {method === 'password' ? 'Iniciando sesión…' : 'Iniciar sesión'}
+            </button>
+            <button type="button" className="btn btn-outline-secondary rounded-pill w-100 mt-3"
+              onClick={onGoogleSignIn} disabled={submitting}>
+              {method === 'google' ? 'Abriendo Google…' : 'Continuar con Google'}
             </button>
           </form>
-          <p className="mt-3 exex-auth-footer">¿No tienes cuenta? <Link to="/register">Regístrate</Link></p>
+          <p className="mt-3 exex-auth-footer">¿No tienes cuenta? <Link to="/register" state={{ from: redirectTo }}>Regístrate</Link></p>
+          <p className="exex-auth-footer mb-0"><Link to="/explorar">Explorar como invitado</Link></p>
         </div>
       </div>
     </main>
