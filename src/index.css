@@ -31,7 +31,7 @@ a.exex-brand:hover { color: var(--exex-green-dark); }
   position: sticky;
   top: 0;
   z-index: 3;
-  background: #fff;
+  background: var(--bs-body-bg);
 }
 .exex-header-content { max-width: 1200px; padding-block: 0.5rem; }
 .exex-header .navbar { padding-block: 0; }
@@ -55,7 +55,7 @@ a.exex-brand:hover { color: var(--exex-green-dark); }
   align-self: stretch;
   border-inline: 1px solid var(--exex-border);
   border-bottom: 1px solid var(--exex-border);
-  background: #fff;
+  background: var(--bs-body-bg);
 }
 .exex-header-grid .exex-account {
   grid-column: 3;
@@ -196,3 +196,51 @@ a.exex-brand:hover { color: var(--exex-green-dark); }
 .exex-auth-footer { color: var(--bs-secondary-color); text-align: center; }
 .project-start { max-width: 640px; margin: 12vh auto; padding: 24px; }
 .project-mark { font-size: 64px; font-weight: 700; }
+:root[data-bs-theme="dark"] {
+  --exex-surface: #11161b;
+  --exex-border: #35404a;
+  --exex-green: #4ade80;
+  --exex-green-dark: #4ade80;
+  --bs-body-bg: #080b0e;
+  --bs-body-color: #edf2f7;
+  --bs-body-color-rgb: 237, 242, 247;
+  --bs-secondary-color: #a4aeb9;
+  --bs-secondary-color-rgb: 164, 174, 185;
+  --bs-primary-bg-subtle: #102c20;
+  --bs-primary-text-emphasis: #86efac;
+  --bs-link-color: #4ade80;
+  --bs-link-color-rgb: 74, 222, 128;
+  --bs-link-hover-color: #86efac;
+  --bs-link-hover-color-rgb: 134, 239, 172;
+  --bs-border-color: var(--exex-border);
+}
+[data-bs-theme="dark"] .btn-primary {
+  --bs-btn-bg: #15803d;
+  --bs-btn-border-color: #15803d;
+  --bs-btn-disabled-bg: #15803d;
+  --bs-btn-disabled-border-color: #15803d;
+}
+[data-bs-theme="dark"] .home-person-info span,
+[data-bs-theme="dark"] .home-footnote { color: var(--bs-secondary-color); }
+.theme-toggle {
+  position: fixed;
+  bottom: 16px;
+  right: 20px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  min-height: 44px;
+  padding: 0;
+  border: 1px solid #15803d;
+  border-radius: 50%;
+  background: #15803d;
+  color: #fff;
+  font-size: 22px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 25%);
+}
+.theme-toggle { min-height: 36px; }
+.theme-toggle:hover, .theme-toggle:focus-visible { background: #166534; }
+.theme-toggle:focus-visible { outline: 3px solid var(--exex-green); outline-offset: 3px; }
+body { padding-bottom: 72px; }
