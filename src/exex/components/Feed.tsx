@@ -15,8 +15,16 @@ export const Feed = ({ mode = 'following' }: { mode?: 'all' | 'following' }) => 
   const { users, follows, currentUserId, ready } = useFollows()
   const { tweets, loading, loadError, reposts, repostsError } = useTweets()
   const [page, setPage] = useState(1)
-  const { likes } = useLikes()
-  const likeCounts = getLikeCounts(likes)
+  const { likes, ready: likesReady } = useLikes()
+  const [rankingLikes, setRankingLikes] = useState<Map<string, number> | null>(
+    () => likesReady ? getLikeCounts(likes) : null,
+  )
+
+  if (mode === 'all' && likesReady && rankingLikes === null) {
+    setRankingLikes(getLikeCounts(likes))
+  }
+
+  const likeCounts = rankingLikes ?? getLikeCounts(likes)
 
   const authors = new Map(users.map((user) => [user.uid, user]))
   if (authState.user) authors.set(authState.user.uid, authState.user)
