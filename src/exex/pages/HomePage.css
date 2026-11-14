@@ -1,7 +1,7 @@
 .home-page {
   --home-border: var(--exex-border);
   color: var(--bs-body-color);
-  background: #fff;
+  background: var(--bs-body-bg);
   min-height: 100vh;
 }
 .home-layout { display: grid; grid-template-columns: minmax(0, 600px) 300px; }
@@ -51,7 +51,7 @@
 .home-tweet-list .card p:last-child { line-height: 1.7; }
 .home-timeline-heading { padding: 15px 20px; border-bottom: 1px solid var(--home-border); border-top: 6px solid #f5f7f9; }
 .home-post { padding: 20px; border-bottom: 1px solid var(--home-border); transition: background .15s; }
-.home-post:hover { background: #fafcfd; }
+.home-post:hover { background: var(--exex-surface); }
 .home-avatar { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 44px; width: 44px; height: 44px; border-radius: 50%; font-size: 18px; font-weight: 750; }
 .home-avatar-0 { background: #e0edff; color: #28528c; }
 .home-avatar-1 { background: #f5e6dc; color: #875038; }
