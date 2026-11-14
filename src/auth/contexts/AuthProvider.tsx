@@ -2,7 +2,7 @@ import { useEffect, useReducer, useRef, useState, type ReactNode } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { FirebaseAuth } from '../../firebase/config';
 import { syncPublicProfile } from '../../firebase/publicProfiles';
-import { getUserProfile, loginUserByCredentials, loginUserByGoogleProvider, logoutUser, registerUser, updateUserProfile } from '../../firebase/providers';
+import { completeGoogleProfile, getUserProfile, loginUserByCredentials, loginUserByGoogleProvider, logoutUser, registerUser, updateUserProfile } from '../../firebase/providers';
 import type { ProfileEdit } from '../profile';
 import { AuthContext } from './AuthContext';
 import { authReducer } from '../reducers/authReducer';
@@ -106,6 +106,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     await logoutUser();
   };
 
+  const chooseGoogleUsername = async (username: string): Promise<void> => {
+    await completeGoogleProfile(username);
+    setChecking(true);
+    setSessionVersion((version) => version + 1);
+  };
+
   const register = async (data: RegisterData): Promise<boolean> => {
     if (registering.current) return false;
     registering.current = true;
@@ -131,7 +137,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ authState, checking, login, loginWithGoogle, register, logout, saveProfile }}>
+    <AuthContext.Provider value={{ authState, checking, login, loginWithGoogle, chooseGoogleUsername, register, logout, saveProfile }}>
       {children}
     </AuthContext.Provider>
   );

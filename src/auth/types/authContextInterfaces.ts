@@ -7,6 +7,7 @@ export interface AuthContextProps {
   checking: boolean;
   login: (username: string, password: string) => Promise<boolean>;
   loginWithGoogle: () => Promise<boolean>;
+  chooseGoogleUsername: (username: string) => Promise<void>;
   register: (data: RegisterData) => Promise<boolean>;
   saveProfile: (details: ProfileEdit) => Promise<void>;
   logout: () => Promise<void>;
